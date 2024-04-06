@@ -31,7 +31,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/fillInformation';
 
     /**
      * Create a new controller instance.
@@ -53,7 +53,7 @@ class LoginController extends Controller
             if ($finduser) {
                 $user = User::where('id', $finduser->user_id)->first();
                 Auth::login($user);
-                return redirect('/');
+                return redirect('/fillInformation');
             } else {
                 $newUser = new User();
                 $newUser->name = $user->name ? $user->name : $user->nickname;
@@ -67,12 +67,12 @@ class LoginController extends Controller
                 $new_user->provider_id = $user->id;
                 $new_user->save();
                 Auth::login($newUser);
-                return redirect('/');
+                return redirect('/fillInformation');
             }
         }
         catch(Exception $e) {
             Log::error($e->getMessage());
-            return redirect('/');
+            return redirect('/fillInformation');
         }
     }
 }
