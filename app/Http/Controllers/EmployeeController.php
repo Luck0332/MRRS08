@@ -11,6 +11,7 @@ use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use App\Models\reservationR;
 
 class EmployeeController extends Controller
 {
@@ -41,28 +42,12 @@ class EmployeeController extends Controller
         return view('titles_Employee.reserve_privet');
     }
     public function petition()
-    {
-        $test01 = 'W';
-        $reservation = reservations::where('res_status', $test01)->orderBy("id", "desc")->paginate(5);
-        return view('titles_Employee.petition',['reservations' => $reservation, 'test01' => $test01]);
+    {   
+        $reservationW = reservations::where('res_status', 'W')->orderBy("id", "desc")->paginate(5);
+        $reservationR = reservations::where('res_status', 'R')->orderBy("id", "desc")->paginate(2);
+        return view('titles_Employee.petition',compact('reservationsW','reservationR'));
     }
-    public function petition1(Request $request)
-    {
-        $test01 = $request->input('test01'); // รับค่า test01 จากคำร้องขอ
-        // ทำสิ่งที่ต้องการกับค่า test01 ได้ที่นี่
-
-        $reservation = reservations::where('res_status', $test01)->orderBy("id", "desc")->paginate(5);
-        return ['reservations' => $reservation, 'test01' => $test01];
-    }
-
-    public function petition2(Request $request)
-    {
-        $test01 = $request->input('test01'); // รับค่า test01 จากคำร้องขอ
-        // ทำสิ่งที่ต้องการกับค่า test01 ได้ที่นี่
-
-        $reservation = reservations::where('res_status', $test01)->orderBy("id", "desc")->paginate(5);
-        return ['reservations' => $reservation, 'test01' => $test01];
-    }
+    
 
     public function reservation_list()
     {
