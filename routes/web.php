@@ -70,7 +70,8 @@ Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit
 Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
-Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+
 
 
 

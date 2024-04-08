@@ -187,6 +187,18 @@ class EmployeeController extends Controller
 
         return redirect(route('titles_Employee.manage_account'))->with('success', 'ลบข้อมูลผู้ใช้สำเร็จ');
     }
+    
+    public function updatePetition(Request $request, $id)
+    {
+        $request->validate([
+            'newStatus' => 'required',
+        ]);
+        $reservation = reservations::findOrFail($id);
+        $reservation->res_status = $request->newStatus;
+        $reservation->save();
+
+        return redirect()->route('test')->with('success', 'Status updated successfully!');
+    }
 
     }
 
