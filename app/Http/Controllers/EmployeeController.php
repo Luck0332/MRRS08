@@ -11,7 +11,6 @@ use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
-use App\Models\reservationR;
 
 class EmployeeController extends Controller
 {
@@ -42,12 +41,12 @@ class EmployeeController extends Controller
         return view('titles_Employee.reserve_privet');
     }
     public function petition()
-    {   
-        $reservationW = reservations::where('res_status', 'W')->orderBy("id", "desc")->paginate(5);
-        $reservationR = reservations::where('res_status', 'R')->orderBy("id", "desc")->paginate(2);
-        return view('titles_Employee.petition',compact('reservationsW','reservationR'));
-    }
-    
+{
+    $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
+    $reservationsR = reservations::where('res_status', 'R')->orderBy("id", "asc")->paginate(2);
+    return view('titles_Employee.petition', compact('reservationsW', 'reservationsR'));
+}
+
 
     public function reservation_list()
     {
@@ -84,7 +83,7 @@ class EmployeeController extends Controller
         return view('titles_Employee.accout');
     }
 
- 
+
 
     /*manage_account
     create_user
