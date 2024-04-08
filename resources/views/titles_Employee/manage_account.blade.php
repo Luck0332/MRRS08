@@ -1,22 +1,17 @@
 @extends('layout.Employee')
 
 @section('title', 'User Account Management')
-
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>User Account Management</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
         <!-- Bootstrap CSS -->
-
+        
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -24,6 +19,7 @@
         <link rel="stylesheet" href="{{ url('assets/css.buttonadd/add.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+        {{--style นี้ท่าไม่ใช้หรืออยากเปลี่ยน หรือจะเอาไปแยกไฟล์จัดการได้เลย--}}
         <style>
             .content {
                 display: flex;
@@ -33,7 +29,8 @@
             }
 
             .card {
-                width: 130%;
+                width: 1300px;
+                height: 700px;
             }
 
             .card-header h3 {
@@ -44,13 +41,16 @@
                 margin-bottom: 20px;
             }
 
-            .pagination {
-                justify-content: center;
-            }
-
             .table td,
             .table th {
                 vertical-align: middle;
+                border: transparent;
+                
+
+            }
+            .table th{
+                background-color: #3b81f2;
+                color: #fff;
             }
 
             .btn-danger {
@@ -65,6 +65,7 @@
             .table td {
                 text-align: center;
                 vertical-align: middle;
+                
             }
 
             .table th:first-child,
@@ -76,25 +77,57 @@
             .table td:last-child {
                 text-align: right;
             }
-        </style>
-    </head>
+            .transparent-btn {
+                background-color: transparent;
+                border-color: transparent; /* Adjust border color as needed */
+                color: #000000;
+                font-size: 24px;
+            }
+            .delete-btn{
+                color: #FF0000 !important;
+            }
+            .btn-circle {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-color: #fff;
+                border-color: transparent;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                transition: transform 0.2s ease-in-out;
+                position: absolute;
+                bottom: 20px; /* Adjust the button position */
+            }
 
-    <body>
-        <section class="content">
-            <div class="row justify-content-center">
+            .btn-circle i {
+                font-size: 28px;
+                color: #5E96EB;
+            }
+            .btn-circle:hover {
+                background-color: transparent;
+                transform: translateY(-2px);
+                border-color: transparent;
+            }
+
+
+        </style>
+
+
+        {{--พวก section div ต่างอันไหนท่าไม่ได้ใช้ตกแต่ง ลบทิ้งได้ท่าไม่ได้เกี่ยวกับตัวระบบ--}}
+        <section class="content " >
+            <div class="row justify-content-center" >
                 <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">User Account Management</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="btn-container">
-                                <a href="{{ url('/add-user') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add
-                                    User</a>
-                            </div>
-                            <div class="table-responsive">
+                    {{--ตัว card กล่องทั้งหมด--}}
+                    <div class="card" style="border-color: transparent;">
+                        {{--ตัว card--}}
+                        <div class="card-body" style="padding: 0px; border-color:transparent"  >
+
+                            <div class="table-responsive-md" >
                                 <table class="table table-bordered">
                                     <thead>
+                                        {{--ตารางหัว culum --}}
                                         <tr>
                                             <th style="width: 10%">No.</th>
                                             <th>Username</th>
@@ -104,7 +137,8 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody> 
+                                        {{--loop แสดงข้อมูล culum --}}
                                         @foreach ($users as $key => $user)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
@@ -113,17 +147,15 @@
                                                 <td>{{ $user->us_tel }}</td>
                                                 <td>{{ $user->startdate }}</td>
                                                 <td>
-                                                    <a href="{{route('titles_Employee.edit_account_user',$user ->us_id)}}"class="btn btn-warning">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </a>
-                                                    <form id="delete-form-{{ $user->id }}" method="post"
-                                                        action="{{ url('/delete-user/' . $user->id) }}"
-                                                        style="display: inline;">
+                                                    <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('titles_Employee.destroy-user', ['user' => $user]) }}" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="button" class="btn btn-danger"
-                                                            onclick="deleteUser('{{ $user->id }}')"><i
-                                                                class="fas fa-trash-alt"></i> Delete</button>
+                                                        <a href="{{ route('titles_Employee.edit_user', ['user' => $user->id]) }}" class="btn btn-warning transparent-btn">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <button type="button" onclick="deleteUser('{{ $user->id }}')" class="btn btn-danger transparent-btn" style="color: #FF0000;">
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -131,8 +163,15 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="btn-container d-flex justify-content-end mt-3">
+                                <a href="{{ url('/Manage_account/add-user') }}" class="btn btn-primary btn-circle">
+                                    <i class="fas fa-plus"></i>
+                                    </a>
+                            </div>
                         </div>
+                        {{--ด้านใต้ card--}}
                         <div class="card-footer clearfix text-center">
+                            
                             <ul class="pagination pagination-sm m-0">
                                 {!! $users->links('pagination::bootstrap-4') !!}
                             </ul>
@@ -141,15 +180,8 @@
                 </div>
             </div>
         </section>
+    </body>
 
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <!-- Popper.js -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <!-- SweetAlert2 -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
             function deleteUser(userId) {
                 Swal.fire({
@@ -166,13 +198,14 @@
                             title: "Deleted!",
                             text: "Your file has been deleted.",
                             icon: "success"
+                            
                         });
+
                         document.getElementById('delete-form-' + userId).submit();
                     }
                 });
             }
         </script>
-    </body>
-
     </html>
 @endsection
+

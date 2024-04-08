@@ -104,6 +104,18 @@
     width: 1000px;
 }
 
+th {
+    background-color: #3b81f2;
+}
+
+td {
+    border-bottom: 1px solid #d9dddf;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    height: 35px;
+
+}
 .float_right{
     
 }

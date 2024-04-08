@@ -4,63 +4,112 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $rooms = Room::orderBy('ro_id','desc')->paginate(5);
-        return view('titles_Employee.manage_account',['users' => $users]);
+        return view('titles_Employee.manage_account',['rooms' => $rooms]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function manage_rooms()
     {
-        //
+        $rooms = Room::orderBy('id')->get();
+        return view('titles_Employee.manage_rooms', ['rooms' => $rooms]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function create_rooms(){
+        return view('titles_Employee.add_rooms');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Room $room)
-    {
-        //
+    public function store_rooms(Request $request ){
+        $data = $request->validate([
+            'room' => 'required',
+            'price'  => 'required',
+            'size_room' => 'required',
+            'capacity' => 'required',
+            'typeroom' => 'required',
+            'status_room' => 'required',
+            'typesplit' => 'required',
+            'notation' => 'required'
+        ]);
+
+        $newRoom = new Room;
+        $newRoom->ro_name= $request->room;
+        $newRoom->ro_price = $request->price;
+        $newRoom->ro_size = $request->size_room;
+        $newRoom->ro_capacity = $request->capacity;
+        $newRoom->ro_typeroom = $request->typeroom;
+        $newRoom->ro_avaliable = $request->status_room;
+        $newRoom->ro_cansplit = $request->typesplit;
+        $newRoom->ro_description = $request->notation;
+
+        $newRoom->save();
+
+        // dd($request);
+        if($request->image){
+            $file = $request->image;
+
+            $extension = strtolower($file->getClientOriginalExtension());
+            $filename = $newRoom->id.'.'.$extension;
+            $file->move('image/',$filename);
+
+            $newRoom->ro_pic1 = $filename;
+            $newRoom->save();
+        }
+
+        return redirect()->route('titles_Employee.store_rooms');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Room $room)
+
+    public function edit_rooms(Room $rooms)
     {
-        //
+        return view('titles_Employee.edit_rooms', ['rooms' => $rooms]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Room $room)
+    public function show()
     {
-        //
+        $room = Room::all();
+
+        return view ('titles_User.room_info',['Room' => $room]);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Room $room)
+    public function update_rooms(Request $request, Room $rooms)
     {
-        //
+        $data = $request->validate([
+            'room' => 'required',
+            'price'  => 'required',
+            'size_room' => 'required',
+            'capacity' => 'required',
+            'typeroom' => 'required',
+            'status_room' => 'required',
+            'typesplit' => 'required',
+            'notation' => 'required'
+        ]);
+        $rooms->ro_name= $request->room;
+        $rooms->ro_price = $request->price;
+        $rooms->ro_size = $request->size_room;
+        $rooms->ro_capacity = $request->capacity;
+        $rooms->ro_typeroom = $request->typeroom;
+        $rooms->ro_avaliable = $request->status_room;
+        $rooms->ro_cansplit = $request->typesplit;
+        $rooms->ro_description = $request->notation;
+        $rooms->save();
+
+
+        return redirect()->route('titles_Employee.manage_rooms')->with('success', 'แก้ไขข้อมูลห้องสำเร็จ');;
     }
+    public function destroy_rooms(Room $rooms)
+    {
+        // ลบข้อมูลผู้ใช้ออกจากฐานข้อมูล
+        $rooms->delete();
+
+        return redirect(route('titles_Employee.manage_rooms'))->with('success', 'ลบข้อมูลห้องสำเร็จ');
+    }
+
+
 }

@@ -9,9 +9,24 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    public function handleFormSubmission(Request $request)
+    {
+        $dateData = $request->input('date');
+    
+        // Redirect to search page with data
+        return redirect()->route('getsearch', ['date' => $dateData]);
+    }
+    
+    
     /**
      * Display a listing of the resource.
      */
+    public function getSearch(Request $request)
+    {
+        $dateData = $request->session()->get('dateData');
+        return view('titles_User.search_room', compact('dateData'));
+    }
+    
     public function getReserve()
     {
         //
@@ -24,11 +39,17 @@ class UserController extends Controller
         return view('titles_User.follow');
     }
 
-    public function getSearch()
+    public function getInformation()
     {
         //
-        return view('titles_User.search_room');
+        return view('titles_User.fill_information');
     }
+    public function getcalender()
+    {
+        //
+        return view('titles_User.testcalender');
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

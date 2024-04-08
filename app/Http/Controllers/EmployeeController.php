@@ -7,11 +7,10 @@ use App\Models\Room;
 use App\Models\User;
 use App\Http\Controllers\Validator;
 use App\Http\Controllers\UserController;
+use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\reservations;
-use PHPUnit\Framework\Constraint\IsTrue;
-use App\Models\reservationR;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -42,49 +41,56 @@ class EmployeeController extends Controller
         return view('titles_Employee.reserve_privet');
     }
     public function petition()
-{
-    $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
-    $reservationsR = reservations::where('res_status', 'R')->orderBy("id", "asc")->paginate(2);
-    return view('titles_Employee.petition', compact('reservationsW', 'reservationsR'));
-}
+    {
+        $test01 = 'W';
+        $reservation = reservations::where('res_status', $test01)->orderBy("id", "desc")->paginate(5);
+        return view('titles_Employee.petition',['reservations' => $reservation, 'test01' => $test01]);
+    }
+    public function petition1(Request $request)
+    {
+        $test01 = $request->input('test01'); // รับค่า test01 จากคำร้องขอ
+        // ทำสิ่งที่ต้องการกับค่า test01 ได้ที่นี่
 
-    // public function petition()
-    // {
-    //     $reservations = reservations::whereNotNull('res_status')->orderBy("id", "asc")->paginate(10);
-    //     return view('titles_Employee.petition',['reservations' => $reservations]);
-    // }
-    // public function petition1()
-    // {
-    //     $test02 = 'R';
-    //     $reservationRe = reservations::where('res_status', $test02)->orderBy("id", "desc")->paginate(5);
-    //     dd($reservationRe);
-    //     return view('titles_Employee.petition',['reservations' => $reservationRe, 'test02' => $test02]);
-    // }
+        $reservation = reservations::where('res_status', $test01)->orderBy("id", "desc")->paginate(5);
+        return ['reservations' => $reservation, 'test01' => $test01];
+    }
+
+    public function petition2(Request $request)
+    {
+        $test01 = $request->input('test01'); // รับค่า test01 จากคำร้องขอ
+        // ทำสิ่งที่ต้องการกับค่า test01 ได้ที่นี่
+
+        $reservation = reservations::where('res_status', $test01)->orderBy("id", "desc")->paginate(5);
+        return ['reservations' => $reservation, 'test01' => $test01];
+    }
 
     public function reservation_list()
     {
-        //
-        return view('titles_Employee.reservation_list');
+        $data['reservations'] =  reservations::all();
+        return view('titles_Employee.reservation_list',$data);
     }
 
-    public function statistics()
+    public function reservation_cancel(Request $request, $res_serialcode)
     {
-        //
-        return view('titles_Employee.statistics');
+        // หาข้อมูลการจองด้วย res_serialcode
+        $reservation = reservations::where('res_serialcode', $res_serialcode)->firstOrFail();
+
+        // ทำการอัปเดตสถานะของการจองเป็น 'C' (ยกเลิก)
+        $reservation->res_status = 'C';
+        $reservation->save();
+
+        return redirect()->route('titles_Employee.manage_account')->with('success', 'ยกเลิกการจองเรียบร้อยแล้ว');
     }
 
-    public function manage_account()
-    {
-        //
-        $users = User::orderBy('id','desc')->paginate(5);
-        return view('titles_Employee.manage_account',['users' => $users]);
-    }
 
-    public function manage_rooms()
-    {
-        //
-        $rooms = Room::orderBy('ro_id')->get();
-        return view('titles_Employee.manage_rooms', ['rooms' => $rooms]);
+    // หน้าสถิติการจอง
+    public function statistics(){
+        $data = [
+            'user_count' => User::count(),
+            'room_count' => Room::count(),
+        ];
+        return view('titles_Employee.statistics' , compact('data'));
+
     }
 
     public function accout()
@@ -93,100 +99,110 @@ class EmployeeController extends Controller
         return view('titles_Employee.accout');
     }
 
+ 
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    /*manage_account
+    create_user
+    store_user
+    edit_user
+    update_user
+    destroy_user
+    */
+    public function manage_account()
     {
+        // เรียกดูรายชื่อผู้ใช้ทั้งหมดจากฐานข้อมูล
+        $users = User::orderBy('id', 'desc')->paginate(10);
+        return view('titles_Employee.manage_account', ['users' => $users]);
+    }
+
+    public function create_user()
+    {
+        // แสดงหน้าฟอร์มสำหรับเพิ่มข้อมูล
         return view('titles_Employee.add_account_user');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'email' => 'required',
-            'mobile' => 'required',
-            'username' => 'required',
-            'position' => 'required',
-            'password' => 'required'
-        ]);
+    public function store_user(Request $request)
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required|email|unique:users,us_email', // Ensure email uniqueness in the users table
+        'mobile' => ['required', 'numeric', 'digits:10', function ($attribute, $value, $fail) {
+            // Custom validator to check if mobile number has exactly 10 digits
+            if (strlen($value) !== 10) {
+                $fail('The '.$attribute.' must be exactly 10 digits.');
+            }
+        }],
+        'username' => 'required|unique:users,us_name', // Ensure username uniqueness in the users table
+        'position' => 'required',
+        'password' => 'required|min:8', // Minimum password length of 8 characters
+        'confirm_password' => 'required|same:password', // Ensure confirm_password matches password
+    ], [
+        'email.unique' => 'Email address already exists.',
+        'username.unique' => 'Username already exists.',
+        'confirm_password.same' => 'Password and confirm password must match.',
+    ]);
 
-        $newUser = new User;
-        $newUser->us_fname = $request->first_name;
-        $newUser->us_lname = $request->last_name;
-        $newUser->us_email = $request->email;
-        $newUser->us_tel = $request->mobile;
-        $newUser->us_name = $request->username;
-        $newUser->roles = $request->position;
-        $newUser->us_password = bcrypt($request->password);
-        $newUser->save();
-        return redirect()->route('titles_Employee.store');
-    }
+    // Create a new user instance
+    $newUser = new User();
+    $newUser->us_fname = $validatedData['first_name'];
+    $newUser->us_lname = $validatedData['last_name'];
+    $newUser->us_email = $validatedData['email'];
+    $newUser->us_tel = $validatedData['mobile'];
+    $newUser->us_name = $validatedData['username'];
+    $newUser->roles = $validatedData['position'];
+    $newUser->us_password = bcrypt($validatedData['password']);
+    $newUser->save();
 
-    /**
-     * Display the specified resource.
-     */
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $user)
-    {
-        $data = $request->validate([
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'email' => 'required',
-            'mobile' => 'required',
-            'username' => 'required',
-            'position' => 'required',
-            'password' => 'required'
-        ]);
-
-        $newUser = User::find($user);
-        $newUser->us_fname = $request->first_name;
-        $newUser->us_lname = $request->last_name;
-        $newUser->us_email = $request->email;
-        $newUser->us_tel = $request->mobile;
-        $newUser->us_name = $request->username;
-        $newUser->roles = $request->position;
-        $newUser->us_password = bcrypt($request->password);
-        $newUser->save();
-        return redirect()->route('titles_Employee.update');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $users = User::find($id);
-        $users->delete();
-        return redirect()->route('manage_account')->with('success', 'User has been deleted successfully.');
-
-    }
-    public function edit(User $user)
-    {
-        return view('titles_Employee.edit_account_user', compact('user'));
-    }
-    public function updatePetition(Request $request, $id)
-    {
-        $request->validate([
-            'newStatus' => 'required',
-        ]);
-        $reservation = reservations::findOrFail($id);
-        $reservation->res_status = $request->newStatus;
-        $reservation->save();
-
-        return redirect()->route('test')->with('success', 'Status updated successfully!');
-    }
-
+    return redirect()->route('titles_Employee.manage_account')->with('success', 'User account created successfully.');
 }
+
+    public function edit_user(User $user)
+    {
+        return view('titles_Employee.edit_account_user', ['user' => $user]);
+    }
+
+    public function update_user(Request $request, User $user)
+{
+    // Validate the incoming form data
+    $validatedData = $request->validate([
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'mobile' => ['required', 'numeric', 'digits:10', function ($attribute, $value, $fail) {
+            // Custom validator to check if mobile number has exactly 10 digits
+            if (strlen($value) !== 10) {
+                $fail('The '.$attribute.' must be exactly 10 digits.');
+            }
+        }],
+        'username' => 'required|string|max:255',
+        'position' => 'required|string|max:255',
+        'password' => 'required|string|min:6', // Adjust the minimum length as needed
+    ]);
+
+    // Update the user model with validated data
+    $user->update([
+        'us_fname' => $validatedData['first_name'],
+        'us_lname' => $validatedData['last_name'],
+        'us_email' => $validatedData['email'],
+        'us_tel' => $validatedData['mobile'],
+        'us_name' => $validatedData['username'],
+        'roles' => $validatedData['position'],
+        'us_password' => Hash::make($validatedData['password']), // Hash the password
+    ]);
+
+    // Redirect back to the user management page with success message
+    return redirect()->route('titles_Employee.manage_account')->with('success', 'แก้ไขข้อมูลผู้ใช้สำเร็จ');
+}
+
+    public function destroy_user(User $user)
+    {
+        // ลบข้อมูลผู้ใช้ออกจากฐานข้อมูล
+        $user->delete();
+
+        return redirect(route('titles_Employee.manage_account'))->with('success', 'ลบข้อมูลผู้ใช้สำเร็จ');
+    }
+
+    }
 
