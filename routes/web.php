@@ -57,8 +57,7 @@ Route::put('/update-user/{id}', [EmployeeController::class, 'updateUser'])->name
 Route::delete('/delete-user/{id}', [EmployeeController::class, 'deleteUser'])->name('delete-user');
 Route::get('/Edit', [EmployeeController::class, 'edit'])->name('titles_Employee.edit_account_user');
 
-Route::post('/changeDataApprove', [EmployeeController::class, 'petition1'])->name('changeDataApprove');
-Route::post('/changeDataReject', [EmployeeController::class, 'petition2'])->name('changeDataReject');
-Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
+
 
 
