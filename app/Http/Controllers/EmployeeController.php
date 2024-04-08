@@ -128,7 +128,12 @@ class EmployeeController extends Controller
         'first_name' => 'required',
         'last_name' => 'required',
         'email' => 'required|email|unique:users,us_email', // Ensure email uniqueness in the users table
-        'mobile' => 'required',
+        'mobile' => ['required', 'numeric', 'digits:10', function ($attribute, $value, $fail) {
+            // Custom validator to check if mobile number has exactly 10 digits
+            if (strlen($value) !== 10) {
+                $fail('The '.$attribute.' must be exactly 10 digits.');
+            }
+        }],
         'username' => 'required|unique:users,us_name', // Ensure username uniqueness in the users table
         'position' => 'required',
         'password' => 'required|min:8', // Minimum password length of 8 characters
@@ -165,7 +170,12 @@ class EmployeeController extends Controller
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
         'email' => 'required|email|max:255',
-        'mobile' => 'required|string|max:20',
+        'mobile' => ['required', 'numeric', 'digits:10', function ($attribute, $value, $fail) {
+            // Custom validator to check if mobile number has exactly 10 digits
+            if (strlen($value) !== 10) {
+                $fail('The '.$attribute.' must be exactly 10 digits.');
+            }
+        }],
         'username' => 'required|string|max:255',
         'position' => 'required|string|max:255',
         'password' => 'required|string|min:6', // Adjust the minimum length as needed
