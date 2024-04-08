@@ -13,7 +13,7 @@
     {{-- <link rel="stylesaheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/dist/css/add_acc.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css.buttonadd/add.css') }}">
 
     {{-- <link rel="stylesheet" href="{{ url('assets/css.buttonadd/add.css') }}"> --}}
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -157,29 +158,32 @@ class EmployeeController extends Controller
     }
 
     public function update_user(Request $request, User $user)
-    {
-        // ทำการอัปเดตข้อมูล
-        $data = $request->validate([
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'email' => 'required',
-            'mobile' => 'required',
-            'username' => 'required',
-            'position' => 'required',
-            'password' => 'required'
-        ]);
+{
+    // Validate the incoming form data
+    $validatedData = $request->validate([
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'mobile' => 'required|string|max:20',
+        'username' => 'required|string|max:255',
+        'position' => 'required|string|max:255',
+        'password' => 'required|string|min:6', // Adjust the minimum length as needed
+    ]);
 
-        $user->us_fname = $request->first_name;
-        $user->us_lname = $request->last_name;
-        $user->us_email = $request->email;
-        $user->us_tel = $request->mobile;
-        $user->us_name = $request->username;
-        $user->roles = $request->position;
-        $user->us_password = bcrypt($request->password);
-        $user->save();
+    // Update the user model with validated data
+    $user->update([
+        'us_fname' => $validatedData['first_name'],
+        'us_lname' => $validatedData['last_name'],
+        'us_email' => $validatedData['email'],
+        'us_tel' => $validatedData['mobile'],
+        'us_name' => $validatedData['username'],
+        'roles' => $validatedData['position'],
+        'us_password' => Hash::make($validatedData['password']), // Hash the password
+    ]);
 
-        return redirect(route('titles_Employee.manage_account'))->with('success', 'แก้ไขข้อมูลผู้ใช้สำเร็จ');
-    }
+    // Redirect back to the user management page with success message
+    return redirect()->route('titles_Employee.manage_account')->with('success', 'แก้ไขข้อมูลผู้ใช้สำเร็จ');
+}
 
     public function destroy_user(User $user)
     {
