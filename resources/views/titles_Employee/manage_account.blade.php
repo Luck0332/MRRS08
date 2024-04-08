@@ -145,47 +145,17 @@
                                                 <td>{{ $user->us_name }}</td>
                                                 <td>{{ $user->us_fname }} {{ $user->us_lname }}</td>
                                                 <td>{{ $user->us_tel }}</td>
-                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ $user->startdate }}</td>
                                                 <td>
-                                                    <form method="POST"
-                                                        action="{{ route('titles_Employee.destroy-user', ['user' => $user]) }}"
-                                                        style="display: inline;">
-                                                        <a href="{{ route('titles_Employee.edit_user', ['user' => $user->id]) }}"
-                                                            class="btn btn-warning transparent-btn">
-                                                            <i class="fas fa-edit"></i>
-
-                                                        </a>
+                                                    <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('titles_Employee.destroy-user', ['user' => $user]) }}" style="display: inline;">
                                                         @csrf
-                                                        @method('delete')
-
-                                                        <button type="button" onclick="deleteUser('{{ $user->id }}')" value="Delete" class="btn btn-danger transparent-btn" style="color: #FF0000;">
+                                                        @method('DELETE')
+                                                        <a href="{{ route('titles_Employee.edit_user', ['user' => $user->id]) }}" class="btn btn-warning transparent-btn">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <button type="button" onclick="deleteUser('{{ $user->id }}')" class="btn btn-danger transparent-btn" style="color: #FF0000;">
                                                             <i class="fa-solid fa-trash-can"></i>
                                                         </button>
-                                                        <script>
-                                                            function deleteUser(userId) {
-
-                                                                // Swal.fire({
-                                                                //     title: "Are you sure?",
-                                                                //     text: "You won't be able to revert this!",
-                                                                //     icon: "warning",
-                                                                //     showCancelButton: true,
-                                                                //     confirmButtonColor: "#3085d6",
-                                                                //     cancelButtonColor: "#d33",
-                                                                //     confirmButtonText: "Yes, delete it!"
-                                                                // }).then((result) => {
-                                                                //     if (result.isConfirmed) {
-                                                                //         Swal.fire({
-                                                                //             title: "Deleted!",
-                                                                //             text: "Your file has been deleted.",
-                                                                //             icon: "success"
-                                                                            
-                                                                //         });
-
-                                                                //        // document.getElementById('delete-form-' + userId).submit();
-                                                                //     }
-                                                                // });
-                                                            }
-                                                        </script>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -211,7 +181,30 @@
             </div>
         </section>
     </body>
+        <script>
+            function deleteUser( ) {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                            
+                        });
 
+                        document.getElementById('delete-form-' + userId).submit();
+                    }
+                });
+            }
+        </script>
     </html>
 @endsection
 

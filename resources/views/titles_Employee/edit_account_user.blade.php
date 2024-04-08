@@ -1,151 +1,122 @@
 @extends('layout.Employee')
 
-@section('title', 'User Account Management')
+@section('title', 'Edit User Account')
+
 
 @section('content')
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    {{-- <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}"> --}}
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/dist/css/edit_account.css') }}">
-    {{-- <link rel="stylesheet" href="{{ url('assets/css.buttonadd/add.css') }}"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    {{-- <link rel="stylesaheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}"> --}}
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
 
-    <!-- Main content -->
-    <section class="content flex">
-        <br>
-        <div class="card" id="editcard">
-            <div class="card-header" id="card-header1">
-                <h3 class="card-title">แก้ไขบัญชีผู้ใช้</h3>
-                <a href = "{{ '/Manage_account' }}">
-                    <button class="fas fa fa-times fa-lg" id="exit-icon"></button>
-                </a>
 
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
+    <div class="container " >
+        <div class="row justify-content-center my-5" style="width: 1200px;">
+            <div class="col-md-8 ">
+                <div class="card ">
+                    <div class="card-header" style="background-color: #5E96EB; color:#fff">{{ __('Edit User Account') }}</div>
 
-                {{-- form กรอกข้อมูล --}}
-                <form action="{{ route('titles_Employee.update_user', ['user' => $user]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-row">
-                        <div class="form-box" id="formbox1">
+                    <div class="card-body ">
+                        <form method="POST" action="{{ route('titles_Employee.update_user', ['user' => $user]) }}">
+                            @csrf
+                            @method('PUT')
 
-                            <div class="form-group">
-                                <label for="first_name">First Name:</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="first_name" name="first_name"
-                                        value=" {{ $user->us_fname }}">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="editbutt">
-                                            <i class="fas fa-edit"></i>
+                            <div class="row mb-3 justify-content-between">
+                                <div class="col-md-5">
+                                    <label for="first_name" class="form-label">{{ __('First Name') }}</label>
+                                    <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name', $user->us_fname) }}" required autocomplete="first_name" autofocus>
+
+                                    @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    </div>
+                                    @enderror
                                 </div>
 
-                            </div>
+                                <div class="col-md-5">
+                                    <label for="last_name" class="form-label">{{ __('Last Name') }}</label>
+                                    <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name', $user->us_lname) }}" required autocomplete="last_name">
 
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <div class="input-group">
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        value=" {{ $user->us_email }}">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="editbutt">
-                                            <i class="fas fa-edit"></i>
+                                    @error('last_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Username:</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        value=" {{ $user->us_name }}">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="editbutt">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Password">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="editbutt">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="form-box" id="formbox2">
-                            <div class="form-group">
-                                <label for="position">Last name:</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="last_name" name="last_name"
-                                        value="{{ $user->us_lname }}">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="editbutt">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                    </div>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="mobile">Mobile No.:</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="mobile" name="mobile"
-                                        value=" {{ $user->us_tel }}">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="editbutt">
-                                            <i class="fas fa-edit"></i>
+
+                            <div class="row mb-3 justify-content-between">
+                                <div class="col-md-5">
+                                    <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->us_email) }}" required autocomplete="email">
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    </div>
+                                    @enderror
                                 </div>
 
+                                <div class="col-md-5">
+                                    <label for="mobile" class="form-label">{{ __('Mobile Number') }}</label>
+                                    <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile', $user->us_tel) }}" required autocomplete="mobile">
+
+                                    @error('mobile')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="position">ตำแหน่ง:</label>
-                                <select class="form-control" id="position" name="position">
-                                    <option value="{{ $user->roles }}" disabled selected>Old position Is
-                                        {{ $user->roles }}
-                                    </option>
-                                    <option value="E">E</option>
-                                    <option value="M">M</option>
-                                    <option value="A">A</option>
+                            <div class="row mb-3 justify-content-between">
+                                <div class="col-md-5">
+                                <label for="username" class="form-label">{{ __('Username') }}</label>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', $user->us_name) }}" required autocomplete="username">
+
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+
+                                <div class="col-md-5">
+                                    <label for="password" class="form-label">{{ __('Password') }}</label>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="position" class="form-label">{{ __('Position') }}</label>
+                                <select id="position" class="form-select @error('position') is-invalid @enderror" name="position" required>
+                                    <option value="E" {{ old('position', $user->roles) == 'E' ? 'selected' : '' }}>E</option>
+                                    <option value="M" {{ old('position', $user->roles) == 'M' ? 'selected' : '' }}>M</option>
+                                    <option value="A" {{ old('position', $user->roles) == 'A' ? 'selected' : '' }}>A</option>
                                 </select>
+
+                                @error('position')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
-
-                        </div>
+                            <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                        </form>
                     </div>
-
-
-                    <div class="button-group" id="button">
-                        <button type="submit" class="btn btn-info">ยืนยัน</button>
-                    </div>
-                </form>
-
-
-
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

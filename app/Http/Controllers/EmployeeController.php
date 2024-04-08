@@ -7,10 +7,10 @@ use App\Models\Room;
 use App\Models\User;
 use App\Http\Controllers\Validator;
 use App\Http\Controllers\UserController;
+use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\reservations;
-use PHPUnit\Framework\Constraint\IsTrue;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -40,7 +40,6 @@ class EmployeeController extends Controller
         //
         return view('titles_Employee.reserve_privet');
     }
-
     public function petition()
     {
         $test01 = 'W';
@@ -67,17 +66,42 @@ class EmployeeController extends Controller
 
     public function reservation_list()
     {
-        //
-        return view('titles_Employee.reservation_list');
+        $data['reservations'] =  reservations::all();
+        return view('titles_Employee.reservation_list',$data);
     }
 
-    public function statistics()
+    public function reservation_cancel(Request $request, $res_serialcode)
+    {
+        // หาข้อมูลการจองด้วย res_serialcode
+        $reservation = reservations::where('res_serialcode', $res_serialcode)->firstOrFail();
+
+        // ทำการอัปเดตสถานะของการจองเป็น 'C' (ยกเลิก)
+        $reservation->res_status = 'C';
+        $reservation->save();
+
+        return redirect()->route('titles_Employee.manage_account')->with('success', 'ยกเลิกการจองเรียบร้อยแล้ว');
+    }
+
+
+    // หน้าสถิติการจอง
+    public function statistics(){
+        $data = [
+            'user_count' => User::count(),
+            'room_count' => Room::count(),
+        ];
+        return view('titles_Employee.statistics' , compact('data'));
+
+    }
+
+    public function accout()
     {
         //
-        return view('titles_Employee.statistics');
+        return view('titles_Employee.accout');
     }
 
-/*manage_account
+ 
+
+    /*manage_account
     create_user
     store_user
     edit_user
@@ -98,35 +122,36 @@ class EmployeeController extends Controller
     }
 
     public function store_user(Request $request)
-    {
-        // ตรวจสอบว่ารหัสผ่านและยืนยันรหัสผ่านตรงกันหรือไม่
-        if ($request->password !== $request->confirm_password) {
-            return redirect()->back()->withInput()->withErrors(['confirm_password' => 'รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน']);
-        }
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required|email|unique:users,us_email', // Ensure email uniqueness in the users table
+        'mobile' => 'required',
+        'username' => 'required|unique:users,us_name', // Ensure username uniqueness in the users table
+        'position' => 'required',
+        'password' => 'required|min:8', // Minimum password length of 8 characters
+        'confirm_password' => 'required|same:password', // Ensure confirm_password matches password
+    ], [
+        'email.unique' => 'Email address already exists.',
+        'username.unique' => 'Username already exists.',
+        'confirm_password.same' => 'Password and confirm password must match.',
+    ]);
 
-        // ทำการตรวจสอบและบันทึกข้อมูล
-        $data = $request->validate([
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'email' => 'required',
-            'mobile' => 'required',
-            'username' => 'required',
-            'position' => 'required',
-            'password' => 'required'
-        ]);
+    // Create a new user instance
+    $newUser = new User();
+    $newUser->us_fname = $validatedData['first_name'];
+    $newUser->us_lname = $validatedData['last_name'];
+    $newUser->us_email = $validatedData['email'];
+    $newUser->us_tel = $validatedData['mobile'];
+    $newUser->us_name = $validatedData['username'];
+    $newUser->roles = $validatedData['position'];
+    $newUser->us_password = bcrypt($validatedData['password']);
+    $newUser->save();
 
-        $newUser = new User;
-        $newUser->us_fname = $request->first_name;
-        $newUser->us_lname = $request->last_name;
-        $newUser->us_email = $request->email;
-        $newUser->us_tel = $request->mobile;
-        $newUser->us_name = $request->username;
-        $newUser->roles = $request->position;
-        $newUser->us_password = bcrypt($request->password);
-        $newUser->save();
-
-        return redirect()->route('titles_Employee.store');
-    }
+    return redirect()->route('titles_Employee.manage_account')->with('success', 'User account created successfully.');
+}
 
     public function edit_user(User $user)
     {
@@ -134,29 +159,32 @@ class EmployeeController extends Controller
     }
 
     public function update_user(Request $request, User $user)
-    {
-        // ทำการอัปเดตข้อมูล
-        $data = $request->validate([
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'email' => 'required',
-            'mobile' => 'required',
-            'username' => 'required',
-            'position' => 'required',
-            'password' => 'required'
-        ]);
+{
+    // Validate the incoming form data
+    $validatedData = $request->validate([
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'mobile' => 'required|string|max:20',
+        'username' => 'required|string|max:255',
+        'position' => 'required|string|max:255',
+        'password' => 'required|string|min:6', // Adjust the minimum length as needed
+    ]);
 
-        $user->us_fname = $request->first_name;
-        $user->us_lname = $request->last_name;
-        $user->us_email = $request->email;
-        $user->us_tel = $request->mobile;
-        $user->us_name = $request->username;
-        $user->roles = $request->position;
-        $user->us_password = bcrypt($request->password);
-        $user->save();
+    // Update the user model with validated data
+    $user->update([
+        'us_fname' => $validatedData['first_name'],
+        'us_lname' => $validatedData['last_name'],
+        'us_email' => $validatedData['email'],
+        'us_tel' => $validatedData['mobile'],
+        'us_name' => $validatedData['username'],
+        'roles' => $validatedData['position'],
+        'us_password' => Hash::make($validatedData['password']), // Hash the password
+    ]);
 
-        return redirect(route('titles_Employee.manage_account'))->with('success', 'แก้ไขข้อมูลผู้ใช้สำเร็จ');
-    }
+    // Redirect back to the user management page with success message
+    return redirect()->route('titles_Employee.manage_account')->with('success', 'แก้ไขข้อมูลผู้ใช้สำเร็จ');
+}
 
     public function destroy_user(User $user)
     {
@@ -165,21 +193,6 @@ class EmployeeController extends Controller
 
         return redirect(route('titles_Employee.manage_account'))->with('success', 'ลบข้อมูลผู้ใช้สำเร็จ');
     }
-    public function edit(User $user)
-    {
-        return view('titles_Employee.edit_account_user', compact('user'));
-    }
-    public function updatePetition(Request $request, $id)
-    {
-        $request->validate([
-            'newStatus' => 'required',
-        ]);
-        $reservation = reservations::findOrFail($id);
-        $reservation->res_status = $request->newStatus;
-        $reservation->save();
 
-        return redirect()->route('test')->with('success', 'Status updated successfully!');
     }
-
-}
 

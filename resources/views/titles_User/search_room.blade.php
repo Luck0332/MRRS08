@@ -9,7 +9,7 @@
 <!-- Include Flatpickr range plugin -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
 <link rel="stylesheet" href="{{ url('assets/dist/css/searchroom.css') }}">
-
+<p>{{ session('message') }}</p>
 <form method="POST" action="{{ route('submit.form') }}">
     <div class="showroom">
         <div class="rowicon">
@@ -43,7 +43,7 @@
                 ค้นหาห้อง
             </button>    
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="boxRoom" id="box1">
 
                 <span class="roominfo" id="statusRoom">
@@ -58,7 +58,7 @@
                 <span class="roominfo">
                     <i class="fa-solid fa-laptop"> คอมพิวเตอร์ โปรเจคเตอร์</i>
                 </span>
-                <span class="roomname">
+                <span class="roomname" >
                     IF-301
                 </span>
             </div>
@@ -164,5 +164,5 @@
             plugins: [new rangePlugin({ input: "#end-date"})] 
         });
     </script>
-</form>
+
 @endsection
