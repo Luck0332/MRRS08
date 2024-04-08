@@ -34,13 +34,14 @@ Route::get('/info',function(){
     return view('titles_User.room_info');
 });
 
-Route::get('/User', [UserController::class,'getReserve']);
+
+
+
 Route::get('/follow', [UserController::class,'getFollow']);
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
 
-Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->name('submit.form');
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
@@ -55,6 +56,9 @@ Route::get('/Accout',[EmployeeController::class,'accout']);
 Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
+
+Route::get('/User', [UserController::class,'getReserve']);
+Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');
