@@ -83,7 +83,12 @@
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
-                            <input type="text"  name="username"class="form-control" placeholder="Username">
+                            <input id="username" type="text"  name="username" @error('username') is-invalid @enderror class="form-control" placeholder="Username">
+                            @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="input-group mb-5">
                             <div class="input-group-append">
@@ -91,10 +96,15 @@
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <input id="password" type="password" name="password" @error('password') is-invalid @enderror class="form-control" placeholder="Password">
+                            @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="btn-login">
-                            <button type="submit" class="btn" id="log-bot">Login</button>
+                            <button type="submit" class="btn" id="log-bot">{{ __('Login') }}</button>
                         </div>
                     </form>
                         </div>
