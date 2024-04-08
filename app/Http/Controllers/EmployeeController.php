@@ -122,35 +122,36 @@ class EmployeeController extends Controller
     }
 
     public function store_user(Request $request)
-    {
-        // ตรวจสอบว่ารหัสผ่านและยืนยันรหัสผ่านตรงกันหรือไม่
-        if ($request->password !== $request->confirm_password) {
-            return redirect()->back()->withInput()->withErrors(['confirm_password' => 'รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน']);
-        }
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required|email|unique:users,us_email', // Ensure email uniqueness in the users table
+        'mobile' => 'required',
+        'username' => 'required|unique:users,us_name', // Ensure username uniqueness in the users table
+        'position' => 'required',
+        'password' => 'required|min:8', // Minimum password length of 8 characters
+        'confirm_password' => 'required|same:password', // Ensure confirm_password matches password
+    ], [
+        'email.unique' => 'Email address already exists.',
+        'username.unique' => 'Username already exists.',
+        'confirm_password.same' => 'Password and confirm password must match.',
+    ]);
 
-        // ทำการตรวจสอบและบันทึกข้อมูล
-        $data = $request->validate([
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'email' => 'required',
-            'mobile' => 'required',
-            'username' => 'required',
-            'position' => 'required',
-            'password' => 'required'
-        ]);
+    // Create a new user instance
+    $newUser = new User();
+    $newUser->us_fname = $validatedData['first_name'];
+    $newUser->us_lname = $validatedData['last_name'];
+    $newUser->us_email = $validatedData['email'];
+    $newUser->us_tel = $validatedData['mobile'];
+    $newUser->us_name = $validatedData['username'];
+    $newUser->roles = $validatedData['position'];
+    $newUser->us_password = bcrypt($validatedData['password']);
+    $newUser->save();
 
-        $newUser = new User;
-        $newUser->us_fname = $request->first_name;
-        $newUser->us_lname = $request->last_name;
-        $newUser->us_email = $request->email;
-        $newUser->us_tel = $request->mobile;
-        $newUser->us_name = $request->username;
-        $newUser->roles = $request->position;
-        $newUser->us_password = bcrypt($request->password);
-        $newUser->save();
-
-        return redirect()->route('titles_Employee.store');
-    }
+    return redirect()->route('titles_Employee.manage_account')->with('success', 'User account created successfully.');
+}
 
     public function edit_user(User $user)
     {
