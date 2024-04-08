@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">password:</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="xxxxx">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="password">
                             </div>
 
                         </div>
@@ -66,7 +66,7 @@
 
                                 <div class="form-group">
                                     <label for="mobile">Mobile No.:</label>
-                                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile No.">
+                                    <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile No.">
                                 </div>
                                 <label for="position">ตำแหน่ง:</label>
                                 <select class="form-control" id="position" name="position">

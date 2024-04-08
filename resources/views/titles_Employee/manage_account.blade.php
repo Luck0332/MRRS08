@@ -80,7 +80,7 @@
             .transparent-btn {
                 background-color: transparent;
                 border-color: transparent; /* Adjust border color as needed */
-                color: #DFAC15;
+                color: #000000;
                 font-size: 24px;
             }
             .delete-btn{
@@ -145,7 +145,7 @@
                                                 <td>{{ $user->us_name }}</td>
                                                 <td>{{ $user->us_fname }} {{ $user->us_lname }}</td>
                                                 <td>{{ $user->us_tel }}</td>
-                                                <td>{{ $user->startdate }}</td>
+                                                <td>{{ $user->created_at }}</td>
                                                 <td>
                                                     <form method="POST"
                                                         action="{{ route('titles_Employee.destroy-user', ['user' => $user]) }}"
@@ -158,31 +158,32 @@
                                                         @csrf
                                                         @method('delete')
 
-                                                        <button type="submit" onclick="deleteUser('{{ $user->id }}')" value="Delete" class="btn btn-danger transparent-btn" style="color: #FF0000;">
+                                                        <button type="button" onclick="deleteUser('{{ $user->id }}')" value="Delete" class="btn btn-danger transparent-btn" style="color: #FF0000;">
                                                             <i class="fa-solid fa-trash-can"></i>
                                                         </button>
                                                         <script>
                                                             function deleteUser(userId) {
-                                                                Swal.fire({
-                                                                    title: "Are you sure?",
-                                                                    text: "You won't be able to revert this!",
-                                                                    icon: "warning",
-                                                                    showCancelButton: true,
-                                                                    confirmButtonColor: "#3085d6",
-                                                                    cancelButtonColor: "#d33",
-                                                                    confirmButtonText: "Yes, delete it!"
-                                                                }).then((result) => {
-                                                                    if (result.isConfirmed) {
-                                                                        Swal.fire({
-                                                                            title: "Deleted!",
-                                                                            text: "Your file has been deleted.",
-                                                                            icon: "success"
-                                                                            
-                                                                        });
 
-                                                                        document.getElementById('delete-form-' + userId).submit();
-                                                                    }
-                                                                });
+                                                                // Swal.fire({
+                                                                //     title: "Are you sure?",
+                                                                //     text: "You won't be able to revert this!",
+                                                                //     icon: "warning",
+                                                                //     showCancelButton: true,
+                                                                //     confirmButtonColor: "#3085d6",
+                                                                //     cancelButtonColor: "#d33",
+                                                                //     confirmButtonText: "Yes, delete it!"
+                                                                // }).then((result) => {
+                                                                //     if (result.isConfirmed) {
+                                                                //         Swal.fire({
+                                                                //             title: "Deleted!",
+                                                                //             text: "Your file has been deleted.",
+                                                                //             icon: "success"
+                                                                            
+                                                                //         });
+
+                                                                //        // document.getElementById('delete-form-' + userId).submit();
+                                                                //     }
+                                                                // });
                                                             }
                                                         </script>
                                                     </form>

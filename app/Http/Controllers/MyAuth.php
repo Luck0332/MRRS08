@@ -15,16 +15,19 @@ class MyAuth extends Controller
 
     function login_process(Request $req){
         $req->validate([
-        'username' => 'required',
-        'password' => 'required|min:6',
+            'username' => 'required',
+            'password' => 'required|min:6',
         ]);
 
         $data = $req->all();
-        // use Illuminate\Support\Facades\Auth;
-        $login = User::where(['us_email', $data['username']],['us_password',$data['password']]);
-        $login_user = User::where(['us_name',$data['username']],['us_password',$data['password']]);
-        if($login || $login_user){
 
+        // ใช้ where() ให้ถูกต้องโดยการใส่ array ภายใน array เพื่อเป็นเงื่อนไขของคำสั่ง WHERE
+        $login = User::where(['us_email' => $data['username'], 'us_password' => $data['password']])->first();
+        $login_user = User::where(['us_name' => $data['username'], 'us_password' => $data['password']])->first();
+
+        // ตรวจสอบว่ามีผู้ใช้ที่ถูกต้องหรือไม่
+        if($login || $login_user){
+            // ใช้ use Illuminate\Support\Facades\Redirect; ด้านบนเพื่อให้ Redirect::to() ทำงานได้
             return Redirect::to('Employee');
         }else{
             return Redirect::to('login');
@@ -39,19 +42,5 @@ class MyAuth extends Controller
 
     function register_view(){
         return view('register');
-    }
-
-    function register_process(Request $req){
-        $req->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|confirmed',
-        ]);
-
-        $data = $req->all();
-
-        User::create($data);
-
-        return Redirect::to('login');
     }
 }
