@@ -15,6 +15,12 @@ class MyAuth extends Controller
 
    public function login_process(Request $req)
     {
+        $validatedData = $req->validate([
+            'username' => 'required',
+            'password' => 'required',
+
+        ]);
+
         // รับค่า input ชื่อ username และ password จาก request
         $username = $req->input('username');
         $password = $req->input('password');
