@@ -22,11 +22,10 @@
     <br><br>
     <div class="head">
         <button id="prev" onclick="changeDataApprove()">คำขอการจอง</button>
-        <button id="next" onclick="changeDataReject()">คำขอยกเลิก</button>
-        <input type="search" placeholder="search" style=";position: relative; left:48%;">
+        {{-- <input type="search" placeholder="search" style=";position: relative; left:48%;"> --}}
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function changeDataApprove() {
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -113,7 +112,9 @@
                 }
             });
         }
-    </script>
+    </script> --}}
+    <!-- แสดงข้อมูลสถานะ 'W' -->
+
     <table class="rwd-table">
         <thead>
             <tr>
@@ -127,7 +128,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($reservations as $reservation)
+            @foreach ($reservationsW as $reservation)
                 <tr>
                     <td>{{ $reservation->id }}</td>
                     <td>{{ $reservation->updated_at }}</td>
@@ -143,8 +144,58 @@
                                 style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
                                     style="color: #63E6BE;"></i></button>
                             <button type="submit" name="newStatus" value="C"
-                                style="border: none; background-color: white;"><i
-                                    class="fas fa-times-circle fa-lg"style="color: #ff1a1a;"></i></button>
+                                style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
+                                    style="color: #ff1a1a;"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <a><i class="fas fa-info-circle fa-lg" id="detail" style="color: #242424"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <div class="card-footer clearfix text-center">
+        <ul class="pagination pagination-sm m-0">
+            {!! $reservationsW->links('pagination::bootstrap-5') !!}
+        </ul>
+    </div>
+    <br>
+    <br>
+
+    <!-- แสดงข้อมูลสถานะ 'R' -->
+    <button id="next" onclick="changeDataApprove()">คำขอยกเลิก</button>
+    <table class="rwd-table">
+        <thead>
+            <tr>
+                <th>ลำดับ</th>
+                <th>วันที่เข้าใช้</th>
+                <th>ชื่อผู้จอง</th>
+                <th>ชื่อห้อง</th>
+                <th>ขนาดห้อง</th>
+                <th>รอดำเนินการ</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($reservationsR as $reservation)
+                <tr>
+                    <td>{{ $reservation->id }}</td>
+                    <td>{{ $reservation->updated_at }}</td>
+                    <td>{{ $reservation->res_status }}</td>
+                    <td>{{ $reservation->res_serialcode }}</td>
+                    <td>{{ $reservation->res_typeroom }}</td>
+                    <td>
+                        <form id="updateStatusForm"
+                            action="{{ route('Petition_statuses.update', ['id' => $reservation->id]) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" name="newStatus" value="C"
+                                style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
+                                    style="color: #63E6BE;"></i></button>
+                            <button type="submit" name="newStatus" value="C"
+                                style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
+                                    style="color: #ff1a1a;"></i></button>
                         </form>
                     </td>
                     <td>
@@ -155,12 +206,42 @@
         </tbody>
     </table>
 
-    <div class="card-footer clearfix text-center" style="width: 1250px;">
+    <!-- แสดง pagination สำหรับข้อมูลทั้งหมด -->
+
+    <!-- แสดง pagination สำหรับข้อมูลสถานะ 'R' -->
+    <div class="card-footer clearfix text-center">
         <ul class="pagination pagination-sm m-0">
-            {!! $reservations->links('pagination::bootstrap-5') !!}
+            {!! $reservationsR->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            // เมื่อคลิกที่ pagination สำหรับข้อมูลสถานะ 'W'
+            $(document).on('click', '#paginationW a', function(e) {
+                e.preventDefault(); // ป้องกันการโหลดหน้าใหม่
+                var pageUrl = $(this).attr('href'); // รับ URL ของหน้า pagination ที่ถูกคลิก
+                loadReservations(pageUrl, '#tableW'); // เรียกใช้ฟังก์ชั่นเพื่อโหลดข้อมูลสำหรับสถานะ 'W'
+            });
 
+            // เมื่อคลิกที่ pagination สำหรับข้อมูลสถานะ 'R'
+            $(document).on('click', '#paginationR a', function(e) {
+                e.preventDefault(); // ป้องกันการโหลดหน้าใหม่
+                var pageUrl = $(this).attr('href'); // รับ URL ของหน้า pagination ที่ถูกคลิก
+                loadReservations(pageUrl, '#tableR'); // เรียกใช้ฟังก์ชั่นเพื่อโหลดข้อมูลสำหรับสถานะ 'R'
+            });
 
+            // ฟังก์ชั่นสำหรับโหลดข้อมูลสำหรับสถานะ 'W' หรือ 'R' ผ่าน AJAX
+            function loadReservations(pageUrl, tableId) {
+                $.ajax({
+                    url: pageUrl, // ใช้ URL ที่ได้จาก pagination
+                    success: function(response) {
+                        var data = $(response).find(
+                        tableId); // ค้นหาข้อมูลสำหรับสถานะที่เลือกใน response
+                        $(tableId).html(data); // เปลี่ยนแท็บข้อมูลสำหรับสถานะที่เลือก
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
