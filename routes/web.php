@@ -30,9 +30,7 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/info',function(){
-    return view('titles_User.room_info');
-});
+Route::get('/roominfo', [RoomController::class, 'show']);
 
 Route::get('/User', [UserController::class,'getReserve']);
 Route::get('/follow', [UserController::class,'getFollow']);
