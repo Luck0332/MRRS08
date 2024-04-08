@@ -45,6 +45,7 @@ Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
 
+Route::get('/get-reservation-details/{id}', 'ReservationController@getReservationDetails');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
 

@@ -1,13 +1,6 @@
 body {
     background: #fff;
 }
-.head{
-    width: 1200px;
-    height: 700px;
-    margin-top: 78px;
-
-}
-
 th {
     background-color: #3b81f2;
     color: white;
@@ -15,7 +8,7 @@ th {
     font-weight: bold;
     padding: 10px 25px;
     text-align: center;
-    width: 130px;
+    width: 250px;
     height: 40px;
 }
 
@@ -27,7 +20,6 @@ td {
     height: 35px;
 
 }
-
 .flex-container>div {
     background-color: #f1f1f1;
     width: 200px;
@@ -37,6 +29,7 @@ td {
     line-height: 40px;
     font-size: 20px;
     margin-top: 15px;
+
 }
 
 .flex-container {
@@ -67,7 +60,6 @@ input {
     border-top-right-radius: 20px;
     overflow: hidden;
     border-collapse: collapse;
-
 }
 
 #prev {
@@ -158,6 +150,10 @@ input {
     color: black;
 
 }
+.head{
+    margin-top: 60px;
+}
+
 .modal-content{
     justify-content: center;
     min-width: 900px;
@@ -189,7 +185,10 @@ input {
     border-radius: 15px;
 
 }
-#btn-color{
+/* #btn-color{
     color: #ffffff
-}
+} */
 
+.btn-close{
+    color: #ffffff;
+}

@@ -12,8 +12,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::orderBy('ro_id','desc')->paginate(5);
-        return view('titles_Employee.manage_account',['users' => $users]);
+        // $rooms = Room::orderBy('ro_id','desc')->paginate(5);
+        // return view('titles_Employee.manage_account',['users' => $users]);
     }
 
     /**
