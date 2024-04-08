@@ -1,11 +1,13 @@
 .container {
     background-color: #ffffff; /* Dark background color */
     border-radius: 10px; /* Rounded corners */
-    padding: 50px; /* Reduced padding for content */
+    padding: 20px; /* Reduced padding for content */
     margin: 10 auto; /* Center horizontally */
+    margin-top: 25px;
     box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
     position: relative;
-    height: 1080px;
+    height: 93vh;
+    width: 1060px;
 
 
 }
@@ -19,13 +21,13 @@
     color: #ffffff;
     font-size: 18px;
     border-radius: 25px;
-    width: 152px;
-    height: 49px;
+    width: 130px;
+    height: 43px;
     font-weight: bold;
     transition: 0.3s;
     background-color: #3a89ff;
     position: relative; /* or absolute, fixed, etc. depending on your layout */
-    left: 395px; /* Change this value as needed */
+    left: 380px; /* Change this value as needed */
 
 
 }
@@ -39,9 +41,9 @@
 
 
   .room-name{
-    font-size: 22px;
+    font-size: 20px;
     margin-top: 15px;
-    margin-left: 50px;
+    margin-left: 90px;
     font-weight: bold;
   }
 
@@ -50,40 +52,43 @@
 
   .pic img{
     border-radius: 20px;
-
     margin-top: 15px;
 
   }
 
   #pic1 img{
-    width: 495px;
+    width: 350px;
+
     margin-right: 25px;
     margin-left: 50px;
   }
 
   #pic2 img{
-    width: 229px;
+    width: 150px;
+    margin-top: 20px;
 
   }
 
   #pic3 img{
-    width: 229px;
-    margin-top: 215px;
-    margin-left: -230px;
+    width: 150px;
+    margin-top: 165px;
+    margin-left: -150px;
 
   }
 
   .texthead{
     font-size: 20px;
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: -10px;
+    margin-left: 90px;
     font-family: 'Inter', sans-serif;
 
   }
 
   .pic-row{
     display: flex;
+    justify-content: center;
   }
 
   .info-row{
@@ -95,8 +100,9 @@
 
   .info-box{
     width: 360px;
-    height: 280px;
-    box-shadow: rgba(100, 100, 111, 0.5) 0px 0px 0px 0px;
+    height: 150px;
+    background-color: transparent;
+    box-shadow: none;
     margin-top: 10px;
     margin-left: 25px;
     font-family: 'Inter', sans-serif;
@@ -124,6 +130,82 @@
     margin-right: auto;
     margin-bottom: 50px;
   }
+
+  .circle-icon-active,
+.circle-icon-inactive {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: #8DCDE1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.circle-icon-inactive {
+    background: #d9d9d9;
+}
+
+.line-between {
+    width: 175px;
+    height: 5px;
+    background-color: #d9d9d9;
+}
+.line-between:active{
+    background-color: #8DCDE1;
+}
+
+.text-header {
+    display: flex;
+    justify-content: center;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-container {
+    display: flex;
+    justify-content: center;
+}
+
+.text-active,
+.status2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    color: #43636D;
+    text-align: center;
+}
+.status2{
+    padding-left: 60px;
+}
+
+
+.text-inactive,
+.status1,
+.status3,
+.status4 {
+    font-size: 20px;
+    color: #BEBEBE;
+    text-align: center;
+    justify-content: center;
+}
+.status2{
+    padding-left: 100px;
+}
+.status3{
+    padding-left: 60px;
+}
+.status4{
+    padding-left: 125px;
+}
+.center{
+    width: auto;
+}
+
 
 
 
