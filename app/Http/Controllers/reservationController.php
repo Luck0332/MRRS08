@@ -19,4 +19,9 @@ class reservationController extends Controller
 
     return redirect()->back()->with('success', 'ยกเลิกการจองเรียบร้อยแล้ว');
     }
+
+
+
+    
+
 }

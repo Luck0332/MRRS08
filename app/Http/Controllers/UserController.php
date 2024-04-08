@@ -12,12 +12,12 @@ class UserController extends Controller
     public function handleFormSubmission(Request $request)
     {
         $dateData = $request->input('date');
-    
+
         // Redirect to search page with data
         return redirect()->route('getsearch', ['date' => $dateData]);
     }
-    
-    
+
+
     /**
      * Display a listing of the resource.
      */
@@ -26,17 +26,20 @@ class UserController extends Controller
         $dateData = $request->session()->get('dateData');
         return view('titles_User.search_room', compact('dateData'));
     }
-    
+
     public function getReserve()
     {
         //
         return view('titles_User.reserve_room');
     }
 
-    public function getFollow()
+    public function getFollow(Request $req)
     {
-        //
-        return view('titles_User.follow');
+        $reservation = Reservation::findOrFail($req); //หาตำแหน่ง$req
+        $roomid = Room::findOrFail($reservation->ro_id);
+        $resinfo_id = User::findOdFail($reservation->id);
+
+
     }
 
     public function getInformation()
@@ -49,7 +52,7 @@ class UserController extends Controller
         //
         return view('titles_User.testcalender');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */

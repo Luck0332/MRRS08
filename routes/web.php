@@ -31,6 +31,11 @@ Route::get('/Homepage',function(){
 });
 
 Route::get('/roominfo', [RoomController::class, 'show']);
+Route::get('/bill',function(){
+    return view('titles_User.reserve_bill');
+});
+Route::get('/Manage_rooms/{rooms}/edit-rooms', [RoomController::class, 'edit_rooms'])->name('titles_Employee.edit_rooms');
+
 
 Route::get('/User', [UserController::class,'getReserve']);
 Route::get('/follow', [UserController::class,'getFollow']);
