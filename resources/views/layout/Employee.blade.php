@@ -56,7 +56,7 @@
             <p id="line"></p>
             <a href="Homepage" id="Logout">
                 <i class="" aria-hidden="true"></i>
-                Logout
+                ออกจากระบบ
              </a>
           </aside>
 
