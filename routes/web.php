@@ -3,6 +3,8 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MyAuth;
+use App\Http\Controllers\reservationController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,23 +30,22 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/info',function(){
-    return view('titles_User.room_info');
-});
+Route::get('/roominfo', [RoomController::class, 'show']);
 
 Route::get('/User', [UserController::class,'getReserve']);
-Route::get('/auth/line', 'Auth\LoginController@redirectToLine');
-Route::get('/auth/line/callback', 'Auth\LoginController@handleLineCallback');
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/searchRoom', [UserController::class,'getSearch']);
+Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
 
+Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->name('submit.form');
+
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
-Route::get('/Petition',[EmployeeController::class,'petition']);
-Route::get('/Reservation_list',[EmployeeController::class,'reservation_list']);
-Route::get('/Statistics',[EmployeeController::class,'statistics']);
+Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
+Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
+Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
 Route::get('/Manage_account',[EmployeeController::class,'manage_account']);
 Route::get('/Manage_rooms',[EmployeeController::class,'manage_rooms']);
 Route::get('/Accout',[EmployeeController::class,'accout']);
@@ -53,9 +54,24 @@ Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
 
-Route::get('/add-user', [EmployeeController::class, 'create'])->name('titles_Employee.add_account_user');
-Route::post('/Manage_account', [EmployeeController::class, 'store'])->name('titles_Employee.store');
-Route::PUT('/Manage_account', [EmployeeController::class, 'update'])->name('titles_Employee.update');
-Route::put('/update-user/{id}', [EmployeeController::class, 'updateUser'])->name('update-user');
-Route::delete('/delete-user/{id}', [EmployeeController::class, 'deleteUser'])->name('delete-user');
-Route::get('/Edit', [EmployeeController::class, 'edit'])->name('titles_Employee.edit_account_user');
+//route for managing rooms
+Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');
+Route::get('/Manage_rooms/add-rooms',[RoomController::class,'create_rooms'])->name('titles_Employee.add_rooms');
+Route::post('/Manage_rooms', [RoomController::class, 'store_rooms'])->name('titles_Employee.store_rooms');
+Route::get('/Manage_rooms/{rooms}/edit-rooms', [RoomController::class, 'edit_rooms'])->name('titles_Employee.edit_rooms');
+Route::put('/Manage_rooms/{rooms}/update-rooms', [RoomController::class, 'update_rooms'])->name('titles_Employee.update_rooms');
+Route::delete('/Manage_account/{rooms}/destroy-rooms', [RoomController::class, 'destroy_rooms'])->name('titles_Employee.destroy-rooms');
+
+//route for managing users ไว้เข้าถึงหน้าใน Employee
+Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
+Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
+Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
+Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
+Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
+Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
+
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+
+
+
+

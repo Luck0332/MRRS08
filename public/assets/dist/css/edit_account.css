@@ -1,0 +1,92 @@
+/* Ensure Bootstrap compatibility and responsiveness */
+
+/* Exit Icon */
+#exit-icon {
+  margin-top: 15px;
+  float: right;
+  color: white;
+  border: none;
+  background-color: transparent;
+}
+
+/* Transparent Edit Button */
+#editbutt {
+  background-color: transparent;
+}
+
+/* Card Styling */
+#editcard {
+  border-radius: 15px;
+}
+
+/* Card Header */
+#card-header1 {
+  background-color: #3b81f2;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* Card Title */
+.card-title {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+/* Form Row */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  gap: 20px; /* Adjust spacing between form boxes */
+  justify-content: center; /* Center align form rows */
+}
+
+/* Form Box Width (Responsive) */
+#formbox1,
+#formbox2 {
+  width: 100%; /* Take full width on small screens; adjust as needed */
+  max-width: 400px; /* Limit maximum width for larger screens */
+}
+
+/* Button Group */
+#button {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Submit Button */
+#button button {
+  width: 100%; /* Take full width */
+  max-width: 400px; /* Limit maximum width */
+  height: 50px;
+  background-color: #5373E8;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Center Align Button Group */
+.button-group {
+  text-align: center;
+}
+
+/* Additional Card Styling */
+.card {
+  border-radius: 15px;
+  width: 100%; /* Responsive width */
+  max-width: 1200px; /* Limit maximum width */
+  margin-top: 30px;
+}
+
+/* Margin for Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Margin for Form Group Label */
+.form-group label {
+  margin-bottom: 5px; /* Reduce bottom margin for labels */
+}

@@ -10,13 +10,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
     <style>
-        .card{
+        .box-dashboard{
             background-color: rgb(255, 255, 255);
-            width: 1520px ;
-            margin: 75px 75px 75px 25px;
+            width: 1320px ;
+            margin: 75px;
             /*margin: auto ;*/
-            border: black solid 5px ;/*ทำไว้ดูเสร็จแล้วให้ลบทิ้ง*/
+            border: black solid 5px;/*ทำไว้ดูเสร็จแล้วให้ลบทิ้ง*/
             border-radius: 25px;
+            align-items: center;
         }
         .info{
             height: 753px;
@@ -49,9 +50,12 @@
         .p {
             margin: 0px;
         }
+        .inner{
+            width: 100px !important;
+        }
     </style>
 @section('content')
-    <div class="card">
+    <div class="box-dashboard">
         <!-- content in card -->
         <div class="info">
             <!-- top-left-content -->
@@ -84,7 +88,7 @@
                 </div>
                 <div class="small-box bg-danger" style="margin-bottom: 0px; width: 725px; height: 112.625px;">
                     <div class="inner">
-                        <h3>65</h3>
+                        <h3>{{ $data['room_count'] }}</h3>
                         <p>Total Conference Rooms</p>
                         <div class="icon">
                             <i class="fas fa-chart-pie"></i>
@@ -93,7 +97,7 @@
                 </div>
                 <div class="small-box bg-warning" style="margin-bottom: 0px; width: 725px; height: 112.625px; color:rgb(255, 255, 255) !important;">
                     <div class="inner">
-                        <h3>100</h3>
+                        <h3>{{ $data['user_count'] }}</h3>
                         <p>Registered Users</p>
                         <div class="icon">
                             <i class="fas fa-user-plus"></i>

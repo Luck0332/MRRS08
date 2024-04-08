@@ -61,8 +61,12 @@ body{
     padding: 10px 20px; 
     cursor: pointer; 
     text-align: center;
-    margin-left: 550px;
+    margin-left: 300px;
+    color: #FFFFFF;
+    background-color: #5E96EB;
 }
+
+
 
 .submit-button i {
     margin-right: 5px; 

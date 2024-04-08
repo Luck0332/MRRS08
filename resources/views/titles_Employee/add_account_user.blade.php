@@ -1,75 +1,111 @@
 @extends('layout.Employee')
 
-@section('title', 'จัดการบัญชี')
+@section('title', 'Add User Account')
+
 @section('content')
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container">
+    <div class="row justify-content-center mt-5" style="width: 1200px;">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">{{ __('Add User Account') }}</div>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    {{-- <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}"> --}}
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ url('assets/css.buttonadd/add.css') }}"> --}}
+                <div class="card-body" >
+                    <form method="POST" action="{{ route('titles_Employee.store') }}">
+                        @csrf
 
-    <!-- Main content -->
-    <section class="content flex">
-        <br>
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">เพิ่มบัญชีผู้ใช้</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <form action="{{ route('titles_Employee.store') }}" method="post">
-                    @csrf
-                    @method('post')
-                    <div class="form-group">
-                        <label for="first_name">First Name:</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name"
-                            placeholder="First Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name">Last Name:</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile No.:</label>
-                        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile No.">
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="position">ตำแหน่ง:</label>
-                        <select class="form-control" id="position" name="position">
-                            <option value="E">E</option>
-                            <option value="M">M</option>
-                            <option value="A">A</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="xxxxx">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm_password">Confirm Password:</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                            placeholder="Confirm Password">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-info">Submit</button>
-                        <button type="reset" class="btn btn-default float-right">Reset</button>
-                    </div>
-                </form>
+                        <!-- First Name and Last Name -->
+                        <div class="row mb-3 justify-content-between">
+                            <div class="col-md-5">
+                                <label for="first_name" class="form-label">{{ __('First Name') }}</label>
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                                @error('first_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-5">
+                                <label for="last_name" class="form-label">{{ __('Last Name') }}</label>
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required>
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Email and Mobile Number -->
+                        <div class="row mb-3 justify-content-between">
+                            <div class="col-md-5">
+                                <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-5">
+                                <label for="mobile" class="form-label">{{ __('Mobile Number') }}</label>
+                                <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required>
+                                @error('mobile')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Username, Position, and Password -->
+                        <div class="row mb-3 justify-content-between">
+                            <div class="col-md-5">
+                                <label for="username" class="form-label">{{ __('Username') }}</label>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required>
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-5">
+                                <label for="position" class="form-label">{{ __('Position') }}</label>
+                                <select id="position" class="form-select @error('position') is-invalid @enderror" name="position" required>
+                                    <option value="" disabled selected>Select a position</option>
+                                    <option value="E">E</option>
+                                    <option value="M">M</option>
+                                    <option value="A">A</option>
+                                </select>
+                                @error('position')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Password and Confirm Password -->
+                        <div class="row mb-3 justify-content-between">
+                            <div class="col-md-5">
+                                <label for="password" class="form-label">{{ __('Password') }}</label>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-5">
+                                <label for="confirm_password" class="form-label">{{ __('Confirm Password') }}</label>
+                                <input id="confirm_password" type="password" class="form-control" name="confirm_password" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">{{ __('Add User') }}</button>
+                    </form>
+                </div>
             </div>
         </div>
-
-    </section>
+    </div>
+</div>
 @endsection
