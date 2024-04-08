@@ -181,8 +181,9 @@
             </div>
         </section>
     </body>
+
         <script>
-            function deleteUser( ) {
+            function deleteUser(userId) {
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
