@@ -6,7 +6,7 @@ use App\Http\Controllers\MyAuth;
 use App\Models\reserver_information;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LineLoginController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -38,7 +38,10 @@ Route::get('/info',function(){
 
 Route::get('/User', [UserController::class,'getReserve']);
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/fillInformation', [UserController::class,'getInformation']);
+Route::get('/success',[UserController::class,'getSuccess']);
+Route::get('/fill_Information', [UserController::class,'getInformation'])->name('fill_Information');
+Route::post('/success', [AuthController::class,'userInformation'])->name('fill_Information.add');
+Route::get('/lineAuth',[UserController::class,'getlineAuth']);
 Route::get('/searchRoom', [UserController::class,'getSearch']);
 
 
@@ -58,11 +61,13 @@ Route::post('/login' , [MyAuth::class,'login_process']);
 Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
 Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
 Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
+
 Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
 Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 
 //API LINE LOGIN 
-Route::get('/line/login', [LineLoginController::class, 'redirectToLineLogin'])->name('line.login');
-Route::get('/line/callback', [LineLoginController::class, 'handleLineCallback']);
+Route::get('/auth/line/redirect', [AuthController::class,'redirectToLine'])->name('line.auth');
+Route::get('/auth/line/callback',[AuthController::class,'handleLineCallback'])->name('getUserLineID');
+

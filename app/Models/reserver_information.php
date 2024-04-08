@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\reserver_information as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -21,7 +20,7 @@ class reserver_information extends Model
         'reserver_fname',
         'reserver_lname',
         'reserver_tel',
-        'us_lineid'
+        'us_lineid',
     ];
 
 }

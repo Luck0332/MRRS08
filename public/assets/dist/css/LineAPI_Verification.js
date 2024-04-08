@@ -1,3 +1,3 @@
 window.onload = function() {
-    document.getElementById('popup').style.display = 'block';
-  }
+  document.getElementById('popup').style.display = 'block';
+}

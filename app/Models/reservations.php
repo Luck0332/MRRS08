@@ -27,7 +27,8 @@ class reservations extends Model
         'res_typeroom',
         'res_dayType',
         'ro_id',
-        'reserver_id'
+        'reserver_id',
+        'agenda'
     ];
 
 }

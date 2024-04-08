@@ -34,6 +34,18 @@ class UserController extends Controller
         //
         return view('titles_User.fill_information');
     }
+
+    public function getLineAuth()
+    {
+        //
+        return view ('titles_User.lineAuth');
+    }
+
+    public function getSuccess()
+    {
+        return view('titles_User.success');
+    }
+
     public function getcalender()
     {
         //

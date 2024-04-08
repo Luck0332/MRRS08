@@ -106,7 +106,7 @@ class EmployeeController extends Controller
         ]);
 
         $newUser = new User;
-        $newUser->us_fname = $request->first_name;
+        $newUser->us_name = $request->first_name;
         $newUser->us_lname = $request->last_name;
         $newUser->us_email = $request->email;
         $newUser->us_tel = $request->mobile;
