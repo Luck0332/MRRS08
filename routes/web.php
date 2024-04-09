@@ -44,6 +44,7 @@ Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->na
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+Route::get('/get-Petition/{id}',[EmployeeController::class,'getPetition'])->name('get-Petition');
 
 Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservationDetails'])->name('get-reservation-details');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');

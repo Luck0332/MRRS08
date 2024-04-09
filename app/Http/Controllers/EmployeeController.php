@@ -9,6 +9,7 @@ use App\Models\approves;
 use App\Http\Controllers\Validator;
 use App\Http\Controllers\UserController;
 use App\Models\reservations;
+use App\Models\reserver_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
@@ -230,7 +231,7 @@ class EmployeeController extends Controller
         ')->with('success', 'Status updated successfully!');
     }
 
-    public function getReservation($id)
+    public function getPetition($id)
     {
 
         $data1 = reservations::find($id);

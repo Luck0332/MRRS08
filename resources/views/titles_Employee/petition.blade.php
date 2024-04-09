@@ -224,7 +224,7 @@
             });
         }
     </script>
-    
+
     <!-- แสดงข้อมูลสถานะ 'R' -->
     {{-- <a id="next" onclick="changeDataApprove()">คำขอยกเลิก</a>
     <table class="rwd-table">
