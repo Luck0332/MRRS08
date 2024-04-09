@@ -34,8 +34,22 @@ class EmployeeController extends Controller
 
     public function mainpage()
     {
-        //
-        return view('titles_Employee.mainpage');
+        
+        $smallRoomCount = Room::where('ro_size', 'S')->count();
+        $mediumRoomCount = Room::where('ro_size', 'M')->count();
+        $largeRoomCount = Room::where('ro_size', 'L')->count();
+        $waitReservationCount = reservations::where('res_status', 'W')->count();
+        $data = [
+            'wait_reservation_count' => $waitReservationCount,
+            'user_count' => User::count(),
+            'room_count' => Room::count(),
+            'room_sizes' => [
+                'S' => $smallRoomCount,
+                'M' => $mediumRoomCount,
+                'L' => $largeRoomCount,
+            ]
+        ];
+        return view('titles_Employee.mainpage' , compact('data'));
     }
 
     public function reserve()

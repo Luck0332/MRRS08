@@ -102,10 +102,22 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                
                         </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="btn-login">
                             <button type="submit" class="btn" id="log-bot">{{ __('Login') }}</button>
                         </div>
+
+
                     </form>
                         </div>
                     </div>

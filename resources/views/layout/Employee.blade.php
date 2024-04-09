@@ -51,10 +51,6 @@
             <i class="" aria-hidden="true"></i>
             รายการจองห้อง
         </a>
-        <a href="Statistics" class="sidebar-link ">
-            <i class="" aria-hidden="true"></i>
-            สถิติการจอง
-        </a>
         <a href="Manage_account" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             จัดการบัญชี
