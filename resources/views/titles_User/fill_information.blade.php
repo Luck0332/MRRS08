@@ -7,21 +7,22 @@
 <link rel="stylesheet" href="{{ url('assets/dist/css/LineAPI_Verification.css') }}">
 <script src="{{ url('assets/dist/css/LineAPI_Verification.js') }}"></script>
 <link rel="stylesheet" href="{{ url('assets/dist/css/fillinformation.css') }}">
-{{--    
-<!-- /.ALERT LINE API VERIFICATION --> 
+
+<!-- /.ALERT LINE API VERIFICATION -->
 <section class="reserv">
-    <div id="popup" class="popup">
+    {{-- <div id="popup" class="popup">
         <div class="popup-content">
             <h2>Line ยืนยันตัวตน!</h2>
             <p>โปรดเข้าสู่ระบบไลน์เพื่อยืนยันตัวตน:</p>
             <button onclick="redirectToLineLogin()">เข้าสู่ระบบ Line</button>
         </div>
-    </div>
-    --}}
+    </div> --}}
 
-    <!-- Fill Information Form --> 
+
+    <!-- Fill Information Form -->
+    <form action="{{ route('submit_reservation.form') }}">
         @csrf <!-- CSRF protection -->
-        
+
         <div class="textHead">
             กรอกข้อมูลการจอง
         </div>
@@ -49,7 +50,7 @@
         </div>
         <div class="row" id="confirm">
             <div class="boxConfirm">
-                <button type="submit" class="confirmText">ยืนยันการจอง</button>
+                <button name="newStatus" value="W" type="submit" class="confirmText">ยืนยันการจอง</button>
             </div>
         </div>
     </form>

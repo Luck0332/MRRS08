@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/Test', function () {
-    return view('Homepage');
+    return view('homepage');
 });
 
 Route::get('/Homepage',function(){
@@ -36,7 +36,7 @@ Route::get('/roominfo/{id}', [RoomController::class, 'show'])->name('roominfo');
 
 
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/fillInformation', [UserController::class,'getInformation']);
+Route::get('/fillInformation/{id}', [UserController::class,'getInformation'])->name('fillInformation');;
 Route::get('/calender', [UserController::class,'getcalender']);
 
 
@@ -58,6 +58,7 @@ Route::post('/login' , [MyAuth::class,'login_process']);
 
 Route::get('/User', [UserController::class,'getReserve']);
 Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
+Route::post('/submid_reservation' , [UserController::class, 'submidreservation'])->name('submit_reservation.form');
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');

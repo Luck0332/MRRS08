@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <a href="" class="original-button">จองห้อง</a>
+            <a href="{{ route('fillInformation', ['id' => $room->id]) }}" class="original-button">จองห้อง</a>
         @else
             <p>ห้องประชุมไม่ถูกพบ</p>
     @endif

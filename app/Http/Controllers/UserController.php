@@ -16,14 +16,19 @@ class UserController extends Controller
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
 
-        $rooms = Room::where('ro_size', $roomSize)->get();
-    
+        ($request);
+        if($roomSize != 'A'){
+            $rooms = Room::where('ro_size', $roomSize)->get();
+        }else{
+            $rooms = Room::all();
+        }
         return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize'));
     }
 
     public function getReserve()
     {
-        return view('titles_User.reserve_room');
+        $reserv_room = new reservations();
+        return view('titles_User.reserve_room',['reserv_room' => $reserv_room]);
     }
 
     public function getFollow()
@@ -46,9 +51,15 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function submidreservation(Request $request)
     {
-        //
+
+
+        $reservation = new reservations();
+        $reservation->res_status = $request->newStatus;
+
+
+
     }
 
     /**
