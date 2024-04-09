@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function handleFormSubmission(Request $request)
+    public function Submission(Request $request)
     {
         $dateData = $request->input('date');
 
