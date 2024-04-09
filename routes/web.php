@@ -30,12 +30,7 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/roominfo/{room}', [RoomController::class, 'show']);
-Route::get('/bill',function(){
-    return view('titles_User.reserve_bill');
-});
-Route::get('/Manage_rooms/{rooms}/edit-rooms', [RoomController::class, 'edit_rooms'])->name('titles_Employee.edit_rooms');
-
+Route::get('/roominfo/{id}', [RoomController::class, 'show']);
 
 
 
