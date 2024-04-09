@@ -39,7 +39,7 @@ ul{
     transition: 0.3s;
     background-color: #37d172;
     position: relative; /* or absolute, fixed, etc. depending on your layout */
-    left: 380px; /* Change this value as needed */
+    left: 400px; /* Change this value as needed */
     margin-top: 58px;
 
 

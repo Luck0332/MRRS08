@@ -34,7 +34,6 @@
                     </div>
                     <ul>
                         <li>ชื่อ: {{ $resinfo_id->reserver_fname }} {{ $resinfo_id->reserver_lname }}</li>
-                        <li>อีเมล: {{ $resinfo_id->email }}</li>
                         <li>ID Line: {{ $resinfo_id->us_lineid }}</li>
                         <li>เบอร์โทรศัพท์: {{ $resinfo_id->reserver_tel }}</li>
                     </ul>
