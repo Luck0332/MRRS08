@@ -16,6 +16,7 @@
     </div>
     <br><br>
 
+
     <!-- แสดงข้อมูลสถานะ 'R' -->
     <div class="head">
         <button id="prev">คำขอยกเลิก</button>
