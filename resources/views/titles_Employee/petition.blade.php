@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="{{ url('assets/css.approvelist/approvelist.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <div class="flex-container">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+
+        <div class="flex-container">
         <div>
             <center>
                 <span class="title">คำขอการจอง</span><br>
@@ -147,11 +150,20 @@
                                     style="color: #ff1a1a;"></i></button>
                         </form>
                     </td>
-                    <td>
+                    {{-- <td>
                         <a onclick="openModal({{ $reservation->id }})" class="btn open-modal-btn" data-bs-toggle="modal"
                             data-bs-target="#myModal"><i class="fas fa-info-circle fa-lg" id="detail"
                                 style="color: #242424"></i></a>
+                    </td> --}}
+                    {{-- <td>
+                        <a ><i class="fas fa-info-circle fa-lg" onclick="openModal({{$reservation->id}})"
+                                style="color: #242424"></i></a>
+                    </td> --}}
+                    <td>
+                        <a ><i class="fas fa-info-circle fa-lg" onclick="openModal({{$reservation->id}})"></i></a>
+
                     </td>
+
                 </tr>
             @endforeach
         </tbody>
@@ -171,12 +183,29 @@
         // แสดงจำนวนตาราง
         console.log("จำนวนตาราง: " + rowCount);
     </script>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header" id="modal-header">
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+        </div>
+      </div>
     <script>
         async function openModal(id) {
             console.log(id)
-            const url = `{{ route('Petition_statuses.updateR', ['id' => 1]) }}`
+            const url = `{{ route('get-petition', ['id' => 1]) }}`
             await $.ajax({
-                url: `/get-reservation-details/${id}`, // Update the URL according to your route
+                url: `/get-petition/${id}`, // Update the URL according to your route
                 method: 'GET',
                 success: function(data) {
                     console.log(data)

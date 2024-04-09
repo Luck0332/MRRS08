@@ -171,4 +171,56 @@ tr:nth-child(even) {
 
   }
 
+  .modal-body {
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับเนื้อหาใน modal-body เป็น 16px */
+}
+
+/* หรือคุณสามารถกำหนดเฉพาะส่วนของตัวอักษรที่ต้องการ */
+.modal-body h2 {
+    background-color: #3b81f2;
+    border-radius: 20px;
+    max-width: 100px;
+    margin-left: 50px;
+    font-weight: bold;
+    /* margin: 20px; */
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับหัวข้อ h2 เป็น 20px */
+}
+
+/* หรือถ้าคุณต้องการให้ขนาดตัวอักษรของบางส่วนเป็นพิเศษ */
+.modal-body tr {
+    font-size: 18px; /* กำหนดขนาดตัวอักษรสำหรับ tr เป็น 18px */
+}
+
+.modal-content{
+    justify-content: center;
+    min-width: 900px;
+    height: 600px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-header{
+    background-color: #3b81f2;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+#modal-header{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.modal-title{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+#modal-content{
+     /* background-color: #3b81f2; */
+
+    border-radius: 15px;
+
+}
+
 
