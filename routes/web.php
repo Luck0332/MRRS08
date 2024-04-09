@@ -6,6 +6,7 @@ use App\Http\Controllers\MyAuth;
 use App\Http\Controllers\reservationController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FollowReserved;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,11 @@ Route::get('/roominfo', [RoomController::class, 'show']);
 
 
 
+<<<<<<< Updated upstream
 Route::get('/follow', [UserController::class,'getFollow']);
+=======
+Route::get('/follow', [FollowReserved::class,'search']);
+>>>>>>> Stashed changes
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
@@ -76,7 +81,4 @@ Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'up
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
-
-
-
-
+Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
