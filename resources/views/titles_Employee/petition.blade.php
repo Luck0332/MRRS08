@@ -150,6 +150,7 @@
                                     style="color: #ff1a1a;"></i></button>
                         </form>
                     </td>
+<<<<<<< HEAD
                     {{-- <td>
                         <a onclick="openModal({{ $reservation->id }})" class="btn open-modal-btn" data-bs-toggle="modal"
                             data-bs-target="#myModal"><i class="fas fa-info-circle fa-lg" id="detail"
@@ -162,6 +163,10 @@
                     <td>
                         <a ><i class="fas fa-info-circle fa-lg" onclick="openModal({{$reservation->id}})"></i></a>
 
+=======
+                    <td>
+                        <a><i class="fas fa-info-circle fa-lg" id="detail" style="color: #242424"></i></a>
+>>>>>>> parent of 5dd7787 (popup)
                     </td>
 
                 </tr>
@@ -183,6 +188,7 @@
         // แสดงจำนวนตาราง
         console.log("จำนวนตาราง: " + rowCount);
     </script>
+<<<<<<< HEAD
     <div class="modal" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="modal-content">
@@ -254,6 +260,9 @@
         }
     </script>
 
+=======
+
+>>>>>>> parent of 5dd7787 (popup)
     <!-- แสดงข้อมูลสถานะ 'R' -->
     {{-- <a id="next" onclick="changeDataApprove()">คำขอยกเลิก</a>
     <table class="rwd-table">

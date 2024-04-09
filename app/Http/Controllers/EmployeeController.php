@@ -230,6 +230,7 @@ class EmployeeController extends Controller
         return redirect()->route('pageR
         ')->with('success', 'Status updated successfully!');
     }
+<<<<<<< HEAD
 
     public function getPetition($id)
     {
@@ -243,4 +244,6 @@ class EmployeeController extends Controller
 
     }
 
+=======
+>>>>>>> parent of 5dd7787 (popup)
     }
