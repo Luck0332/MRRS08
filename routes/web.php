@@ -29,15 +29,16 @@ Route::get('/Test', function () {
 Route::get('/Homepage',function(){
     return view('Homepage');
 });
-
+//การจอง
 Route::get('/roominfo/{roomId}', [RoomController::class, 'show'])->name('roominfo');
-
-
-
+Route::get('/User', [UserController::class,'getReserve']);
+Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
+Route::get('/fillInformation/{id}/{start_date}/{end_date}', [UserController::class,'getInformation'])->name('fillInformation');
+Route::post('/Reserve/store', [UserController::class, 'StoreInfo'])->name('reservation.StoreInfo');
+Route::get('/Success', [UserController::class, 'ToSuccess'])->name('Reserve_success');
 
 Route::get('/follow', [UserController::class,'getFollow']);
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
-Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
 
 
@@ -56,8 +57,7 @@ Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
 
-Route::get('/User', [UserController::class,'getReserve']);
-Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
+
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');

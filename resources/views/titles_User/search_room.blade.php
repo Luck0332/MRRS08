@@ -59,7 +59,8 @@
             {{-- <label for="">{{ $startDate }}</label><br>
 <label for="">{{ $endDate }}</label><br>
 <label for="">{{ $roomSize }}</label> --}}
-
+                
+                
             <div class="row">
                 {{-- <label for="">{{$startDate}}</label>
                 <label for="">{{$endDate}}</label> --}}
