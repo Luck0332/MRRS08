@@ -3,51 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Doughnut Chart</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Status Update Alert</title>
+    <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
 
-<div class="container">
-    <h1 class="mt-5">Doughnut Chart Example</h1>
-    <canvas id="myDoughnutChart" width="400" height="400"></canvas>
+<!-- Button to trigger status update -->
+<button onclick="approveStatus()">Approve Status</button>
+<button onclick="rejectStatus()">Reject Status</button>
 
-</div>
-
-<!-- Bootstrap JS and Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script>
-    // JavaScript code for creating the doughnut chart
-    var ctx = document.getElementById('myDoughnutChart').getContext('2d');
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow'],
-            datasets: [{
-                label: 'My Doughnut Chart',
-                data: [30, 20, 50],
-                backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + '%';
-                        }
-                    }
-                }
-            }
-        }
-    });
+    function showStatusAlert(status) {
+        let statusColor = status === 'Approved' ? 'green' : 'red'; // Set color based on status
+        let statusText = `<span style="color: ${statusColor};">${status}</span>`; // Apply color to status text
+
+        Swal.fire({
+            icon: 'success',
+            title: `Status Updated to ${statusText}`,
+            timer: 3000,
+            showConfirmButton: false
+        });
+    }
+
+    function approveStatus() {
+        // Perform approval logic here (e.g., make an API call)
+        // Simulate a status change to 'Approved'
+        showStatusAlert('Approved');
+    }
+
+    function rejectStatus() {
+        // Perform rejection logic here (e.g., make an API call)
+        // Simulate a status change to 'Rejected'
+        showStatusAlert('Rejected');
+    }
 </script>
 
 </body>

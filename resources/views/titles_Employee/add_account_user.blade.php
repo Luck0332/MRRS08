@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label for="mobile" class="form-label">{{ __('Mobile Number') }}</label>
-                                <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required>
+                                <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required >
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                         <div class="row mb-3 justify-content-between">
                             <div class="col-md-5">
                                 <label for="password" class="form-label">{{ __('Password') }}</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="กรอกรหัสผ่าน 8 หลักขึ้นไป">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label for="confirm_password" class="form-label">{{ __('Confirm Password') }}</label>
-                                <input id="confirm_password" type="password" class="form-control" name="confirm_password" required>
+                                <input id="confirm_password" type="password" class="form-control" name="confirm_password" required placeholder="ยืนยันรหัสผ่าน">
                             </div>
                         </div>
 

@@ -11,6 +11,7 @@ use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -88,7 +89,9 @@ class EmployeeController extends Controller
         $smallRoomCount = Room::where('ro_size', 'S')->count();
         $mediumRoomCount = Room::where('ro_size', 'M')->count();
         $largeRoomCount = Room::where('ro_size', 'L')->count();
+        $waitReservationCount = reservations::where('res_status', 'W')->count();
         $data = [
+            'wait_reservation_count' => $waitReservationCount,
             'user_count' => User::count(),
             'room_count' => Room::count(),
             'room_sizes' => [
@@ -101,10 +104,31 @@ class EmployeeController extends Controller
 
     }
 
-    public function accout()
+    public function getReservationsByMonth()
     {
-        //
-        return view('titles_Employee.accout');
+        $dataA = reservations::selectRaw('COUNT(*) as count, MONTH(res_startdate) as month')
+        ->where('res_status', 'A')
+        ->groupBy(DB::raw('MONTH(res_startdate)'))
+        ->orderBy(DB::raw('MONTH(res_startdate)'))
+        ->get();
+
+        $dataR = reservations::selectRaw('COUNT(*) as count, MONTH(res_startdate) as month')
+                ->where('res_status', 'R')
+                ->groupBy(DB::raw('MONTH(res_startdate)'))
+                ->orderBy(DB::raw('MONTH(res_startdate)'))
+                ->get();
+
+        return response()->json([
+        'dataA' => $dataA,
+        'dataR' => $dataR
+        ]);
+    }
+    
+
+    public function accout($userId)
+    {
+        $user = User::find($userId); // Retrieve user data by ID
+        return view('titles_Employee.accout', ['user' => $user]);
     }
 
  
