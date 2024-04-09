@@ -208,7 +208,7 @@ class EmployeeController extends Controller
         $reservation->save();
         $Approve->save();
 
-        return redirect()->route('test')->with('success', 'Status updated successfully!');
+        return redirect()->route('pageW')->with('success', 'Status updated successfully!');
     }
     public function updatePetitionR(Request $request, $id)
     {
@@ -224,6 +224,7 @@ class EmployeeController extends Controller
         $reservation->save();
         $Approve->save();
 
-        return redirect()->route('test001')->with('success', 'Status updated successfully!');
+        return redirect()->route('pageR
+        ')->with('success', 'Status updated successfully!');
     }
     }

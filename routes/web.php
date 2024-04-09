@@ -71,14 +71,14 @@ Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'up
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 
-Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject']);
 
 // Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 
-Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('test001');
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
 
 
 
