@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\reservations;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -70,18 +71,24 @@ class RoomController extends Controller
         return view('titles_Employee.edit_rooms', ['rooms' => $rooms]);
     }
 
-    public function show($id,$reserv_room)
+    public function show($id,$reserv_sd,$reserv_ed)
     {
         $room = Room::where('id', $id)->first();
-        $reserv_room->room_id = $room->id;
-        $diff_in_days = $reserv_room->res_startdate->diffInDays($reserv_room->res_enddate);
-        $reserv_room->res_total = $diff_in_days * $room->ro_price;
-        $type_rooom = '0';
-        $reserv_room->res_typeroom = $type_rooom;
-        $type_day = 'F';
-        $reserv_room->res_daytype = $type_day;
 
-        return view ('titles_User.room_info',['room' => $room, 'reserv_room' => $reserv_room]);
+        dd($reserv_sd);
+        // if ($room) {
+        //     $reserv_room->room_id = $room->id;
+        //     $diff_in_days = $reserv_room->res_startdate->diffInDays($reserv_room->res_enddate);
+        //     $reserv_room->res_total = $diff_in_days * $room->ro_price;
+        //     $type_rooom = '0';
+        //     $reserv_room->res_typeroom = $type_rooom;
+        //     $type_day = 'F';
+        //     $reserv_room->res_daytype = $type_day;
+
+        //     // Rest of your code
+        // }
+
+        return view ('titles_User.room_info',['room' => $room]);
     }
 
     public function update_rooms(Request $request, Room $rooms)
