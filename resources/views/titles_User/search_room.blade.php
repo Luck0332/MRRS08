@@ -65,7 +65,7 @@
 
 <div class="row">
     @foreach($rooms as $key => $room)
-    <div onclick=""  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
+    <div onclick="redirectToAnotherPage($room->id)"  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
         <!-- Content for each room -->
         <span class="roominfo" id="statusRoom">
             <i class="fa-solid fa-earth-americas"></i>
@@ -86,7 +86,7 @@
 @endforeach
 
 <script>
-    function redirectToAnotherPage(pageUrl, idValue) {
+    function redirectToAnotherPage( idValue ) {
         // สร้าง URL ใหม่โดยเพิ่ม Query String ด้วย ID
         var newUrl = pageUrl + '?id=' + idValue;
         // ไปยังหน้าใหม่
