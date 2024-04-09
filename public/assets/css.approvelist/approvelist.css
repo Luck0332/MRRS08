@@ -7,10 +7,9 @@ th {
     color: white;
     font-size: 20px;
     font-weight: bold;
-    padding: 10px 25px;
     text-align: center;
-    width: 130px;
-    height: 40px;
+    width: 250px;
+    height: 50px;
 }
 
 td {
@@ -24,13 +23,17 @@ td {
 
 .flex-container>div {
     background-color: #f1f1f1;
-    width: 200px;
-    height: 100px;
+    width: 250px;
+    height: 140px;
     margin: 5px;
     text-align: center;
     line-height: 40px;
     font-size: 20px;
     margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .flex-container {
@@ -56,12 +59,19 @@ input {
 
 .rwd-table {
     min-width: 10px;
-    width: 95%;
+    width: 100%;
     display: block;
     border-top-right-radius: 20px;
     overflow: hidden;
     border-collapse: collapse;
+    text-align: center;
 
+
+}
+
+/* เพิ่ม CSS เพื่อให้มีสีสลับในตาราง */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
 #prev {
@@ -130,7 +140,8 @@ input {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-.buttons{
+
+.buttons {
     margin-right: 10px;
 }
 
@@ -145,4 +156,71 @@ input {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
+.buttons button:focus {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    color: black;
+
+}
+.card-footer {
+    background-color: #3b81f2 !important;
+    color: white !important;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+  }
+
+  .modal-body {
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับเนื้อหาใน modal-body เป็น 16px */
+}
+
+/* หรือคุณสามารถกำหนดเฉพาะส่วนของตัวอักษรที่ต้องการ */
+.modal-body h2 {
+    background-color: #3b81f2;
+    border-radius: 20px;
+    max-width: 100px;
+    margin-left: 50px;
+    font-weight: bold;
+    /* margin: 20px; */
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับหัวข้อ h2 เป็น 20px */
+}
+
+/* หรือถ้าคุณต้องการให้ขนาดตัวอักษรของบางส่วนเป็นพิเศษ */
+.modal-body tr {
+    font-size: 18px; /* กำหนดขนาดตัวอักษรสำหรับ tr เป็น 18px */
+}
+
+.modal-content{
+    justify-content: center;
+    min-width: 900px;
+    height: 600px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-header{
+    background-color: #3b81f2;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+#modal-header{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.modal-title{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+#modal-content{
+     /* background-color: #3b81f2; */
+
+    border-radius: 15px;
+
+}
+
 
