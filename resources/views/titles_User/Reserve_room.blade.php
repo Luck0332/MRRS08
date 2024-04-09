@@ -75,6 +75,7 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                     ค้นหาห้อง
                 </button>
+                <input type="hidden" name="reserv_room" value="{{ $reserv_room }}">
             </div>
         </div>
     </form>

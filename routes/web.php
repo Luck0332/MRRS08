@@ -30,20 +30,20 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/roominfo/{id}', [RoomController::class, 'show'])->name('roominfo');;
+Route::get('/roominfo/{id}/{reserv_room}', [RoomController::class, 'show'])->name('roominfo');;
 
 
 
 
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/fillInformation/{id}', [UserController::class,'getInformation'])->name('fillInformation');;
+Route::get('/fillInformation/{id}/{reserv_room}', [UserController::class,'getInformation'])->name('fillInformation');;
 Route::get('/calender', [UserController::class,'getcalender']);
 
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
 
-// Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+
 Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservationDetails'])->name('get-reservation-details');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');

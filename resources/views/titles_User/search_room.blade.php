@@ -65,7 +65,7 @@
 
     <div class="row">
     @foreach($rooms as $key => $room)
-    <div onclick="redirectToAnotherPage( {{ $room->id }} )"  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
+    <div onclick="redirectToAnotherPage( {{ $room->id }} ,{{ $reserv_room }} )"  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
         <!-- Content for each room -->
         <span class="roominfo" id="statusRoom">
             <i class="fa-solid fa-earth-americas"></i>
@@ -85,16 +85,15 @@
     </div>
 @endforeach
 <script>
-    function redirectToAnotherPage( idValue ) {
-
-
-        var newUrl = '{{ route("roominfo", ["id" => ":id"]) }}'.replace(':id', idValue);
-        // ไปยังหน้าใหม่
+    function redirectToAnotherPage(idValue, reserv_room) {
+        var newUrl = '/roominfo/' + idValue + '?reserv_room=' + reserv_room;
+        // Redirect to the new page
         window.location.href = newUrl;
     }
 </script>
 
-@push('scripts')
+
+{{-- @push('scripts')
 <script>
     document.querySelectorAll('.boxRoom').forEach(box => {
         box.addEventListener('click', () => {
@@ -104,7 +103,7 @@
         });
     });
 </script>
-@endpush
+@endpush --}}
 
 </div>
 

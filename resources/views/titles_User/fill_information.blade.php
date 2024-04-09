@@ -28,11 +28,11 @@
         </div>
         <div class="row">
             <div class="inputBox" id="Name">
-                <input type="text" name="us_name" required>
+                <input type="text" name="us_fname" required>
                 <span class="text">ชื่อ</span>
             </div>
             <div class="inputBox" id="Surname">
-                <input type="text" name="us_fname" required>
+                <input type="text" name="us_lname" required>
                 <span class="text">สกุล</span>
             </div>
         </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="row" >
-            <div class="inputBox" id="agenda">
+            <div  class="inputBox" id="agenda">
                 <input type="text" name="agenda" required>
                 <span class="text">วาระการประชุม</span>
             </div>

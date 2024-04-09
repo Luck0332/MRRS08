@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\M_titles;
+use App\Models\Reserver_info;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\reservations;
@@ -16,21 +17,22 @@ class UserController extends Controller
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
 
-        // $reserv_room->res_startdate  = $startDate;
-        // $reserv_room->res_enddate = $endDate;
+        $reserv_room = new reservations();
+        $reserv_room->res_startdate  = $startDate;
+        $reserv_room->res_enddate = $endDate;
 
         if($roomSize != null){
             $rooms = Room::where('ro_size', $roomSize)->get();
         }else{
             $rooms = Room::all();
         }
-        return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize'));
+        return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize','reserv_room'));
     }
 
     public function getReserve()
     {
-        $reserv_room = new reservations();
-        return view('titles_User.reserve_room',['reserv_room' => $reserv_room]);
+
+        return view('titles_User.reserve_room');
     }
 
     public function getFollow()
@@ -39,10 +41,11 @@ class UserController extends Controller
         return view('titles_User.follow');
     }
 
-    public function getInformation()
+    public function getInformation($id,$reserv_room)
     {
-        //
-        return view('titles_User.fill_information');
+        $reserv_room;
+        $id;
+        return view('titles_User.fill_information',['id' => $id, 'reserv_room' => $reserv_room]);
     }
     public function getcalender()
     {
@@ -53,15 +56,27 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function submidreservation(Request $request)
+    public function submidreservation(Request $request,$reserv_room)
     {
 
+        $length = 10; // ความยาวของรหัสซีเรียลที่ต้องการ
+        $serialCode = uniqid('', true);
+        $serialCode = substr($serialCode, - $length);
 
-        $reservation = new reservations();
-        $reservation->res_status = $request->newStatus;
+        $reserv_info = new Reserver_info;
+        $reserv_info->reserver_fname = $request->us_fname;
+        $reserv_info->reserver_lname = $request->us_lname;
+        $reserv_info->reserver_tel = $request->us_tel;
+        $reserv_info->save;
 
+        $reserv_room->res_status = $request->newStatus;
+        $reserv_room->agenda = $request->agenda;
+        $reserv_room->resinfo_id = $reserv_info->id;
+        $reserv_room->res_serialcode = $serialCode;
 
+        $reserv_room->save;
 
+        
     }
 
     /**
