@@ -3,22 +3,27 @@
 @section('title', 'จัดการห้องประชุม')
 
 @section('content')
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- Bootstrap CSS -->
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <!-- Custom CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <style>
     .content {
         display: flex;
-        margin-top: 20px;
+        margin-top: 60px;
     }
 
-    .card {
-
-    }
 
     .card-header h3 {
         margin: 0;
@@ -84,7 +89,6 @@
 
     .btn-circle:hover {
         transform: translateY(-2px);
-        background-color: transparent;
         border-color: transparent;
     }
 
@@ -93,9 +97,9 @@
 <section class="content">
     <div class="row justify-content-center" style="width: 1300px; height: 700px;">
         <div class="col">
-            <div class="card" >
-                <div class="card-body">
-                    <div class="table-responsive">
+            <div class="card" style="border-color: transparent;" >
+                <div class="card-body" style="padding: 0px; border-color:transparent" >
+                    <div class="table-responsive-md">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -128,19 +132,17 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form method="post"
-                                            action="{{ route('titles_Employee.destroy-rooms', ['rooms' => $room]) }}"
-                                            style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href="{{ route('titles_Employee.edit_rooms', ['rooms' => $room]) }}"
-                                                class="btn btn-warning transparent-btn">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <button type="submit" class="btn btn-danger transparent-btn">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                        </form>
+                                    <form id="delete-form-{{ $room->id }}" method="post" action="{{ route('titles_Employee.destroy-rooms', ['rooms' => $room]) }}" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{ route('titles_Employee.edit_rooms', ['rooms' => $room]) }}" class="btn btn-warning transparent-btn">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-danger transparent-btn" onclick="deleteRoom('{{ $room->id }}')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -163,31 +165,28 @@
     </div>
 </section>
 
-<!-- DataTables -->
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "language": {
-                "paginate": {
-                    "next": '<i class="fas fa-chevron-right"></i>',
-                    "previous": '<i class="fas fa-chevron-left"></i>'
-                },
-                "search": '<i class="fas fa-search"></i> Search:',
-                "zeroRecords": "No matching records found",
-                "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                "infoEmpty": "Showing 0 to 0 of 0 entries"
-            }
-        });
-    });
+    <script>
+        function deleteRoom(roomId) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    document.getElementById('delete-form-' + roomId).submit();
+                }
+            });
+        }
+    </script>
 
-</script>
 
 @endsection

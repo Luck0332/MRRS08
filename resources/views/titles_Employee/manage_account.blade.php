@@ -21,9 +21,7 @@
         <style>
             .content {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
+                margin-top: 60px;
             }
 
             .card {
@@ -204,6 +202,5 @@
                 });
             }
         </script>
-    </html>
 @endsection
 
