@@ -85,9 +85,17 @@ class EmployeeController extends Controller
 
     // หน้าสถิติการจอง
     public function statistics(){
+        $smallRoomCount = Room::where('ro_size', 'S')->count();
+        $mediumRoomCount = Room::where('ro_size', 'M')->count();
+        $largeRoomCount = Room::where('ro_size', 'L')->count();
         $data = [
             'user_count' => User::count(),
             'room_count' => Room::count(),
+            'room_sizes' => [
+                'S' => $smallRoomCount,
+                'M' => $mediumRoomCount,
+                'L' => $largeRoomCount,
+            ]
         ];
         return view('titles_Employee.statistics' , compact('data'));
 
@@ -169,7 +177,7 @@ class EmployeeController extends Controller
     $validatedData = $request->validate([
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
+        'email' => 'required|email|max:30',
         'mobile' => ['required', 'numeric', 'digits:10', function ($attribute, $value, $fail) {
             // Custom validator to check if mobile number has exactly 10 digits
             if (strlen($value) !== 10) {

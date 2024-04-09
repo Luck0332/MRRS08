@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
+        <!-- Bootstrap JS and Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .box-dashboard{
             background-color: rgb(255, 255, 255);
@@ -130,7 +133,7 @@
                 </div>
                 <!-- /.d-flex -->
                 <div class="position-relative mb-4">
-                    <canvas id="sales-chart" height="200"></canvas> graph here
+
                 </div>
                 <div class="d-flex flex-row justify-content-end">
                     <span class="mr-2">
@@ -144,19 +147,54 @@
             <!-- bot-left-content -->
 
             <!-- bot-right-content -->
-            <div class="item">
-                <div class="card-header border-0">
-                    <h3 class="card-title">
+            <div class="item justify-content-center">
+                <div class="card-header border-0 justify-content-center">
+                    <div class="card-title justify-content-center" >
                         <i class="far fa-chart-bar"></i>
-                        Donut Chart
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <div id="donut-chart" style="height: 300px;"></div>
+                        จำนวนห้อง
+                        <div class="container justify-content-center">
+                            <canvas id="myDoughnutChart" width="300" height="300"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /.bot-right-content -->
         </div>
         <!-- /.content in card -->
     </div>
+
+
+<script>
+    // JavaScript code for creating the doughnut chart
+    var roomSizesData = @json($data['room_sizes']);
+    var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['ห้องขนาดเล็ก', 'ห้องขนาดกลาง', 'ห้องขนาดใหญ่'],
+            datasets: [{
+                    label: 'Room Sizes',
+                    data: Object.values(roomSizesData), // Use room size counts from PHP variable
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) ;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 @endsection
