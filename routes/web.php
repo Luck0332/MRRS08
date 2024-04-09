@@ -36,11 +36,8 @@ Route::get('/roominfo', [RoomController::class, 'show']);
 
 
 
-<<<<<<< Updated upstream
-Route::get('/follow', [UserController::class,'getFollow']);
-=======
+
 Route::get('/follow', [FollowReserved::class,'search']);
->>>>>>> Stashed changes
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
