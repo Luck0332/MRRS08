@@ -25,7 +25,7 @@
             <th>วันที่เข้าใช้</th>
             <th>ชื่อผู้จอง</th>
             <th>ชื่อห้อง</th>
-            <th>ขนาดห้อง</th>
+            <th>ประเภทห้อง</th>
             <th>รอดำเนินการ</th>
         </tr>
     </thead>
@@ -46,6 +46,7 @@
             @else
                 <td>N/A</td>
             @endif
+
             @if ($reservation->res_typeroom == 1)
                 <td>สาธารณะ</td>
             @else
@@ -118,35 +119,71 @@
                     </div>
 
                     <div class="modal-body">
-    <div class="details-section">
-        <h2>รายละเอียดผู้จอง</h2>
-        <ul>
-            <li>ชื่อ: ${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</li>
-            <li>ID Line: ${reserver_information.us_lineid}</li>
-            <li>เบอร์โทร: ${reserver_information.reserver_tel}</li>
-        </ul>
-    </div>
+                    <div class="container">
+                        <div class="details-section">
+                            <h2>รายละเอียดผู้จอง</h2>
+                                <ul>
+                                    <li>
+                                        <span class="label">ชื่อ :</span>
+                                        <span class="value">${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</span>
+                                    </li>
 
-    <div class="details-section">
-        <h2>รายละเอียดการจอง</h2>
-        <ul>
-            <li>วันที่จอง :${reservations.res_startdate}</li>
-            <li>วาระการจอง: ${reservations.agenda}</li>
-        </ul>
-    </div>
+                                    <li>
+                                        <span class="label">ID Line :</span>
+                                        <span class="value">${reserver_information.us_lineid}</span>
+                                    </li>
 
-    <div class="details-section">
-        <h2>รายละเอียดห้อง</h2>
-        <ul>
-            <li>ชื่อห้อง: ${room.ro_name}</li>
-            <li>รายละเอียด: </li>
-            <ul>
-                ${roomDescriptionHTML}
-            </ul>
-            <li>ประเภทห้อง: ${roomType}</li>
-        </ul>
-    </div>
-</div>
+                                    <li>
+                                        <span class="label">เบอร์โทร :</span>
+                                        <span class="value">${reserver_information.reserver_tel}</span>
+                                    </li>
+
+                                </ul>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="details-section">
+                            <h2>รายละเอียดผู้จอง</h2>
+                            <ul>
+                                <li>
+                                    <span class="label">วันที่จอง :</span>
+                                    <span class="value">${reservations.res_startdate}</span>
+                                </li>
+                                
+                                <li>
+                                    <span class="label">วาระการประชุม : </span>
+                                    <span class="value">${reservations.agenda}</span>
+                                </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="details-section">
+                            <h2>รายละเอียดห้อง</h2>
+                            <ul>
+                                <li>
+                                <span class="label">ชื่อห้อง : </span>
+                                <span class="value">${room.ro_name}</span>    
+                                </li>
+
+                                <li>
+                                <span class="label">ประเภทห้อง :  </span>
+                                <span class="value">${roomType}</span>   
+                                </li>
+
+                                <li>
+                                <span class="label">รายละเอียด :  </span>
+                                <span class="value">${roomDescriptionHTML} </span>   
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
 
 
                     <div class="modal-footer">
