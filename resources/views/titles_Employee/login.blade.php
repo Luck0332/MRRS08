@@ -83,12 +83,18 @@
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
-                            <input id="username" type="text"  name="username" @error('username') is-invalid @enderror class="form-control" placeholder="Username">
-                            @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="row mb-3 justify-content-between">
+                                <div class="col-md-5">
+                                    <label for="username" class="form-label">{{ __('Username') }}</label>
+                                    <input id="username" type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" placeholder="Username" required>
+                                    @error('username')
+                                        <div class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
                         </div>
                         <div class="input-group mb-5">
                             <div class="input-group-append">
