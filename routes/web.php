@@ -43,7 +43,7 @@ Route::get('/calender', [UserController::class,'getcalender']);
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
 
-Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+// Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
 Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservationDetails'])->name('get-reservation-details');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
@@ -76,8 +76,15 @@ Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit
 Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
-Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+// Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject']);
 
+// Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
+
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
 
 
 

@@ -206,6 +206,11 @@ class EmployeeController extends Controller
         return redirect()->route('pageR
         ')->with('success', 'Status updated successfully!');
     }
+    public function petition_reject()
+    {
+        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(2);
+        return view('titles_Employee.petition_reject', compact('rejectR'));
+    }
 
     }
 
