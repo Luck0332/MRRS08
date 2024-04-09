@@ -99,6 +99,11 @@
 
   }
 
+  .info{
+    font-weight: bold;
+    font-size: 20px;
+  }
+
   .info-box{
     width: 360px;
     height: 150px;
@@ -107,7 +112,12 @@
     margin-top: 10px;
     margin-left: 25px;
     font-family: 'Inter', sans-serif;
+    left: -50px;
 
+  }
+
+  #price i{
+    font-weight: bold;
   }
 
   #box1{

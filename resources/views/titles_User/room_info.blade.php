@@ -56,7 +56,7 @@
                             </tr>
                         </i>
                     </span>
-                    <span class="icon">
+                    <span class="icon" id="price">
                         <i class="fa-regular fa-money-bill-1 fa-xl"> ราคา
                             <tr>
                                 <td>{{ $room->ro_price }}
