@@ -14,28 +14,35 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function Submission(Request $request){
-        $roomSize = $request->input('room_size');
+    public function Submission(Request $request)
+{
+    $roomSize = $request->input('room_size');
+    $startDate = $request->input('date');
+    $endDate = $request->input('end_date');
+
+    // แยกวันที่และเวลาเริ่มต้นและสิ้นสุด
+    $startDateTimeParts = explode(' to ', $startDate);
+    $startDate = explode(' ', $startDateTimeParts[0])[0];
+    $endDate = explode(' ', $startDateTimeParts[1])[0];
+
+    //code here
+    $rooms = Room::select('rooms.id AS room_id', 'rooms.ro_name', 'rooms.ro_size', 'rooms.ro_price')
+        ->leftJoin('reservations', function ($join) use ($startDate, $endDate) {
+            $join->on('rooms.id', '=', 'reservations.room_id')
+                ->where('reservations.res_startdate', '>=', $startDate)
+                ->where('reservations.res_enddate', '<=', $endDate)
+                ->whereIn('reservations.res_status', ['A', 'W']);
+        })
+        ->whereNull('reservations.id')
+        ->where('rooms.ro_size', $roomSize)
+        ->distinct()
+        ->get();
+
+    return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize'));
+}
 
 
-        $startDate = $request->input('date');
-        $endDate = $request->input('end_date');
-        $startAndEndDate = explode(' to ', $startDate);
-        $startDate = isset($startAndEndDate[0]) ? explode(' ', $startAndEndDate[0])[0] : '';
-        $endDate = isset($startAndEndDate[1]) ? explode(' ', $startAndEndDate[1])[0] : '';
 
-
-        $reserv_room = new reservations;
-        $reserv_room->res_startdate = $startDate;
-        $reserv_room->res_enddate = $endDate;
-
-        if($roomSize != null){
-            $rooms = Room::where('ro_size', $roomSize)->get();
-        }else{
-            $rooms = Room::all();
-        }
-        return view('titles_User.search_room', compact('rooms', 'reserv_room',));
-    }
 
 
     public function getReserve()
