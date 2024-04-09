@@ -6,7 +6,7 @@ th {
     color: white;
     font-size: 20px;
     font-weight: bold;
-    padding: 10px 25px;
+
     text-align: center;
     width: 250px;
     height: 40px;
@@ -29,7 +29,7 @@ td {
     line-height: 40px;
     font-size: 20px;
     margin-top: 15px;
-    
+
 }
 
 .flex-container {
@@ -55,34 +55,35 @@ input {
 
 .rwd-table {
     min-width: 10px;
-    width: 95%;
+    width: 100%;
     display: block;
     border-top-right-radius: 20px;
     overflow: hidden;
     border-collapse: collapse;
+    text-align: center;
 
 }
 
 #prev {
     font-weight: bold;
     font-size: 20px;
-    color: black;
+    color: white;
     padding: 15px 20px;
     border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: #ddd;
+    background-color: #3b81f2;
 }
 
 #next {
     font-weight: bold;
     font-size: 20px;
-    color: black;
+    color: white;
     padding: 15px 20px;
     border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: #ddd;
+    background-color: #3b81f2;
 }
 
 #prev:focus,
@@ -151,3 +152,14 @@ input {
     color: black;
 
 }
+
+.navbar.navbar-light.bg-light {
+    background-color: white !important;
+
+    border: none;
+}
+.navbar-brand{
+    background-color: #3b81f2 !important;
+    padding: 60px 40px;
+}
+

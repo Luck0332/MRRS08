@@ -42,10 +42,10 @@ Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->na
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
-Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
-Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
+// Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
 Route::get('/Manage_account',[EmployeeController::class,'manage_account']);
 Route::get('/Manage_rooms',[EmployeeController::class,'manage_rooms']);
 Route::get('/Accout',[EmployeeController::class,'accout']);
@@ -70,7 +70,17 @@ Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit
 Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
-Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
+
+Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject']);
+
+// Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
+
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('test001');
+
+
 
 
 

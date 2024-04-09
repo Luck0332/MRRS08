@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\reservations as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class reservations extends Model
+class approves extends Model
 {
     use HasFactory, HasApiTokens, Notifiable;
-    protected $table = 'reservations';
+    protected $table = 'approves';
     /**
      * The attributes that are mass assignable.
      *
@@ -19,16 +18,15 @@ class reservations extends Model
      */
     protected $fillable = [
         'id',
-        'res_status',
-        'updated_at',
-        'res_enddate',
-        'res_serialcode',
-        'res_total',
-        'res_typeroom',
-        'res_dayType',
-        'res_cancel',
-        'agenda',
-        'created_at',
+        'app_status_reserve',
+        'app_note',
+        'app_update_statusroom',
+        'app_update_statusroomA',
+        'app_update_statusroomB',
+        'rec_id',
+        'res_id',
+        'ro_id',
+        'us_id',
     ];
 
 }
