@@ -1,6 +1,6 @@
 @extends('layout.Employee')
 
-@section('title', 'คำร้องขอจอง')
+@section('title', 'คำร้องขอ')
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -10,7 +10,7 @@
     <div class="flex-container">
         <div>
             <span class="title">คำขอการจอง</span><br>
-            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)"></span>
+            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">5</span>
             <span>รายการ</span>
         </div>
         <div>
@@ -21,9 +21,8 @@
     </div>
     <br><br>
     <div class="head">
-        <button id="prev">คำขอการจอง</button>
-        <input type="search" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
-        <button type="button" onclick="searchTable()">Search</button>
+        <button id="prev" onclick="changeDataApprove()">คำขอการจอง</button>
+        {{-- <input type="search" placeholder="search" style=";position: relative; left:48%;"> --}}
     </div>
 
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -121,9 +120,9 @@
             <tr>
                 <th>ลำดับ</th>
                 <th>วันที่เข้าใช้</th>
-                <th style="width: 19%">สถานะห้องประชุม</th>
-                <th>เลขห้อง</th>
-                <th>ประเภทของห้อง</th>
+                <th>ชื่อผู้จอง</th>
+                <th>ชื่อห้อง</th>
+                <th>ขนาดห้อง</th>
                 <th>รอดำเนินการ</th>
                 <th></th>
             </tr>
@@ -138,7 +137,7 @@
                     <td>{{ $reservation->res_typeroom }}</td>
                     <td>
                         <form id="updateStatusForm"
-                            action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
+                            action="{{ route('Petition_statuses.update', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button type="submit" name="newStatus" value="A"
@@ -156,32 +155,24 @@
             @endforeach
         </tbody>
     </table>
-    <div class="card-footer">
-        <ul class="pagination-sm m-0" style="width: 100%">
+    <div class="card-footer clearfix text-center">
+        <ul class="pagination pagination-sm m-0">
             {!! $reservationsW->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
-    <script>
-        // เลือกตารางโดยใช้ class
-        var table = document.querySelector('.rwd-table');
-
-        // หาจำนวนของ elements <tr> ภายใน <tbody>
-        var rowCount = table.querySelectorAll('tbody tr').length;
-
-        // แสดงจำนวนตาราง
-        console.log("จำนวนตาราง: " + rowCount);
-    </script>
+    <br>
+    <br>
 
     <!-- แสดงข้อมูลสถานะ 'R' -->
-    {{-- <a id="next" onclick="changeDataApprove()">คำขอยกเลิก</a>
+    <button id="next" onclick="changeDataApprove()">คำขอยกเลิก</button>
     <table class="rwd-table">
         <thead>
             <tr>
                 <th>ลำดับ</th>
                 <th>วันที่เข้าใช้</th>
-                <th>สถานะห้องประชุม</th>
-                <th>เลขห้อง</th>
-                <th>ประเภทของห้อง</th>
+                <th>ชื่อผู้จอง</th>
+                <th>ชื่อห้อง</th>
+                <th>ขนาดห้อง</th>
                 <th>รอดำเนินการ</th>
                 <th></th>
             </tr>
@@ -202,7 +193,7 @@
                             <button type="submit" name="newStatus" value="C"
                                 style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
                                     style="color: #63E6BE;"></i></button>
-                            <button type="submit" name="newStatus" value="A"
+                            <button type="submit" name="newStatus" value="C"
                                 style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
                                     style="color: #ff1a1a;"></i></button>
                         </form>
@@ -213,37 +204,16 @@
                 </tr>
             @endforeach
         </tbody>
-    </table> --}}
+    </table>
 
     <!-- แสดง pagination สำหรับข้อมูลทั้งหมด -->
 
     <!-- แสดง pagination สำหรับข้อมูลสถานะ 'R' -->
-    {{-- <div class="card-footer">
-        <ul class="pagination-sm m-0" style="width: 100%">
+    <div class="card-footer clearfix text-center">
+        <ul class="pagination pagination-sm m-0">
             {!! $reservationsR->links('pagination::bootstrap-5') !!}
         </ul>
-    </div> --}}
-    {{-- <script>
-        function searchTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("reservationsTable");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script> --}}
+    </div>
 
     <script>
         $(document).ready(function() {
@@ -267,7 +237,7 @@
                     url: pageUrl, // ใช้ URL ที่ได้จาก pagination
                     success: function(response) {
                         var data = $(response).find(
-                            tableId); // ค้นหาข้อมูลสำหรับสถานะที่เลือกใน response
+                        tableId); // ค้นหาข้อมูลสำหรับสถานะที่เลือกใน response
                         $(tableId).html(data); // เปลี่ยนแท็บข้อมูลสำหรับสถานะที่เลือก
                     }
                 });
