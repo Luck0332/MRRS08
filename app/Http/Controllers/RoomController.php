@@ -55,6 +55,7 @@ class RoomController extends Controller
         //
     }
 
+<<<<<<< Updated upstream
     /**
      * Remove the specified resource from storage.
      */
@@ -62,4 +63,6 @@ class RoomController extends Controller
     {
         //
     }
+=======
+>>>>>>> Stashed changes
 }
