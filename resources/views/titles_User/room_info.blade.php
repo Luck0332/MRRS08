@@ -11,6 +11,9 @@
 
 
 
+    <label for="">{{$room->id}}</label>
+    <label for="">{{$res_startdate}}</label>
+    <label for="">{{$res_enddate}}</label>
 
     @if ($room)
         {{-- @dd($room); --}}

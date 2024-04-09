@@ -6,27 +6,29 @@ use App\Models\reservations;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Carbon\Carbon;
 class RoomController extends Controller
 {
 
     public function index()
     {
-        $rooms = Room::orderBy('ro_id','desc')->paginate(5);
-        return view('titles_Employee.manage_account',['rooms' => $rooms]);
+        $rooms = Room::orderBy('ro_id', 'desc')->paginate(5);
+        return view('titles_Employee.manage_account', ['rooms' => $rooms]);
     }
 
     public function manage_rooms()
     {
-        $rooms = Room::orderBy('id','desc')->paginate(10);
+        $rooms = Room::orderBy('id', 'desc')->paginate(10);
         return view('titles_Employee.manage_rooms', ['rooms' => $rooms]);
     }
 
-    public function create_rooms(){
+    public function create_rooms()
+    {
         return view('titles_Employee.add_rooms');
     }
 
-    public function store_rooms(Request $request ){
+    public function store_rooms(Request $request)
+    {
         $data = $request->validate([
             'room' => 'required',
             'price'  => 'required',
@@ -39,7 +41,7 @@ class RoomController extends Controller
         ]);
 
         $newRoom = new Room;
-        $newRoom->ro_name= $request->room;
+        $newRoom->ro_name = $request->room;
         $newRoom->ro_price = $request->price;
         $newRoom->ro_size = $request->size_room;
         $newRoom->ro_capacity = $request->capacity;
@@ -51,12 +53,12 @@ class RoomController extends Controller
         $newRoom->save();
 
         // dd($request);
-        if($request->image){
+        if ($request->image) {
             $file = $request->image;
 
             $extension = strtolower($file->getClientOriginalExtension());
-            $filename = $newRoom->id.'.'.$extension;
-            $file->move('image/',$filename);
+            $filename = $newRoom->id . '.' . $extension;
+            $file->move('image/', $filename);
 
             $newRoom->ro_pic1 = $filename;
             $newRoom->save();
@@ -71,54 +73,46 @@ class RoomController extends Controller
         return view('titles_Employee.edit_rooms', ['rooms' => $rooms]);
     }
 
-    public function show($id,$reserv_sd,$reserv_ed)
-    {
-        $room = Room::where('id', $id)->first();
+    public function show(Request $request, $roomId) {
+        $room = Room::where('id',$roomId)->first();
+        $res_startdate = $request->query('res_startdate');
+        $res_enddate = $request->query('res_enddate');
 
-        dd($reserv_sd);
-        // if ($room) {
-        //     $reserv_room->room_id = $room->id;
-        //     $diff_in_days = $reserv_room->res_startdate->diffInDays($reserv_room->res_enddate);
-        //     $reserv_room->res_total = $diff_in_days * $room->ro_price;
-        //     $type_rooom = '0';
-        //     $reserv_room->res_typeroom = $type_rooom;
-        //     $type_day = 'F';
-        //     $reserv_room->res_daytype = $type_day;
-
-        //     // Rest of your code
-        // }
-
-        return view ('titles_User.room_info',['room' => $room]);
+        return view('titles_User.room_info', compact('room','res_startdate','res_enddate'));
     }
+    
+
+
+
 
     public function update_rooms(Request $request, Room $rooms)
-{
-    // Validate the incoming form data
-    $validatedData = $request->validate([
-        'room' => 'required|string|max:255',
-        'price' => 'required|numeric',
-        'size_room' => 'required|string|max:255',
-        'capacity' => 'required|integer',
-        'typeroom' => 'required|boolean',
-        'status_room' => 'required|boolean',
-        'typesplit' => 'required|boolean',
-        'notation' => 'nullable|string|max:255',
-    ]);
-    // Update the room model with validated data
-    $rooms->update([
-        'ro_name' => $validatedData['room'],
-        'ro_price' => $validatedData['price'],
-        'ro_size' => $validatedData['size_room'],
-        'ro_capacity' => $validatedData['capacity'],
-        'ro_typeroom' => $validatedData['typeroom'],
-        'ro_avaliable' => $validatedData['status_room'],
-        'ro_cansplit' => $validatedData['typesplit'],
-        'ro_description' => $validatedData['notation'],
-    ]);
+    {
+        // Validate the incoming form data
+        $validatedData = $request->validate([
+            'room' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'size_room' => 'required|string|max:255',
+            'capacity' => 'required|integer',
+            'typeroom' => 'required|boolean',
+            'status_room' => 'required|boolean',
+            'typesplit' => 'required|boolean',
+            'notation' => 'nullable|string|max:255',
+        ]);
+        // Update the room model with validated data
+        $rooms->update([
+            'ro_name' => $validatedData['room'],
+            'ro_price' => $validatedData['price'],
+            'ro_size' => $validatedData['size_room'],
+            'ro_capacity' => $validatedData['capacity'],
+            'ro_typeroom' => $validatedData['typeroom'],
+            'ro_avaliable' => $validatedData['status_room'],
+            'ro_cansplit' => $validatedData['typesplit'],
+            'ro_description' => $validatedData['notation'],
+        ]);
 
-    // Redirect back to the room management page with success message
-    return redirect()->route('titles_Employee.manage_rooms')->with('success', 'แก้ไขข้อมูลห้องสำเร็จ');
-}
+        // Redirect back to the room management page with success message
+        return redirect()->route('titles_Employee.manage_rooms')->with('success', 'แก้ไขข้อมูลห้องสำเร็จ');
+    }
 
     public function destroy_rooms(Room $rooms)
     {
@@ -127,6 +121,4 @@ class RoomController extends Controller
 
         return redirect(route('titles_Employee.manage_rooms'))->with('success', 'ลบข้อมูลห้องสำเร็จ');
     }
-
-
 }

@@ -13,7 +13,7 @@
 
     <form method="POST" action="{{ route('submit.form') }} ">
         @csrf
-        @method("post")
+        @method('post')
         <div class="showroom">
             <div class="rowicon">
                 <div class="boxSelect-calender">
@@ -36,7 +36,7 @@
 
                     <body>
                         <select class="boxSelect" style="width: 210px; margin-left: 36px;" id="roomSize" name="room_size">
-                            <option value="A" selected >ขนาดห้อง</option>
+                            <option value="A" selected>ขนาดห้อง</option>
                             <option value="S">ห้องเล็ก</option>
                             <option value="M">ห้องกลาง</option>
                             <option value="L">ห้องใหญ่</option>
@@ -53,40 +53,32 @@
 
 
 
-    <div class="row">
-    @foreach($rooms as $key => $room)
-    <div onclick="redirectToAnotherPage( {{ $room->id }}, {{$reserv_room->res_startdate}}, {{$reserv_room->res_enddate}})"  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
-        <!-- Content for each room -->
-        <span class="roominfo" id="statusRoom">
-            <i class="fa-solid fa-earth-americas"></i>
-        </span>
-        <span class="roominfo">
-            <i class="fa-sharp fa-solid fa-s">{{ $room->ro_size }}</i>
-        </span>
-        <span class="roominfo">
-            <i class="fa-regular fa-money-bill-1"> ราคา {{ $room->ro_price }} บาท/วัน</i>
-        </span>
-        <span class="roominfo">
-            <i class="fa-solid fa-laptop">{{ $room->ro_description }}</i>
-        </span>
-        <span class="roomname">
-            {{ $room->id }}
-        </span>
-    </div>
-@endforeach
-<script>
-    function redirectToAnotherPage(idValue, reserv_st , reserv_ed) {
-        reserv_s = reserv_st.toString();
-        reserv_e = reserv_ed.toString();
-
-        var newUrl = '/roominfo/' + idValue + '/' + reserv_st + '/' + reserv_ed;
-        // Redirect to the new page
-        window.location.href = newUrl;
-    }
-</script>
+            <div class="row">
+                @foreach ($rooms as $key => $room)
+                    <a href="{{ route('roominfo', ['roomId' => $room->id, 'res_startdate' => $reserv_room->res_startdate, 'res_enddate' => $reserv_room->res_enddate]) }}"
+                        class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}">
+                        <!-- Content for each room -->
+                        <span class="roominfo" id="statusRoom">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </span>
+                        <span class="roominfo">
+                            <i class="fa-sharp fa-solid fa-s">{{ $room->ro_size }}</i>
+                        </span>
+                        <span class="roominfo">
+                            <i class="fa-regular fa-money-bill-1"> ราคา {{ $room->ro_price }} บาท/วัน</i>
+                        </span>
+                        <span class="roominfo">
+                            <i class="fa-solid fa-laptop">{{ $room->ro_description }}</i>
+                        </span>
+                        <span class="roomname">
+                            {{ $room->id }}
+                        </span>
+                    </a>
+                @endforeach
 
 
-{{-- @push('scripts')
+
+                {{-- @push('scripts')
 <script>
     document.querySelectorAll('.boxRoom').forEach(box => {
         box.addEventListener('click', () => {
@@ -98,7 +90,7 @@
 </script>
 @endpush --}}
 
-</div>
+            </div>
 
 
 
@@ -227,4 +219,4 @@
         </script>
 
 
-@endsection
+    @endsection
