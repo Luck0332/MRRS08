@@ -17,7 +17,7 @@ class RoomController extends Controller
 
     public function manage_rooms()
     {
-        $rooms = Room::orderBy('id')->get();
+        $rooms = Room::orderBy('id','desc')->paginate(10);
         return view('titles_Employee.manage_rooms', ['rooms' => $rooms]);
     }
 
