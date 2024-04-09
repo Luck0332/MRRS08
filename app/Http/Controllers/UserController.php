@@ -11,15 +11,38 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function Submission(Request $request){
+    public function Submission(Request $request)
+    {
         $roomSize = $request->input('room_size');
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
+        // แยกวันที่และเวลาเริ่มต้นและสิ้นสุด
+        $startDateTimeParts = explode(' to ', $startDate);
+        $startDate = explode(' ', $startDateTimeParts[0])[0];
+        $endDate = explode(' ', $startDateTimeParts[1])[0];
 
-        $rooms = Room::where('ro_size', $roomSize)->get();
-    
-        return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize'));
+
+
+        $rooms = Room::select('rooms.id', 'rooms.ro_name', 'rooms.ro_size', 'rooms.ro_price')
+            ->leftJoin('reservations', 'reservations.room_id', '=', 'rooms.id')
+            ->where('rooms.ro_size', $roomSize)
+            ->where(function ($query) {
+                $query->where('reservations.res_status', '!=', 'A')
+                      ->where('reservations.res_status', '!=', 'W')
+                      ->orWhereNull('reservations.res_status');
+            })
+            ->where(function ($query) use ($endDate) {
+                $query->where('reservations.res_enddate', '>', $endDate)->orWhereNull('reservations.res_enddate');
+            })
+            ->where(function ($query) use ($startDate) {
+                $query->where('reservations.res_startdate', '>', $startDate)->orWhereNull('reservations.res_startdate');
+            })
+            ->distinct()
+            ->get();
+
+        return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize'));
     }
+
 
     public function getReserve()
     {

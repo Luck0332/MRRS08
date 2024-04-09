@@ -47,54 +47,61 @@
                     ค้นหาห้อง
                 </button>
             </div>
-            @php
-        // Splitting start and end dates only if the string contains " to "
-        $startAndEndDate = explode(' to ', $startDate);
-        $startDate = isset($startAndEndDate[0]) ? explode(' ', $startAndEndDate[0])[0] : '';
-        $endDate = isset($startAndEndDate[1]) ? explode(' ', $startAndEndDate[1])[0] : '';
-    @endphp
+            {{-- @php
+                // Splitting start and end dates only if the string contains " to "
+                $startAndEndDate = explode(' to ', $startDate);
+                $startDate = isset($startAndEndDate[0]) ? explode(' ', $startAndEndDate[0])[0] : '';
+                $endDate = isset($startAndEndDate[1]) ? explode(' ', $startAndEndDate[1])[0] : '';
+            @endphp --}}
 
-  
 
-<label for="">{{ $startDate }}</label><br>
+
+            {{-- <label for="">{{ $startDate }}</label><br>
 <label for="">{{ $endDate }}</label><br>
-<label for="">{{ $roomSize }}</label>
+<label for="">{{ $roomSize }}</label> --}}
 
-<div class="row">
-    @foreach($rooms as $key => $room)
-    <div  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
-        <!-- Content for each room -->
-        <span class="roominfo" id="statusRoom">
-            <i class="fa-solid fa-earth-americas"></i>
-        </span>
-        <span class="roominfo">
-            <i class="fa-sharp fa-solid fa-s">{{ $room->ro_size }}</i>
-        </span>
-        <span class="roominfo">
-            <i class="fa-regular fa-money-bill-1"> ราคา {{ $room->ro_price }} บาท/วัน</i>
-        </span>
-        <span class="roominfo">
-            <i class="fa-solid fa-laptop">{{ $room->ro_description }}</i>
-        </span>
-        <span class="roomname">
-            {{ $room->id }}
-        </span>
-    </div>
-@endforeach
+            <div class="row">
+                <label for="">{{$startDate}}</label>
+                <label for="">{{$endDate}}</label>
+                @foreach ($rooms as $key => $room)
+                    <label for="">{{$room->ro_id}}</label>
+                    <label for="">{{$room->ro_name}}</label>
+                    <label for="">{{$room->ro_size}}</label>
+                    <label for="">{{$room->ro_price}}</label>
+                    <label for="">----------</label>
+                    {{-- <div class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}">
+                        <!-- Content for each room -->
+                        <span class="roominfo" id="statusRoom">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </span>
+                        <span class="roominfo">
+                            <i class="fa-sharp fa-solid fa-s">{{ $room->ro_size }}</i>
+                        </span>
+                        <span class="roominfo">
+                            <i class="fa-regular fa-money-bill-1"> ราคา {{ $room->ro_price }} บาท/วัน</i>
+                        </span>
+                        <span class="roominfo">
+                            <i class="fa-solid fa-laptop">{{ $room->ro_description }}</i>
+                        </span>
+                        <span class="roomname">
+                            {{ $room->ro_name }}
+                        </span>
+                    </div> --}}
+                @endforeach
 
-@push('scripts')
-<script>
-    document.querySelectorAll('.boxRoom').forEach(box => {
-        box.addEventListener('click', () => {
-            const roomId = box.getAttribute('data-room-id');
-            const path = '{{ route('test', ':id') }}'.replace(':id', roomId);
-            window.location.href = path;
-        });
-    });
-</script>
-@endpush
+                @push('scripts')
+                    <script>
+                        document.querySelectorAll('.boxRoom').forEach(box => {
+                            box.addEventListener('click', () => {
+                                const roomId = box.getAttribute('data-room-id');
+                                const path = '{{ route('test', ':id') }}'.replace(':id', roomId);
+                                window.location.href = path;
+                            });
+                        });
+                    </script>
+                @endpush
 
-</div>
+            </div>
 
 
 
