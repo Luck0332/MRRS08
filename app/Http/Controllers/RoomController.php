@@ -49,6 +49,7 @@ class RoomController extends Controller
 
         $newRoom->save();
 
+        // dd($request);
         if($request->image){
             $file = $request->image;
 
