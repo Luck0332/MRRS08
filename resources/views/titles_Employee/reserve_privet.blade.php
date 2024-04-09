@@ -2,5 +2,5 @@
 
 @section('title', 'ติดตามการจอง')
 @section('content')
-reserve_privet
+    @include('titles_User.Reserve_room')
 @endsection

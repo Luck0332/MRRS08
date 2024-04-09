@@ -13,23 +13,39 @@ class MyAuth extends Controller
         return view('titles_Employee.login');
     }
 
-    function login_process(Request $req){
-        $req->validate([
-        'username' => 'required',
-        'password' => 'required|min:6',
+   public function login_process(Request $req)
+    {
+        $validatedData = $req->validate([
+            'username' => 'required',
+            'password' => 'required',
+
         ]);
 
-        $data = $req->all();
-        // use Illuminate\Support\Facades\Auth;
-        $login = User::where(['us_email', $data['username']],['us_password',$data['password']]);
-        $login_user = User::where(['us_name',$data['username']],['us_password',$data['password']]);
-        if($login || $login_user){
+        // รับค่า input ชื่อ username และ password จาก request
+        $username = $req->input('username');
+        $password = $req->input('password');
 
-            return Redirect::to('Employee');
-        }else{
-            return Redirect::to('login');
+        // เรียกใช้งานโมเดล User เพื่อทำการเปรียบเทียบ
+        $user = User::where('us_name', $username)->first();
+
+        // ตรวจสอบว่ามีข้อมูล user ที่มี us_name ตรงกับ username ที่รับเข้ามาหรือไม่
+        if ($user) {
+            // ถ้าพบ user ในฐานข้อมูล
+            if (password_verify($password, $user->us_password)) {
+                // ถ้า password ที่รับเข้ามาตรงกับ password ในฐานข้อมูล
+                // กำหนด session หรือตัวแปรอื่น ๆ ตามที่ต้องการเพื่อระบุการเข้าสู่ระบบ
+                // สามารถ redirect หรือทำการส่ง response กลับไปยังหน้าอื่น ๆ ต่อจากนี้ได้
+                return redirect()->intended('Employee');
+            } else {
+                // ถ้า password ไม่ตรงกับที่มีในฐานข้อมูล
+                return redirect()->back()->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+            }
+        } else {
+            // ถ้าไม่พบ user ในฐานข้อมูล
+            return redirect()->back()->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
         }
     }
+
 
 
     function logout_process(){
@@ -41,17 +57,4 @@ class MyAuth extends Controller
         return view('register');
     }
 
-    function register_process(Request $req){
-        $req->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|confirmed',
-        ]);
-
-        $data = $req->all();
-
-        User::create($data);
-
-        return Redirect::to('login');
-    }
 }

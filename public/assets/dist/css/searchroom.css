@@ -1,0 +1,147 @@
+.container {
+    background-color: #ffffff; /* Dark background color */
+    border-radius: 30px; /* Rounded corners */
+    padding: 50px; /* Reduced padding for content */
+    margin: 10 auto; /* Center horizontally */
+    box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+
+.showroom {
+    height: 720px;
+    overflow-y: scroll;
+}
+
+.showroom::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 75px;
+    padding-right: 75px;
+}
+.boxRoom{
+    width: 360px;
+    height: 280px;
+    border-radius: 12px;
+    border: 2px solid #000000;
+    margin: 36px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s;
+}
+#box1 {
+    order: 1;
+}
+
+#box2 {
+    order: 2;
+}
+.roominfo {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.boxRoom:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5); /* Darken the background on hover */
+}
+.boxRoom:hover .roominfo {
+    opacity: 1;
+}
+.rowicon {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.boxSelect-Calender {
+    display:flex;
+    align-items: center;
+    width: 250px;
+    height: 36px;
+    background: #ffffff;
+    border-radius: 15px;
+    border: transparent;
+    color: #000000;
+    background-color: #D9D9D9;
+}
+.textSelect {
+    font-size: 20px;
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.textSelect span {
+    margin-right: 10px;
+}
+.line-between-calender {
+    width: 45px;
+    height: 5px;
+    background-color: #d9d9d9;
+    margin-top: 15px;
+}
+.boxSelect-Size {
+    display:flex;
+    align-items: center;
+    width: 200px;
+    height: 36px;
+    background: #D9D9D9;
+    border-radius: 15px;
+    margin-left: 36px;
+    border-color: transparent;
+    color: #9d9d9d;
+}
+.boxSearch {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 36px;
+    background: #5E96EB;
+    border-radius: 6px;
+    margin-left: 48px;
+    cursor: pointer;
+}
+#statusRoom{
+    font-size: 36px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+.roomname{
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+    bottom: 0px;
+    left: 0px;
+    width: 356px;
+    background-color: #D0F4FF;
+    height: 50px;
+    border-radius: 0 0 12px 12px;
+
+}
+.datetime-picker{
+    font-size: 16px;
+    margin-left: 10px;
+    border: transparent;
+    background-color: transparent;
+}
+.datetime-picker:focus{
+    border: transparent;
+    background-color: transparent;
+}
+
+#size{
+    margin-left: 0px;
+}

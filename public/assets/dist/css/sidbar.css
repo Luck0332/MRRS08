@@ -1,13 +1,13 @@
 
 aside {
     display: block;
+    position: relative;
     color: #fff;
     width: 250px;
     padding-left: 20px;
     height: 100vh;
     background-image: linear-gradient(30deg , #0048bd, #44a7fd);
 }
-
   aside a {
     font-size: 20px;
     color: #fff;
@@ -33,84 +33,6 @@ aside {
     margin-top: 8px;
   }
 
-  aside a i {
-    margin-right: 5px;
-  }
-
-/*
-aside a:focus,
-aside a:hover {
-    color: #3f5efb;
-    background: #fff;
-    outline: none;
-    position: relative;
-    background-color: #fff;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-
-
-aside a:focus::before,
-aside a:hover::before {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    top: 100%;
-    right: 0;
-    height: 35px;
-    width: 35px;
-    border-top-right-radius: 18px;
-    box-shadow: 0 -20px 0 0 #fff;
-}
-
-aside a:focus::after,
-aside a:hover::after {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    bottom: 100%;
-    right: 0;
-    height: 35px;
-    width: 35px;
-    border-bottom-right-radius: 18px;
-    box-shadow: 0 20px 0 0 #fff;
-} */
-
-
-
-  /* aside a:hover {
-    color: #3f5efb;
-    background: #fff;
-    outline: none;
-    position: relative;
-    background-color: #fff;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
-
-  aside a:hover::before {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    top: 100%;
-    right: 0;
-    height: 35px;
-    width: 35px;
-    border-top-right-radius: 18px;
-    box-shadow: 0 -20px 0 0 #fff;
-  }
-
-  aside a:hover::after {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    bottom: 100%;
-    right: 0;
-    height: 35px;
-    width: 35px;
-    border-bottom-right-radius: 18px;
-    box-shadow: 0 20px 0 0 #fff;
-  } */
 
 
 
@@ -128,9 +50,14 @@ aside a:hover::after {
 
   }
 
+  .spac{
+    margin-left: 300px;
+  }
+
 .container{
-  display: flex;
+  display: grid;
   justify-content: center;
+
 }
 
 
@@ -145,7 +72,7 @@ aside a.active {
     border-bottom-left-radius: 20px;
 }
 
-/* เอฟเฟกต์ hover ที่ค้างไว้ */
+
 aside a.active::before {
     content: "";
     position: absolute;
@@ -171,7 +98,7 @@ aside a.active::after {
 }
 
 #Accout{
-    width: 140px;
+    width: 215px;
     position: fixed; /* กำหนดให้ติดตั้งที่ตำแหน่งที่ตั้งในหน้าจอ */
     bottom: 50; /* กำหนดให้ตำแหน่งที่ตำแหน่งท้ายสุด (ล่างสุด) */
     z-index: 1;
@@ -181,46 +108,29 @@ aside a.active::after {
     width: 222px;
     position: fixed; /* กำหนดให้ติดตั้งที่ตำแหน่งที่ตั้งในหน้าจอ */
     border-bottom: 1px solid #ccc; /* กำหนดเส้นขอบล่าง */
-    bottom: 48; /* กำหนดให้ตำแหน่งที่ตำแหน่งท้ายสุด (ล่างสุด) */
+    bottom: 50; /* กำหนดให้ตำแหน่งที่ตำแหน่งท้ายสุด (ล่างสุด) */
     z-index: 0;
 }
 #logout{
-    width: 140px;
+    width: 215px;
     position: fixed; /* กำหนดให้ติดตั้งที่ตำแหน่งที่ตั้งในหน้าจอ */
     bottom: 0; /* กำหนดให้ตำแหน่งที่ตำแหน่งท้ายสุด (ล่างสุด) */
+    padding: 12px;
+    padding-left: 70px;
 
 }
 
 #Accout:hover{
-    font-size: 18px;
     color: #fff;
     background-color: rgba(255, 255, 255, 0.2);
-    display: block;
-    padding: 12px;
-    padding-left: 70px;
-    text-decoration: none;
-    -webkit-tap-highlight-color:transparent;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
 }
 #logout:hover{
-    font-size: 18px;
+
     color: #fff;
     background-color: rgba(255, 255, 255, 0.2);
-    display: block;
     padding: 12px;
     padding-left: 70px;
-    text-decoration: none;
-    -webkit-tap-highlight-color:transparent;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
+    border-radius: 20px;
 }
-
-
-
 

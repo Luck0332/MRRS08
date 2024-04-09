@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\M_titles;
+use App\Models\User;
+use App\Models\Room;
+use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function Submission(Request $request){
+        $startDate = $request->input('date');
+        $endDate = $request->input('end_date');
+        $roomSize = $request->input('room_size');
+        $rooms = Room::all(); // Fetch all rooms from the database
+        $res = reservations::all();
+        return view('titles_User.search_room', compact('rooms','startDate','endDate','roomSize','res' ));
+    }
+
     public function getReserve()
     {
-        //
         return view('titles_User.reserve_room');
     }
 
@@ -22,6 +30,18 @@ class UserController extends Controller
         //
         return view('titles_User.follow');
     }
+
+    public function getInformation()
+    {
+        //
+        return view('titles_User.fill_information');
+    }
+    public function getcalender()
+    {
+        //
+        return view('titles_User.testcalender');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -67,7 +87,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //.
-
+        //
     }
 }

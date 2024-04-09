@@ -1,0 +1,57 @@
+.form-row{
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+}
+#card-icon{
+    margin-top: 10px;
+}
+
+  #formbox1{
+    width: 400px;
+  }
+  #formbox2{
+    width: 400px;
+  }
+  #button {
+    margin-top: 30px; /* ปรับระยะห่างด้านบนของปุ่ม submit */
+    display: flex;
+    justify-content: center; /* จัดตำแหน่งปุ่มให้อยู่กึ่งกลาง */
+  }
+
+  #button button {
+
+    background-color: #5373E8;
+    width: 400px; /* ปรับขนาดความกว้างตามที่ต้องการ */
+    height: 50px; /* ปรับขนาดความสูงตามที่ต้องการ */
+  }
+
+  .card {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 1200px;
+    height: 700px;
+    margin-top: 78px;
+  }
+  #card-header1{
+    background-color: #3b81f2;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.card-title{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+  .form-group {
+    margin-bottom: 20px; /* ปรับระยะห่างระหว่างกลุ่มข้อมูลให้มีระยะที่เหมาะสม */
+  }
+
+  .form-group label {
+    margin-bottom: 20px; /* ปรับระยะห่างระหว่าง label และ input */
+  }
+
+  #close-popup {
+    float: right;
+  }

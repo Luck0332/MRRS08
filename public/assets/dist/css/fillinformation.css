@@ -1,0 +1,89 @@
+.container {
+    background-color: #ffffff; /* Dark background color */
+    border-radius: 30px; /* Rounded corners */
+    padding: 50px; /* Reduced padding for content */
+    margin: 10 auto; /* Center horizontally */
+    box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+.textHead{
+    font-size: 30;
+    margin-top: 18px;
+    border-bottom: 1px solid #858585;
+    width: 260px;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.text{
+    gap: 30px;
+}
+.inputBox{
+    position: relative;
+    width: 400px;
+    margin-top: 50px;
+}
+.inputBox input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(100, 100, 111, 0.5);
+    border-radius: 5px;
+    outline: none;
+    color: #000000;
+    font-size: 1em;
+}
+.inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(100, 100, 111, 0.5);
+    text-transform: uppercase;
+    transition: 0.5s;
+    margin-left: 20px;
+}
+.inputBox input:valid ~span,
+.inputBox input:focus ~span
+{
+    color: rgba(100, 100, 111, 0.5);
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.8em;
+    padding: 0 10px;
+    background: #fdfdfd;
+    border-left: 1px solid #00dfc4;
+    border-right: 1px solid #00dfc4;
+    letter-spacing: 0.2e;
+}
+.inputBox input:valid ~span,
+.inputBox input:focus ~span
+{
+    border: 1px solid #ffffff;
+}
+#surname{
+    margin-left: auto;
+}
+#agenda{
+    height: 200px;
+    width: 100%;
+    justify-content: none;
+}
+.boxConfirm {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 36px;
+    background: #5E96EB;
+    border-radius: 6px;
+    margin-top: 100px;
+    cursor: pointer; 
+}
+#confirm{
+    justify-content: center;
+}
+.confirmText{
+    font-size: 16px;
+    color: #ffffff;
+}
