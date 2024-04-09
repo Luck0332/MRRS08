@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ url('assets/dist/css/info.css') }}">
 
     <div class="room-name">
-        <span>ห้องประชุม IF-101</span>
+        <span>ห้องประชุม {{$room->ro_name}}
+    </span>
     </div>
 
     <div class="pic-row">
@@ -31,7 +32,7 @@
         <div class="info-box" id="box1">
             <span class="info">
 
-                {{-- @foreach ($Room as $room)
+                @foreach ($Room as $room)
                     <tr>
                         @php
                             $details = explode(',', $room->ro_description);
@@ -44,7 +45,7 @@
                             </ul>
                         </td>
                     </tr>
-                @endforeach --}}
+                @endforeach
 
 
             </span>
@@ -58,7 +59,6 @@
             <div class="row-icon">
                 <span class="icon" id="size-icon">
                     <i class="fa-solid fa-s fa-xl">
-                        {{-- @foreach ($Room as $room)
                             <tr>
                                 @if ($room->ro_size == 'S')
                                     <td> ห้องขนาดเล็ก </td>
@@ -69,25 +69,24 @@
                                 @endif
 
                             </tr>
-                        @endforeach --}}
+
                     </i>
                 </span>
 
                 <span class="icon">
                     <i class="fa-regular fa-money-bill-1 fa-xl"> ราคา
-                        {{-- @foreach ( $Room as $room)
                         <tr>
                             <td>{{$room->ro_price}}
 
-                        @endforeach --}}
+
 
                             /วัน
+                            </td>
                     </i>
                 </span>
 
                 <span class="icon">
                     <i class="fa-solid fa-earth-americas fa-xl">
-                        {{-- @foreach ( $Room as $room)
                         <tr>
                             @if ($room->ro_typeroom)
                             <td> ห้องประชุมทั่วไป<td>
@@ -95,8 +94,6 @@
                                 <td> ห้องประชุมส่วนบุคคล<td>
 
                             @endif
-
-                        @endforeach --}}
                     </i>
                 </span>
             </div>
