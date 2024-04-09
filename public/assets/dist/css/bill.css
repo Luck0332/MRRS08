@@ -12,6 +12,11 @@
 
 }
 
+.head-row{
+    justify-content: space-between;
+    display: flex;
+}
+
 .original-button {
     display: flex;
     align-items: center;
@@ -25,10 +30,9 @@
     height: 43px;
     font-weight: bold;
     transition: 0.3s;
-    background-color: #3a89ff;
+    background-color: #37d172;
     position: relative; /* or absolute, fixed, etc. depending on your layout */
     left: 380px; /* Change this value as needed */
-    margin-top: 160px;
 
 
 }
@@ -64,18 +68,7 @@
     margin-left: 50px;
   }
 
-  #pic2 img{
-    width: 150px;
-    margin-top: 20px;
 
-  }
-
-  #pic3 img{
-    width: 150px;
-    margin-top: 165px;
-    margin-left: -150px;
-
-  }
 
   .texthead{
     font-size: 20px;
@@ -99,11 +92,6 @@
 
   }
 
-  .info{
-    font-weight: bold;
-    font-size: 20px;
-  }
-
   .info-box{
     width: 360px;
     height: 150px;
@@ -112,12 +100,7 @@
     margin-top: 10px;
     margin-left: 25px;
     font-family: 'Inter', sans-serif;
-    left: -50px;
 
-  }
-
-  #price i{
-    font-weight: bold;
   }
 
   #box1{

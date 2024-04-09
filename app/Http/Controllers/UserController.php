@@ -4,32 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\M_titles;
 use App\Models\User;
+use App\Models\Room;
+use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function handleFormSubmission(Request $request)
-    {
-        $dateData = $request->input('date');
+    public function Submission(Request $request){
+        $roomSize = $request->input('room_size');
+        $startDate = $request->input('date');
+        $endDate = $request->input('end_date');
+
+        $rooms = Room::where('ro_size', $roomSize)->get();
     
-        // Redirect to search page with data
-        return redirect()->route('getsearch', ['date' => $dateData]);
+        return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize'));
     }
-    
-    
-    /**
-     * Display a listing of the resource.
-     */
-    public function getSearch(Request $request)
-    {
-        $dateData = $request->session()->get('dateData');
-        return view('titles_User.search_room', compact('dateData'));
-    }
-    
+
     public function getReserve()
     {
-        //
         return view('titles_User.reserve_room');
     }
 
@@ -49,7 +42,7 @@ class UserController extends Controller
         //
         return view('titles_User.testcalender');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -87,7 +80,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       //
+        //
     }
 
     /**
@@ -95,6 +88,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-    //
+        //
     }
 }

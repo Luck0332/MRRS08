@@ -70,12 +70,11 @@ class RoomController extends Controller
         return view('titles_Employee.edit_rooms', ['rooms' => $rooms]);
     }
 
-    public function show()
+    public function show($id)
     {
-        $room = Room::all();
+        $room = Room::where('id', $id)->first();
 
-        return view ('titles_User.room_info',['Room' => $room]);
-
+        return view ('titles_User.room_info',['room' => $room]);
     }
 
     public function update_rooms(Request $request, Room $rooms)

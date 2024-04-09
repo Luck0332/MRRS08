@@ -30,19 +30,21 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/roominfo', [RoomController::class, 'show']);
+Route::get('/roominfo/{id}', [RoomController::class, 'show'])->name('roominfo');;
 
-Route::get('/User', [UserController::class,'getReserve']);
+
+
+
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
 
-Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->name('submit.form');
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
+
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
+Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservationDetails'])->name('get-reservation-details');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
 Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
@@ -53,6 +55,9 @@ Route::get('/Accout',[EmployeeController::class,'accout']);
 Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
+
+Route::get('/User', [UserController::class,'getReserve']);
+Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');

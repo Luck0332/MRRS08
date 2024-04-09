@@ -181,7 +181,6 @@
             </div>
         </section>
     </body>
-
         <script>
             function deleteUser(userId) {
                 Swal.fire({
