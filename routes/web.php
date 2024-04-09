@@ -44,11 +44,11 @@ Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->na
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
-Route::get('/get-Petition/{id}',[EmployeeController::class,'getPetition'])->name('get-Petition');
+// Route::get('/get-Petition/{id}',[EmployeeController::class,'getPetition'])->name('get-Petition');
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject']);
 
-// Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
+Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 

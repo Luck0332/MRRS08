@@ -139,7 +139,7 @@
                     <td>{{ $reservation->res_typeroom }}</td>
                     <td>
                         <form id="updateStatusForm"
-                            action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
+                            action="{{ route('Petition_statuses.updateW', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button type="submit" name="newStatus" value="A"
