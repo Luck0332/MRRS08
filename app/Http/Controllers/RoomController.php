@@ -73,10 +73,7 @@ class RoomController extends Controller
     public function show($roomid)
     {
         $room = Room::findOrFail($roomid);
-
-
-        return view ('titles_User.room_info', compact('room'));
-
+        return view('titles_User.room_info', compact('room'));
     }
 
     public function update_rooms(Request $request, Room $rooms)
