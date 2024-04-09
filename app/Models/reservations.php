@@ -28,6 +28,8 @@ class reservations extends Model
         'res_dayType',
         'res_cancel',
         'agenda',
+        'room_id',
+        'resinfo_id',
         'created_at',
     ];
 

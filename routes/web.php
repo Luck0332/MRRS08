@@ -31,10 +31,12 @@ Route::get('/Homepage',function(){
 });
 
 Route::get('/roominfo/{roomid}', [RoomController::class, 'show']);
+Route::get('/reserve_bill/{id}', [UserController::class, 'show']);
+Route::get('/reserve_bill/', [UserController::class, 'showreservebill']);
 
-Route::get('/bill',function(){
-    return view('titles_User.reserve_bill');
-});
+// Route::get('/bill',function(){
+//     return view('titles_User.reserve_bill');
+// });
 Route::get('/Manage_rooms/{rooms}/edit-rooms', [RoomController::class, 'edit_rooms'])->name('titles_Employee.edit_rooms');
 
 
@@ -69,12 +71,12 @@ Route::put('/Manage_rooms/{rooms}/update-rooms', [RoomController::class, 'update
 Route::delete('/Manage_account/{rooms}/destroy-rooms', [RoomController::class, 'destroy_rooms'])->name('titles_Employee.destroy-rooms');
 
 //route for managing users ไว้เข้าถึงหน้าใน Employee
-Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
-Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
-Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
-Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
-Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
-Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
+// Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
+// Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
+// Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
+// Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
+// Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
+// Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 Route::post('/changeDataApprove', [EmployeeController::class, 'petition1'])->name('changeDataApprove');
 Route::post('/changeDataReject', [EmployeeController::class, 'petition2'])->name('changeDataReject');

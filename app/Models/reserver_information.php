@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Reserver_info extends Authenticatable
+class reserver_information extends Authenticatable
 {
     use HasFactory, Notifiable;
+    protected $table = 'reserver_information';
 
     /**
      * The attributes that are mass assignable.

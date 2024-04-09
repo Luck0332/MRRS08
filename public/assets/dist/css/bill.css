@@ -17,6 +17,13 @@
     display: flex;
 }
 
+ul{
+    margin-top: 10px;
+    font-size: 18px;
+    margin-left: 90px;
+
+}
+
 .original-button {
     display: flex;
     align-items: center;
@@ -33,6 +40,7 @@
     background-color: #37d172;
     position: relative; /* or absolute, fixed, etc. depending on your layout */
     left: 380px; /* Change this value as needed */
+    margin-top: 58px;
 
 
 }
@@ -41,6 +49,7 @@
   .original-button:hover {
     border-bottom-width: 0;
     transform: translateY(5px);
+    color: white;
   }
 
 
@@ -62,7 +71,7 @@
   }
 
   #pic1 img{
-    width: 350px;
+    width: 330px;
 
     margin-right: 25px;
     margin-left: 50px;
@@ -93,12 +102,12 @@
   }
 
   .info-box{
-    width: 360px;
+    width: 450px;
     height: 150px;
     background-color: transparent;
     box-shadow: none;
     margin-top: 10px;
-    margin-left: 25px;
+    margin-left: 15px;
     font-family: 'Inter', sans-serif;
 
   }

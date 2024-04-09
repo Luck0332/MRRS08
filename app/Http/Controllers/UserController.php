@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\M_titles;
 use App\Models\User;
+use App\Models\reserver_information;
+use App\Models\Room;
+use App\Models\reservations;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -72,16 +77,30 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
+
     public function show($id)
-    {
-        $data = Reserver_info::findOrFail($id); //ใช้ดึงชื่อ
+{
+    $resinfo_id = reserver_information::where('id', $id)->firstOrFail();
+    // dd($resinfo);
+        // Now $resinfo contains the first record that matches the column name and value // ดึงข้อมูล Reserver_info โดยใช้ id
+    // $username = reservations::findOrFail($resinfo_id->id); // ดึงชื่อผู้จองจาก Reserver_info
+    $username = reservations::where('resinfo_id', $id)->firstOrFail();
 
+    $room = Room::where('id', $username->room_id)->firstOrFail();
 
-        return view ('titles_User.reserve_bill', compact('data'));
+    // dd($resinfo_id);
+    // dd($username);
+    // $room = Room::findOrFail($username->room_id); // ดึงข้อมูลห้องโดยใช้ room_id จาก Reserver_info
 
-
-        //
+    return view('titles_User.reserve_bill', compact('username', 'resinfo_id', 'room'));
     }
+
+public function showreservebill()
+{
+
+  return view('titles_User.reserve_bill');
+}
+
 
     /**
      * Show the form for editing the specified resource.
