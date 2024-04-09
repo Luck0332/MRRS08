@@ -26,8 +26,9 @@ class reservations extends Model
         'res_total',
         'res_typeroom',
         'res_dayType',
-        'ro_id',
-        'reserver_id'
+        'room_id',
+        'reserver_id',
+        'resinfo_id',
     ];
 
 }

@@ -35,12 +35,18 @@ class reservationController extends Controller
     }
 
     public function getReservationDetails($id) {
-        $reservation = reservations::find($id);
+        $data1 = reservations::find($id);
+        // dd($data1);
+        $data2 = Room::find($data1->room_id);
+        $data3 = reserver_information::find($data1->resinfo_id);
         // ดึงข้อมูลผู้จองและข้อมูลอื่นๆ ที่เกี่ยวข้อง
         return response()->json([
-            'html' => view('reservation_details', compact('reservation'))->render()
+            // 'html' => view('titles_Employee.reservation_list', ['data1' => $data1])->render()
+
+            'html' => view('titles_Employee.reservation_list', ['data1' => $data1, 'data2' => $data2, 'data3' => $data3])->render()
         ]);
     }
+
     // public function reserver_information()
     // {
     //     $reserver_information = reserver_information::all();
@@ -72,6 +78,7 @@ class reservationController extends Controller
 
     //     return redirect()->route('titles_Employee.store');
     // }
+
 
 
 }
