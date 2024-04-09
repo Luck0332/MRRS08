@@ -1,15 +1,15 @@
 body {
     background: #fff;
 }
+
 th {
     background-color: #3b81f2;
     color: white;
     font-size: 20px;
     font-weight: bold;
-
     text-align: center;
     width: 250px;
-    height: 40px;
+    height: 50px;
 }
 
 td {
@@ -20,15 +20,19 @@ td {
     height: 35px;
 
 }
+
 .flex-container>div {
     background-color: #f1f1f1;
-    width: 200px;
-    height: 100px;
+    width: 250px;
+    height: 140px;
     margin: 5px;
     text-align: center;
     line-height: 40px;
     font-size: 20px;
     margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -62,6 +66,12 @@ input {
     border-collapse: collapse;
     text-align: center;
 
+
+}
+
+/* เพิ่ม CSS เพื่อให้มีสีสลับในตาราง */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
 #prev {
@@ -130,7 +140,8 @@ input {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-.buttons{
+
+.buttons {
     margin-right: 10px;
 }
 
@@ -152,14 +163,12 @@ input {
     color: black;
 
 }
-
-.navbar.navbar-light.bg-light {
-    background-color: white !important;
-
-    border: none;
-}
-.navbar-brand{
+.card-footer {
     background-color: #3b81f2 !important;
-    padding: 60px 40px;
-}
+    color: white !important;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+  }
+
 

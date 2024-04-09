@@ -9,14 +9,12 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <div class="flex-container">
         <div>
-            <span class="title">คำขอการจอง</span><br>
-            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">5</span>
-            <span>รายการ</span>
-        </div>
-        <div>
-            <span class="title">คำขอยกเลิก</span><br>
-            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">4</span>
-            <span>รายการ</span>
+            <center>
+                <span class="title">คำขอยกเลิก</span><br>
+                <span class="number"
+                    style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{ $tableRejectCount }}</span>
+                <span>รายการ</span>
+            </center>
         </div>
     </div>
     <br><br>
@@ -138,10 +136,10 @@
                             @csrf
                             @method('PUT')
                             <button type="submit" name="newStatus" value="C"
-                                style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
+                                style="border: none; background-color: none;"><i class="fas fa-check-circle fa-lg"
                                     style="color: #63E6BE;"></i></button>
                             <button type="submit" name="newStatus" value="A"
-                                style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
+                                style="border: none; background-color: none;"><i class="fas fa-times-circle fa-lg"
                                     style="color: #ff1a1a;"></i></button>
                         </form>
                     </td>
@@ -184,7 +182,7 @@
                     url: pageUrl, // ใช้ URL ที่ได้จาก pagination
                     success: function(response) {
                         var data = $(response).find(
-                        tableId); // ค้นหาข้อมูลสำหรับสถานะที่เลือกใน response
+                            tableId); // ค้นหาข้อมูลสำหรับสถานะที่เลือกใน response
                         $(tableId).html(data); // เปลี่ยนแท็บข้อมูลสำหรับสถานะที่เลือก
                     }
                 });

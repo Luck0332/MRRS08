@@ -43,15 +43,17 @@ class EmployeeController extends Controller
     }
     public function petition()
     {
+
         $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
-        // $tableRowCount = count($reservationsW);
-        return view('titles_Employee.petition', compact('reservationsW' ));
-        // , 'tableRowCount'
+        $tableRowCount = $reservationsW->total();
+        return view('titles_Employee.petition', compact('reservationsW' , 'tableRowCount' ));
+
     }
     public function petition_reject()
     {
         $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(2);
-        return view('titles_Employee.petition_reject', compact('rejectR'));
+        $tableRejectCount = $rejectR->total();
+        return view('titles_Employee.petition_reject', compact('rejectR' , 'tableRejectCount'));
     }
 
 

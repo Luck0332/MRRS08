@@ -30,6 +30,7 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
+
 Route::get('/roominfo', [RoomController::class, 'show']);
 
 Route::get('/User', [UserController::class,'getReserve']);
@@ -45,7 +46,7 @@ Route::get('/Reserve',[EmployeeController::class,'reserve']);
 
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
-// Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
+Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
 Route::get('/Manage_account',[EmployeeController::class,'manage_account']);
 Route::get('/Manage_rooms',[EmployeeController::class,'manage_rooms']);
 Route::get('/Accout',[EmployeeController::class,'accout']);
