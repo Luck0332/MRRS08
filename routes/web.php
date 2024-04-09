@@ -43,7 +43,7 @@ Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->na
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
-
+Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservation'])->name('get-reservation');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
 Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
@@ -80,6 +80,7 @@ Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->na
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
+Route::get('/Petition/{id}',[EmployeeController::class,'getReservation'])->name('get-reservation');
 
 
 

@@ -148,7 +148,9 @@
                         </form>
                     </td>
                     <td>
-                        <a><i class="fas fa-info-circle fa-lg" id="detail" style="color: #242424"></i></a>
+                        <a onclick="openModal({{ $reservation->id }})" class="btn open-modal-btn" data-bs-toggle="modal"
+                            data-bs-target="#myModal"><i class="fas fa-info-circle fa-lg" id="detail"
+                                style="color: #242424"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -169,7 +171,60 @@
         // แสดงจำนวนตาราง
         console.log("จำนวนตาราง: " + rowCount);
     </script>
+    <script>
+        async function openModal(id) {
+            console.log(id)
+            const url = `{{ route('Petition_statuses.updateR', ['id' => 1]) }}`
+            await $.ajax({
+                url: `/get-reservation-details/${id}`, // Update the URL according to your route
+                method: 'GET',
+                success: function(data) {
+                    console.log(data)
+                    const reserver_information = data.data3;
+                    const room = data.data2;
+                    const reservations = data.data1
+                    const roomType = room.ro_typeroom ? "สาธารณะ" : "ส่วนบุคคล";
+                    // Generate HTML for room description list
+                    const roomDescriptionHTML = `
 
+                        ${room.ro_description.split(',').map(detail => `<tr>${detail.trim()}</tr></br>`).join('')}
+
+                `;
+                    $('#modal-content').html(`
+                    <div class="modal-header" id="modal-header">
+                    <h4 class="modal-title" >รายละเอียด</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <h2>รายละเอียดผู้จอง</h2>
+                        <tr>ชื่อ: ${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</tr>
+                        </br><tr>${reserver_information.us_lineid} </tr>
+                        </br><tr>${reserver_information.reserver_tel} </tr>
+                        <h2>รายละเอียดการจอง</h2>
+                        <tr>${reservations.res_startdate}</tr>
+                        </br>
+                        <tr>${reservations.agenda}</tr>
+
+                        <h2>รายละเอียดห้อง</h2>
+                        <tr>${room.ro_name}</tr>
+                        </br>
+                        ${roomDescriptionHTML}
+                        <p>${roomType}</p>
+                    </div>
+
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>`); // Populate the modal content with the received HTML
+                    $('#myModal').modal('show'); // Show the modal
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+    
     <!-- แสดงข้อมูลสถานะ 'R' -->
     {{-- <a id="next" onclick="changeDataApprove()">คำขอยกเลิก</a>
     <table class="rwd-table">
