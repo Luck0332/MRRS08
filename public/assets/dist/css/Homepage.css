@@ -2,6 +2,9 @@
 *{
     color:#ffffff;
 }
+body{
+    background: linear-gradient(to right, #5E96EB, #5E96EB, #FD84F1);
+}
 h1{
     margin: 53px 0px 42px 0px;
     font-size: 80px;
@@ -12,9 +15,6 @@ h1{
 h2{
     font-family: 'Open Sans', sans-serif;
     padding-left: 50px;
-}
-body{
-    background: linear-gradient(to right, #5E96EB, #5E96EB, #FD84F1)
 }
 button{
     width: 280px;
@@ -32,10 +32,10 @@ button{
     -moz-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
     font-family: 'Inter';
 }
-button:hover {
+button:hover{
     cursor: pointer;
     transform: scale(1.01);
-  }
+}
 .header{
     margin: 15px 0px 15px 0px;
     padding: 0px 0px 0px 50px;
@@ -43,14 +43,9 @@ button:hover {
     flex-direction: row;
     justify-content: space-between;
 }
-.login-container{
-    height: 100px;
-    width: 100px;
-}
-#staff {
+#staff{
     width: 152px !important;
     height: 36px;
-    color: #5E96EB;
     background-color: #ffffff ;
     opacity: 0.75;
     text-align: center;
@@ -66,20 +61,28 @@ button:hover {
     -moz-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
     font-family: 'Inter';
 }
+.divider{
 
+    border-top: 2px solid #ffffff;
+    margin: 15px 0px 0px 0px;
+}
 .button-group{
     padding-left: 50px;
     margin-top: 40px;
     display: flex;
     flex-direction: row;
 }
-
-
-.divider {
-    border: none;
-    border-top: 2px solid #ffffff;
-    margin: 15px 0px 0px 0px;
+.deck{
+    position: fixed;
+    width: 2280px;
+    height: 680px;
+    left: 10px;
+    top: 540px;
+    background: #FFFFFF;
+    transform: rotate(-16deg);
 }
-
-
-
+.deck-element{
+    position: fixed;
+    left: 600px;
+    top: 168px;
+}

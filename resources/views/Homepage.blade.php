@@ -39,6 +39,12 @@
             <button>ติดตามสถานะการจอง</button>
         </a>
     </div>
+    <div>
+        <div class="deck"></div>
+        <div class="deck-element">
+            <img src="{{ url('assets\dist\img\laptop.png') }}" alt="โลโก้ระบบจองห้องประชุม" style="max-height: 980px; max-width:980px">
+        </div>
+    </div>
 </body>
 
 </html>
