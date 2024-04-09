@@ -6,7 +6,6 @@ th {
     color: white;
     font-size: 20px;
     font-weight: bold;
-
     text-align: center;
     width: 250px;
     height: 40px;
@@ -53,6 +52,9 @@ input {
     display: block;
 }
 
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 .rwd-table {
     min-width: 10px;
     width: 100%;
@@ -61,14 +63,13 @@ input {
     overflow: hidden;
     border-collapse: collapse;
     text-align: center;
-
 }
 
 #prev {
     font-weight: bold;
     font-size: 20px;
     color: white;
-    padding: 15px 20px;
+    padding: 25px 25px;
     border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -79,44 +80,11 @@ input {
     font-weight: bold;
     font-size: 20px;
     color: white;
-    padding: 15px 20px;
+    padding: 25px 25px;
     border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: #3b81f2;
-}
-#prev:focus,
-#next:focus {
-    background-color: #3b81f2;
-    color: white;
-    border-collapse: collapse;
-}
-
-#popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-30%, -100%);
-    z-index: 10;
-    width: 300px;
-    height: 200px;
-    background-color: #f1f1f1;
-    color: black;
-    visibility: hidden;
-}
-
-#popup.show {
-    visibility: visible;
-}
-
-#close-popup {
-    margin-left: 250px;
-    margin-top: 400px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    color: black;
 }
 
 .bar {
@@ -160,4 +128,14 @@ input {
 .navbar-brand{
     background-color: #3b81f2 !important;
     padding: 60px 40px;
+}
+
+div.card-footer{
+    background-color: #3b81f2 !important;
+    padding: 8px 8px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.p.small.text-muted{
+    color: #3b81f2;
 }

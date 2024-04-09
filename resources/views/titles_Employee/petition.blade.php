@@ -10,27 +10,20 @@
     <div class="flex-container">
         <div>
             <span class="title">คำขอการจอง</span><br>
-            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)"></span>
-            <span>รายการ</span>
-        </div>
-        <div>
-            <span class="title">คำขอยกเลิก</span><br>
-            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">4</span>
+            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{ $tableRowCount}}</span>
             <span>รายการ</span>
         </div>
     </div>
     <br><br>
     <div class="head">
         <button id="prev">คำขอการจอง</button>
-        {{-- <input type="search" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
-        <button type="button" onclick="searchTable()">Search</button> --}}
     </div>
     <!-- แสดงข้อมูลสถานะ 'W' -->
 
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>ลำดับ</th>
+                <th>ไอดี</th>
                 <th>วันที่เข้าใช้</th>
                 <th style="width: 19%">สถานะห้องประชุม</th>
                 <th>เลขห้อง</th>
@@ -49,7 +42,7 @@
                     <td>{{ $reservation->res_typeroom }}</td>
                     <td>
                         <form id="updateStatusForm"
-                            action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
+                            action="{{ route('Petition_statuses.updateW', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button type="submit" name="newStatus" value="A"
