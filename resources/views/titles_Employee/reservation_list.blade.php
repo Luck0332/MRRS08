@@ -61,11 +61,7 @@
                 {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                     Open modal
                 </button> --}}
-
-                <button type="button" onclick="openModal({{$reservation->id}})">
-                    Open modal
-                </button>
-
+                <a class="custom-icon" ><i class="fas fa-info-circle fa-lg"  onclick="openModal({{$reservation->id}})"></i></a>
                 </form>
 
             </td>
