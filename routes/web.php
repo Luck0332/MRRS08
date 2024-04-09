@@ -30,13 +30,12 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/roominfo', [RoomController::class, 'show']);
+Route::get('/roominfo/{id}', [RoomController::class, 'show']);
 
 
 
 
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
 
