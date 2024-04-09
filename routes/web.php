@@ -36,7 +36,7 @@ Route::get('/roominfo', [RoomController::class, 'show']);
 
 
 
-Route::get('/follow', [FollowReserved::class,'search']);
+
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
@@ -77,6 +77,9 @@ Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'up
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+
+Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');
+Route::put('/FollowReserved/{id}', [FollowReserved::class, 'updatefollow'])->name('Follow.update');
 Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
 
 
