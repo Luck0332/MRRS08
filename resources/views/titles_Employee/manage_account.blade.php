@@ -16,16 +16,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ url('assets/css.buttonadd/add.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        {{--style นี้ท่าไม่ใช้หรืออยากเปลี่ยน หรือจะเอาไปแยกไฟล์จัดการได้เลย--}}
         <style>
             .content {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
+                margin-top: 60px;
             }
 
             .card {
@@ -118,7 +114,7 @@
         {{--พวก section div ต่างอันไหนท่าไม่ได้ใช้ตกแต่ง ลบทิ้งได้ท่าไม่ได้เกี่ยวกับตัวระบบ--}}
         <section class="content " >
             <div class="row justify-content-center" >
-                <div class="col">
+                <div class="col" >
                     {{--ตัว card กล่องทั้งหมด--}}
                     <div class="card" style="border-color: transparent;">
                         {{--ตัว card--}}
@@ -205,6 +201,5 @@
                 });
             }
         </script>
-    </html>
 @endsection
 
