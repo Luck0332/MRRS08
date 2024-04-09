@@ -16,8 +16,10 @@ class UserController extends Controller
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
 
-        ($request);
-        if($roomSize != 'A'){
+        // $reserv_room->res_startdate  = $startDate;
+        // $reserv_room->res_enddate = $endDate;
+
+        if($roomSize != null){
             $rooms = Room::where('ro_size', $roomSize)->get();
         }else{
             $rooms = Room::all();

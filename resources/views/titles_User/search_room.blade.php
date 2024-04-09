@@ -61,7 +61,7 @@
 
         <label for="">{{ $startDate }}</label><br>
         <label for="">{{ $endDate }}</label><br>
-        <label for="">{{ $roomSize }}</label>
+
 
     <div class="row">
     @foreach($rooms as $key => $room)
