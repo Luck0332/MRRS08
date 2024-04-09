@@ -80,7 +80,7 @@ Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->na
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
-Route::get('/Petition/{id}',[EmployeeController::class,'getReservation'])->name('get-reservation');
+Route::get('/Petition/{id}',[EmployeeController::class,'getPetition'])->name('get-petition');
 
 
 
