@@ -31,14 +31,26 @@
     </thead>
     <tbody>
         @foreach ($reservations as $reservation)
-
-        @if ($reservation->res_status == 'A')
         <tr>
             <td>{{ $reservation->id}}</td>
-            <td>{{ $reservation->res_serialcode }}</td>
             <td>{{ $reservation->res_startdate }}</td>
-            <td>{{ $reservation->reserver_id }}</td>
-            <td>{{ $reservation->res_typeroom }}</td>
+            {{-- เริ่มต้นด้วยการตรวจสอบว่ามีข้อมูลของการจองนี้หรือไม่ --}}
+            @if(isset($reserver_information[$reservation->id]))
+                <td>{{ $reserver_information[$reservation->id]->reserver_fname }}</td>
+            @else
+                <td>N/A</td>
+            @endif
+            {{-- เริ่มต้นด้วยการตรวจสอบว่ามีข้อมูลของห้องที่ตรงกับการจองนี้หรือไม่ --}}
+            @if(isset($room[$reservation->id]))
+                <td>{{ $room[$reservation->id]->ro_name }}</td>
+            @else
+                <td>N/A</td>
+            @endif
+            @if ($reservation->res_typeroom == 1)
+                <td>สาธารณะ</td>
+            @else
+                <td>ส่วนบุคคล</td>
+            @endif
             <td>
                 <!-- Add update functionality -->
                 <form class="btn btn-cancel"
@@ -46,33 +58,14 @@
                     method="POST" id="update-form-{{ $reservation->id }}">
                     @csrf
                     @method('PUT')
-                    <button type="button"  onclick="confirmUpdate('{{ $reservation->id }}')">ยกเลิก</button>
+                    <button type="button" class="buttons" id="buttons-title" onclick="confirmUpdate('{{ $reservation->id }}')">ยกเลิก</button>
                 </form>
-                {{-- <i class="fas fa-info-circle fa-lg" style="color: #242424"></i>
-            </a> --}}
-                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
-                    Launch demo modal
-                  </button> --}}
-                    {{-- <i class="fas fa-info-circle fa-lg" style="color: #242424">
-                <button type="button" style="display: none" onclick="showModal('{{ $reservation->id }}')"></button></i> --}}
-                {{-- <a href="#" onclick="showModal('{{ $reservation->id }}')">
-                    <i class="fas fa-info-circle fa-lg" style="color: #242424"></i>
-                </a> --}}
-
-                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                    Open modal
-                </button> --}}
-
-                <button type="button" onclick="openModal({{$reservation->id}})" class="btn btn-primary open-modal-btn" data-bs-toggle="modal" data-bs-target="#myModal" data-reservation-id="{{ $reservation->id }}">
-                    Open modal
-                </button>
-
-                </form>
-
+                <a class="custom-icon" onclick="openModal({{$reservation->id}})" ><i class="fas fa-info-circle fa-lg"></i></a>
             </td>
         </tr>
-        @endif
-        @endforeach
+    @endforeach
+
+
     </tbody>
 </table>
 <div class="card-footer">
@@ -82,76 +75,12 @@
 </div>
 </div>
 
-
-{{-- <!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">รายละเอียด</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body" id="modal-content">
-                <!-- Reservation details will be loaded here -->
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
-</div> --}}
-
-{{-- <div class="modal fade show" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog" style="display: block;">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the prefedined max-height of modal, content will be cropped and scrollable within the modal.</p>
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-          <p>This content should appear at the bottom after you scroll.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div> --}}
-
- {{-- @if ($reserver_informations) --}}
-<!-- The Modal -->
-{{-- @isset($results) --}}
  <div class="modal" id="myModal">
   <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content" id="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header" id="modal-header">
-      <h4 class="modal-title" >รายละเอียด</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-
-      <div class="modal-body">
-       <h2>รายละเอียดผู้จอง</h2>
-      <tr>'assd'</tr>
-      <tr>'assd'</tr>
-      <tr>'assd'</tr>
-        <h2>รายละเอียดการจอง</h2>
-          <tr>'assd'</tr>
-          <tr>'assd'</tr>
-
-          <h2>รายละเอียดห้อง</h2>
-          <tr>'assd'</tr>
-          <tr>'assd'</tr>
-          <tr>"สาธารณะ"</tr>
-          <tr>"ส่วนบุคคล"</tr>
-      </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
@@ -162,11 +91,6 @@
   </div>
 </div>
 </div>
-{{-- @endisset --}}
-
-      {{-- @endif --}}
-
-
 
 <script>
     async function openModal(id) {
@@ -194,21 +118,38 @@
                     </div>
 
                     <div class="modal-body">
+    <div class="details-section">
+        <h2>รายละเอียดผู้จอง</h2>
+        <ul>
+            <li>ชื่อ: ${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</li>
+            <li>ID Line: ${reserver_information.us_lineid}</li>
+            <li>เบอร์โทร: ${reserver_information.reserver_tel}</li>
+        </ul>
+    </div>
 
-                        <h2>รายละเอียดผู้จอง</h2>
-                        <tr>ชื่อ :          ${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</tr>
-                        </br><tr>ID Line : ${reserver_information.us_lineid} </tr>
-                        </br><tr>เบอร์โทร : ${reserver_information.reserver_tel} </tr>
-                        <h2>รายละเอียดการจอง</h2>
-                        <tr>วันที่จอง : ${reservations.res_startdate}</tr>                        </br>
-                        <tr>วาระการจอง : ${reservations.agenda}</tr>
+    <div class="details-section">
+        <h2>รายละเอียดการจอง</h2>
+        < id="text">วันที่จอง : </>
+        <ul>
 
-                        <h2>รายละเอียดห้อง</h2>
-                        <tr>${room.ro_name}</tr>
-                        </br>
-                        ${roomDescriptionHTML}
-                        <p>${roomType}</p>
-                    </div>
+            <li>${reservations.res_startdate}</li>
+            <li>วาระการจอง: ${reservations.agenda}</li>
+        </ul>
+    </div>
+
+    <div class="details-section">
+        <h2>รายละเอียดห้อง</h2>
+        <ul>
+            <li>ชื่อห้อง: ${room.ro_name}</li>
+            <li>รายละเอียด: </li>
+            <ul>
+                ${roomDescriptionHTML}
+            </ul>
+            <li>ประเภทห้อง: ${roomType}</li>
+        </ul>
+    </div>
+</div>
+
 
                     <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -222,113 +163,55 @@
     }
 
     function confirmUpdate(id) {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            input: 'text',
-            inputAttributes: {
-                autocapitalize: "off"
-            },
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, update it!",
-            preConfirm: (inputValue) => {
-                if (!inputValue) {
-                    Swal.showValidationMessage("Please enter required information");
-                }
-                return inputValue;
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Updated!",
-                    text: "Your data has been updated.",
-                    icon: "success"
-                });
-                document.getElementById('update-form-' + id).submit();
-            }
-        });
-    }
-
-    /* function showModal(id) {
+    console.log(id);
+    const url = `/get-reservation-details/${id}`;
     $.ajax({
-        url: '/get-reservation-details/' + id, // Update the URL according to your route
-        type: 'GET',
-        dataType: 'json',
+        url: url,
+        method: 'GET',
         success: function(data) {
-            $('#modal-content').html(data.html); // Populate the modal content with the received HTML
-            $('#myModal').modal('show'); // Show the modal
+            console.log(data);
+            const reserver_information = data.data3;
+            const room = data.data2;
+            const reservations = data.data1;
+            const roomType = room.ro_typeroom ? "สาธารณะ" : "ส่วนบุคคล";
+            Swal.fire({
+                title: "ต้องการยกเลิกการจอง?",
+                text: "รหัสการจอง : " + reservations.res_serialcode,
+                icon: "warning",
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: "off",
+                    placeholder: "ระบุหมายเหตุการยกเลิก",
+                },
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "ยืนยัน",
+                cancelButtonText: "ยกเลิก",
+                cancelButtonText: "ยกเลิก",
+                preConfirm: (inputValue) => {
+                    if (!inputValue) {
+                        Swal.showValidationMessage("กรุณากรอกเหตุผลการจอง");
+                    }
+                    return inputValue;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Updated!",
+                        text: "Your data has been updated.",
+                        icon: "success"
+                    });
+                    document.getElementById('update-form-' + id).submit();
+                }
+            });
         },
         error: function(xhr, status, error) {
-            console.error(xhr.responseText);
+            console.error(error);
         }
     });
- */
-
-    // Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("openModalBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-function showModal(id) {
-    // สร้าง HTML สำหรับแสดงรายละเอียดผู้จองและข้อมูลการจอง
-    var modalContent = `
-        <div class="modal" id="myModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" id="modal-content">
-                    <div class="modal-header" id="modal-header">
-                        <h4 class="modal-title">รายละเอียด</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h2>รายละเอียดผู้จอง</h2>
-                        <ul>
-                            <li>First Name: John</li>
-                            <li>Last Name: Doe</li>
-                            <li>Email: john@example.com</li>
-                        </ul>
-                        <h2>รายละเอียดการจอง</h2>
-                        <ul>
-                            <li>Start Date: 2024-04-10</li>
-                            <li>End Date: 2024-04-12</li>
-                            <li>Room Type: Single Room</li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-
-    // แสดงกล่องโต้ตอบของ Swal.fire() พร้อม HTML ที่สร้างขึ้น
-    Swal.fire({
-        html: modalContent
-    });
-}
 
 var openModalButtons = document.querySelectorAll('.open-modal-btn');
 
@@ -342,50 +225,6 @@ openModalButtons.forEach(function(button) {
         showModal(reservationId);
     });
 });
-function showModal(reservationId) {
-        // Here you can use the reservation ID to fetch reservation details via AJAX
-        // Once you have the details, you can populate the modal content dynamically
-        // For simplicity, I'll just log the reservation ID for demonstration
-        console.log('Reservation ID:', reservationId);
-
-        // You can now use the reservation ID to fetch reservation details via AJAX and populate the modal content
-        // Example AJAX call:
-        // $.ajax({
-        //     url: '/get-reservation-details/' + reservationId,
-        //     type: 'GET',
-        //     success: function(data) {
-        //         // Populate the modal content with the received data
-        //     },
-        //     error: function(xhr, status, error) {
-        //         console.error(xhr.responseText);
-        //     }
-        // });
-
-        // For demonstration purposes, I'm using a mock modal content
-        var modalContent = `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Reservation Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Reservation ID: ${reservationId}</p>
-                    <p>Other reservation details can go here...</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        `;
-
-        // Update the modal content with the dynamically generated content
-        document.getElementById('modal-content').innerHTML = modalContent;
-
-        // Show the modal
-        $('#myModal').modal('show');
-    }
-
-
 
 </script>
 
