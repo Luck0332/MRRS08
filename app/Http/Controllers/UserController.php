@@ -12,12 +12,14 @@ use Illuminate\Support\Facades\Redirect;
 class UserController extends Controller
 {
     public function Submission(Request $request){
+        $roomSize = $request->input('room_size');
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
-        $roomSize = $request->input('room_size');
-        $rooms = Room::all(); // Fetch all rooms from the database
-        $res = reservations::all();
-        return view('titles_User.search_room', compact('rooms','startDate','endDate','roomSize','res' ));
+    
+        // ดึงห้องที่มีขนาดตรงกับที่ร้องขอ
+        $rooms = Room::where('ro_size', $roomSize)->get();
+    
+        return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize'));
     }
 
     public function getReserve()

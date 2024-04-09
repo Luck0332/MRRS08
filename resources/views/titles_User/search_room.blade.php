@@ -54,10 +54,7 @@
         $endDate = isset($startAndEndDate[1]) ? explode(' ', $startAndEndDate[1])[0] : '';
     @endphp
 
-    @foreach ($res as $item)
-            <label for="">{{$item->res_enddate}}</label>
-            <br>
-    @endforeach
+  
 
 <label for="">{{ $startDate }}</label><br>
 <label for="">{{ $endDate }}</label><br>
