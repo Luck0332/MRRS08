@@ -129,10 +129,8 @@
 
     <div class="details-section">
         <h2>รายละเอียดการจอง</h2>
-        < id="text">วันที่จอง : </>
         <ul>
-
-            <li>${reservations.res_startdate}</li>
+            <li>วันที่จอง :${reservations.res_startdate}</li>
             <li>วาระการจอง: ${reservations.agenda}</li>
         </ul>
     </div>
