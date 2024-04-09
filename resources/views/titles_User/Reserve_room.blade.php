@@ -64,7 +64,7 @@
 
                 <body>
                     <select class="boxSelect" style="width: 210px; margin-left: 36px;" id="roomSize" name="room_size">
-                        <option value="" disabled selected>ขนาดห้อง</option>
+                        <option value="A" disabled selected>ขนาดห้อง</option>
                         <option value="S">ห้องเล็ก</option>
                         <option value="M">ห้องกลาง</option>
                         <option value="L">ห้องใหญ่</option>
@@ -75,6 +75,7 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                     ค้นหาห้อง
                 </button>
+                <input type="hidden" name="reserv_room" value="{{ $reserv_room }}">
             </div>
         </div>
     </form>

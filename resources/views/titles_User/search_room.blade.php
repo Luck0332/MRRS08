@@ -11,7 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
     <link rel="stylesheet" href="{{ url('assets/dist/css/searchroom.css') }}">
 
-    <form method="POST" action="{{ route('submit.form') }}">
+    <form method="POST" action="{{ route('submit.form') }} ">
+        @csrf
+        @method("post")
         <div class="showroom">
             <div class="rowicon">
                 <div class="boxSelect-calender">
@@ -33,11 +35,11 @@
                 <span class="textSelect" id="size">
 
                     <body>
-                        <select class="boxSelect-Size" id="roomSize">
-                            <option value="" disabled selected>ขนาดห้อง</option>
-                            <option value="small">ห้องเล็ก</option>
-                            <option value="medium">ห้องกลาง</option>
-                            <option value="large">ห้องใหญ่</option>
+                        <select class="boxSelect" style="width: 210px; margin-left: 36px;" id="roomSize" name="room_size">
+                            <option value="A" selected >ขนาดห้อง</option>
+                            <option value="S">ห้องเล็ก</option>
+                            <option value="M">ห้องกลาง</option>
+                            <option value="L">ห้องใหญ่</option>
                         </select>
                     </body>
                 </span>
@@ -47,22 +49,23 @@
                     ค้นหาห้อง
                 </button>
             </div>
-            @php
+
+        @php
         // Splitting start and end dates only if the string contains " to "
         $startAndEndDate = explode(' to ', $startDate);
         $startDate = isset($startAndEndDate[0]) ? explode(' ', $startAndEndDate[0])[0] : '';
         $endDate = isset($startAndEndDate[1]) ? explode(' ', $startAndEndDate[1])[0] : '';
-    @endphp
+        @endphp
 
-  
 
-<label for="">{{ $startDate }}</label><br>
-<label for="">{{ $endDate }}</label><br>
-<label for="">{{ $roomSize }}</label>
 
-<div class="row">
+        <label for="">{{ $startDate }}</label><br>
+        <label for="">{{ $endDate }}</label><br>
+
+
+    <div class="row">
     @foreach($rooms as $key => $room)
-    <div onclick="redirectToAnotherPage( {{ $room->id }} )"  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
+    <div onclick="redirectToAnotherPage( {{ $room->id }} ,{{ $reserv_room }} )"  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
         <!-- Content for each room -->
         <span class="roominfo" id="statusRoom">
             <i class="fa-solid fa-earth-americas"></i>
@@ -82,16 +85,15 @@
     </div>
 @endforeach
 <script>
-    function redirectToAnotherPage( idValue ) {
-
-
-        var newUrl = '{{ route("roominfo", ["id" => ":id"]) }}'.replace(':id', idValue);
-        // ไปยังหน้าใหม่
+    function redirectToAnotherPage(idValue, reserv_room) {
+        var newUrl = '/roominfo/' + idValue + '?reserv_room=' + reserv_room;
+        // Redirect to the new page
         window.location.href = newUrl;
     }
 </script>
 
-@push('scripts')
+
+{{-- @push('scripts')
 <script>
     document.querySelectorAll('.boxRoom').forEach(box => {
         box.addEventListener('click', () => {
@@ -101,7 +103,7 @@
         });
     });
 </script>
-@endpush
+@endpush --}}
 
 </div>
 
@@ -230,6 +232,6 @@
                 })]
             });
         </script>
-    </form>
+
 
 @endsection

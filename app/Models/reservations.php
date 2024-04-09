@@ -29,6 +29,11 @@ class reservations extends Model
         'room_id',
         'reserver_id',
         'resinfo_id',
+        'res_cancel',
+        'agenda',
+        'room_id',
+        'resinfo_id',
+        'created_at',
     ];
 
 }

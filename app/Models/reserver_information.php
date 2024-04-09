@@ -8,10 +8,13 @@ use Illuminate\Foundation\Auth\reserver_information as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
+
 class reserver_information extends Model
 {
-    use HasFactory, HasApiTokens, Notifiable;
+    use HasFactory, Notifiable;
     protected $table = 'reserver_information';
+
     /**
      * The attributes that are mass assignable.
      *

@@ -5,6 +5,12 @@
 @section('reserv')
 
     <link rel="stylesheet" href="{{ url('assets/dist/css/info.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
+
+
+
 
     @if ($room)
         {{-- @dd($room); --}}
@@ -79,7 +85,7 @@
                 </div>
             </div>
 
-            <a href="" class="original-button">จองห้อง</a>
+            <a href="{{ route('fillInformation', ['id' => $room->id], ['reserv_room' => $reserv_room]) }}" class="original-button">จองห้อง</a>
         @else
             <p>ห้องประชุมไม่ถูกพบ</p>
     @endif
