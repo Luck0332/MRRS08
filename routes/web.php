@@ -67,7 +67,3 @@ Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'up
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 
-//API LINE LOGIN 
-Route::get('/auth/line/redirect', [AuthController::class,'redirectToLine'])->name('line.auth');
-Route::get('/auth/line/callback',[AuthController::class,'handleLineCallback'])->name('getUserLineID');
-
