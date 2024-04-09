@@ -83,18 +83,12 @@
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
-                            <div class="row mb-3 justify-content-between">
-                                <div class="col-md-5">
-                                    <label for="username" class="form-label">{{ __('Username') }}</label>
-                                    <input id="username" type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" placeholder="Username" required>
-                                    @error('username')
-                                        <div class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required>
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="input-group mb-5">
                             <div class="input-group-append">
@@ -102,8 +96,8 @@
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
-                            <input id="password" type="password" name="password" @error('password') is-invalid @enderror class="form-control" placeholder="Password">
-                            @error('password')
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="กรอกรหัสผ่าน 8 หลักขึ้นไป">
+                                @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

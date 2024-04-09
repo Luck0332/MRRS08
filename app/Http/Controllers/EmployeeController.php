@@ -93,13 +93,11 @@ class EmployeeController extends Controller
     }
     
 
-    public function accout($id)
+    public function accout()
     {
-        // Retrieve user data by ID
-        $user = User::findOrFail($id);
 
         // Pass user data to the 'accout' view
-        return view('accout', ['user' => $user]);
+        return view('titles_Employee.accout');
     }
 
 

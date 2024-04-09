@@ -25,17 +25,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->us_name }}</td>
-                    <td>{{ $user->us_fname }}</td>
-                    <td>{{ $user->us_lname }}</td>
-                    <td>{{ $user->us_tel }}</td>
-                    <td>{{ $user->us_email }}</td>
-                    <td>{{ $user->roles }}</td>
-                    <td>{{ $user->us_lineid }}</td>
-                    <td>{{ $user->reserver_id }}</td>
-                    <td>{{ $user->updated_at }}</td>
-                    <td>{{ $user->created_at }}</td>
+
                 </tr>
             </tbody>
         </table>
