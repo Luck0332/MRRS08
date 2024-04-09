@@ -25,6 +25,10 @@ class UserController extends Controller
     $startDate = explode(' ', $startDateTimeParts[0])[0];
     $endDate = explode(' ', $startDateTimeParts[1])[0];
 
+
+        $reserv_room = new reservations;
+        $reserv_room->res_startdate = $startDate;
+        $reserv_room->res_enddate = $endDate;
     //code here
     $rooms = Room::select('rooms.id AS room_id', 'rooms.ro_name', 'rooms.ro_size', 'rooms.ro_price')
         ->leftJoin('reservations', function ($join) use ($startDate, $endDate) {
@@ -38,7 +42,7 @@ class UserController extends Controller
         ->distinct()
         ->get();
 
-    return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize'));
+    return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
 }
 
 
