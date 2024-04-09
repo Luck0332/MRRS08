@@ -18,10 +18,10 @@
                 <label for="text" class="absolute left-2 top-6 pt-1 pl-3 text-gray-500"></label>
                 <button id="detail" class="fa-solid fa-magnifying-glass ml-2" style="text-decoration: none;"></button>
                 <div class="databox">
-                    
+
 
                 </div>
             </div>
         </div>
     </div>
-@endsection
+    @endsection
