@@ -7,10 +7,12 @@ use App\Models\Room;
 use App\Models\User;
 use App\Http\Controllers\Validator;
 use App\Http\Controllers\UserController;
+use App\Models\approves;
 use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+
 
 class EmployeeController extends Controller
 {
@@ -170,17 +172,39 @@ class EmployeeController extends Controller
 
         return redirect(route('titles_Employee.manage_account'))->with('success', 'ลบข้อมูลผู้ใช้สำเร็จ');
     }
-    
-    public function updatePetition(Request $request, $id)
+
+    public function updatePetitionW(Request $request, $id)
     {
         $request->validate([
             'newStatus' => 'required',
         ]);
         $reservation = reservations::findOrFail($id);
-        $reservation->res_status = $request->newStatus;
-        $reservation->save();
+        $Approve = new approves();
 
-        return redirect()->route('test')->with('success', 'Status updated successfully!');
+        $reservation->res_status = $request->newStatus;
+        $Approve->app_status_reserve = $request->newStatus;
+
+        $reservation->save();
+        $Approve->save();
+
+        return redirect()->route('pageW')->with('success', 'Status updated successfully!');
+    }
+    public function updatePetitionR(Request $request, $id)
+    {
+        $request->validate([
+            'newStatus' => 'required',
+        ]);
+        $reservation = reservations::findOrFail($id);
+        $Approve = new approves();
+
+        $reservation->res_status = $request->newStatus;
+        $Approve->app_status_reserve = $request->newStatus;
+
+        $reservation->save();
+        $Approve->save();
+
+        return redirect()->route('pageR
+        ')->with('success', 'Status updated successfully!');
     }
 
     }

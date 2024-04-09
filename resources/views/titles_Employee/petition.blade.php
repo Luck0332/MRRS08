@@ -21,8 +21,9 @@
     </div>
     <br><br>
     <div class="head">
-        <button id="prev" onclick="changeDataApprove()">คำขอการจอง</button>
-        {{-- <input type="search" placeholder="search" style=";position: relative; left:48%;"> --}}
+        <button id="prev">คำขอการจอง</button>
+        {{-- <input type="search" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
+        <button type="button" onclick="searchTable()">Search</button> --}}
     </div>
 
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
