@@ -12,6 +12,18 @@
 
 }
 
+.head-row{
+    justify-content: space-between;
+    display: flex;
+}
+
+ul{
+    margin-top: 10px;
+    font-size: 18px;
+    margin-left: 90px;
+
+}
+
 .original-button {
     display: flex;
     align-items: center;
@@ -25,10 +37,10 @@
     height: 43px;
     font-weight: bold;
     transition: 0.3s;
-    background-color: #3a89ff;
+    background-color: #37d172;
     position: relative; /* or absolute, fixed, etc. depending on your layout */
-    left: 380px; /* Change this value as needed */
-    margin-top: 160px;
+    left: 400px; /* Change this value as needed */
+    margin-top: 58px;
 
 
 }
@@ -37,6 +49,7 @@
   .original-button:hover {
     border-bottom-width: 0;
     transform: translateY(5px);
+    color: white;
   }
 
 
@@ -58,24 +71,13 @@
   }
 
   #pic1 img{
-    width: 350px;
+    width: 330px;
 
     margin-right: 25px;
     margin-left: 50px;
   }
 
-  #pic2 img{
-    width: 150px;
-    margin-top: 20px;
 
-  }
-
-  #pic3 img{
-    width: 150px;
-    margin-top: 165px;
-    margin-left: -150px;
-
-  }
 
   .texthead{
     font-size: 20px;
@@ -99,25 +101,15 @@
 
   }
 
-  .info{
-    font-weight: bold;
-    font-size: 20px;
-  }
-
   .info-box{
-    width: 360px;
+    width: 450px;
     height: 150px;
     background-color: transparent;
     box-shadow: none;
     margin-top: 10px;
-    margin-left: 25px;
+    margin-left: 15px;
     font-family: 'Inter', sans-serif;
-    left: -50px;
 
-  }
-
-  #price i{
-    font-weight: bold;
   }
 
   #box1{

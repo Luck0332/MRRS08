@@ -1,0 +1,213 @@
+.container {
+    background-color: #ffffff; /* Dark background color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Reduced padding for content */
+    margin: 10 auto; /* Center horizontally */
+    margin-top: 25px;
+    box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+    position: relative;
+    height: 93vh;
+    width: 1060px;
+
+
+}
+
+th {
+    background-color: #3b81f2;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 25px;
+    text-align: center;
+    width: 130px;
+}
+
+td {
+    border-bottom: 1px solid #d9dddf;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    height: 35px;
+}
+
+.flex-container>div {
+    background-color: #f1f1f1;
+    width: 200px;
+    height: 100px;
+    margin: 3px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #fff;
+}
+
+input {
+    width: 250px;
+    height: 40px;
+    border-radius: 18px;
+    padding: 15px;
+    font-size: 20px;
+    background-color: #f1f1f1;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border: 0;
+}
+
+.container {
+    display: block;
+}
+
+.rwd-table {
+    min-width: 100px;
+    height: 100%;
+    width: 95%;
+    display: block;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+    border-collapse: collapse;
+
+}
+#prev{
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    padding: 15px 20px;
+    border: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ddd;
+}
+#next {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    padding: 15px 20px;
+    border: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ddd;
+}
+
+#prev:focus,
+#next:focus {
+    background-color: #3b81f2;
+    color: white;
+    border-collapse: collapse;
+}
+
+tfoot {
+    border-collapse: collapse;
+    background-color: #3b81f2;
+}
+
+#popup {
+    position: fixed;
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    /* width: 600px;
+    height: 500px; */
+    max-width: 600px;
+    width: 100%;
+    max-height: 400px;
+    height: 100%;
+    background-color: #f1f1f1;
+    color: black;
+    visibility: hidden;
+}
+
+#popup.show {
+    visibility: visible;
+}
+
+#close-popup {
+
+    padding: 5px 10px;
+
+}
+
+
+
+
+
+.modal-content {
+    background-color:
+    rgb(221, 221, 221);
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 600px;
+    width: 100%;
+    max-height: 400px;
+    height: 100%;
+
+}
+
+
+.box-content {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 600px;
+    width: 500px;
+    max-height: 400px;
+    height: 300px;
+    border: 1px solid #ccc; /* เพิ่มเส้นขอบสีเทา */
+}
+
+ .relative:focus-within label {
+            top: 0;
+            font-size: 16px;
+        }
+label {
+        /* position: absolute; */
+        color: #000;
+
+        /* padding: 0 5px; */
+        transition: all 0.2s ease-in-out;
+
+    }
+main{
+            width: 300px;
+            color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+.f1 {
+            display: grid;
+            justify-content: center;
+            align-self: center;
+        }
+        input {
+            border: 1px solid #e2e8f0; /* เลือกสีขอบของ input */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* เลือกเงาของ input */
+            padding-left: 10px; /* เลือกการเรียงตัวอักษรทางด้านซ้ายของ input */
+            padding-top: 1.5rem; /* เลือกการเรียงตัวอักษรทางด้านบนของ input */
+            width: 900px;
+        }
+        a{
+            cursor: pointer;
+            position: absolute;
+            top: 25px;
+            right: 10px;
+            font-size: 25px;
+            border: none;
+            background: none;
+            color: #6b6b6b;
+            margin-top: 5px;
+        }
+
+#detail i{
+
+    color: #242424;
+
+}
+
