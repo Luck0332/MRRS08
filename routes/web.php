@@ -30,7 +30,7 @@ Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/roominfo', [RoomController::class, 'show']);
+Route::get('/roominfo/{room}', [RoomController::class, 'show']);
 Route::get('/bill',function(){
     return view('titles_User.reserve_bill');
 });
