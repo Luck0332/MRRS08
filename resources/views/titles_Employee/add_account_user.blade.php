@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label for="position" class="form-label">{{ __('Position') }}</label>
-                                <select id="position" class="form-select @error('position') is-invalid @enderror" name="position" required>
+                                <select id="position" class="form-select @error('position') is-invalid @enderror" name="position" value="{{ old('position') }}" required>
                                     <option value="" disabled selected>Select a position</option>
                                     <option value="E">E</option>
                                     <option value="M">M</option>
