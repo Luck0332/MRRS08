@@ -59,24 +59,9 @@
     <div class="container">
         <!-- content in card -->
         <div class="info">
-            <!-- top-left-content -->
-            <div class="top-left-content">
-                <div class="item">
-                    first
-                </div>
-                <div class="less-pop-room">
-                    <div class="item">
-                        second
-                    </div>
-                    <div class="item">
-                        third
-                    </div>
-                </div>
-            </div>
-            <!-- /.top-left-content -->
 
             <!-- top-right-content -->
-            <div class="top-right-content">
+            <div class="top-content">
                 <!-- small card -->
                 <div class="small-box" style="margin-bottom: 0px; width: 725px; color:#000000; background-color:#ECF4D6">
                     <div class="inner">

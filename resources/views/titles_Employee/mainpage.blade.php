@@ -32,6 +32,12 @@
             gap: 10px;
             
         }
+        .top-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        grid-template-rows: 1fr;
+        gap: 10px;
+    }
         .top-left-content{
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -114,11 +120,10 @@
             <div class="item" style="display: flex; justify-content: center; align-items: center; height: 100%;">   
                 <div class="card-header border-0 text-center" style="background-color: transparent;">
                     <div class="card-title " >
-                        <i class="far fa-chart-bar"></i>
-                        จำนวนห้อง
+                        จำนวนห้อง </div>
                         <div class="container text-center">
-                            <canvas id="myDoughnutChart" width="300" height="300"></canvas>
-                        </div>
+                            <canvas id="myDoughnutChart" width="200" height="200"></canvas>
+     
                     </div>
                 </div>
             </div>
