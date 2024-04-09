@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 
 
-class reserver_information extends Authenticatable
+class reserver_information extends Model
 {
     use HasFactory, Notifiable;
     protected $table = 'reserver_information';

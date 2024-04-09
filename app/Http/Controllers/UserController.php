@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function getFollow(Request $req)
     {
-        $reservation = Reservation::findOrFail($req); //หาตำแหน่ง$req
+        $reservation = reservations::findOrFail($req); //หาตำแหน่ง$req
         $roomid = Room::findOrFail($reservation->ro_id);
         $resinfo_id = User::findOdFail($reservation->id);
 
