@@ -20,6 +20,9 @@ td {
     height: 35px;
 
 }
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 .flex-container>div {
     background-color: #f1f1f1;
     width: 200px;
@@ -60,62 +63,18 @@ input {
     border-top-right-radius: 20px;
     overflow: hidden;
     border-collapse: collapse;
+    text-align: center;
 }
 
 #prev {
     font-weight: bold;
     font-size: 20px;
-    color: black;
-    padding: 15px 20px;
-    border: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-color: #ddd;
-}
-
-#next {
-    font-weight: bold;
-    font-size: 20px;
-    color: black;
-    padding: 15px 20px;
-    border: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-color: #ddd;
-}
-
-#prev:focus,
-#next:focus {
-    background-color: #3b81f2;
     color: white;
-    border-collapse: collapse;
-}
-
-#popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    width: 600px;
-    height: 500px;
-    background-color: #f1f1f1;
-    color: black;
-    visibility: hidden;
-}
-
-#popup.show {
-    visibility: visible;
-}
-
-#close-popup {
-    margin-left: 250px;
-    margin-top: 400px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    color: black;
+    padding: 15px 20px;
+    border: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #3b81f2;
 }
 
 .bar {
@@ -130,6 +89,7 @@ input {
 }
 .buttons{
     margin-right: 10px;
+    margin-top: 80px;
 }
 
 .buttons button {
@@ -158,6 +118,7 @@ input {
     justify-content: center;
     min-width: 900px;
     height: 600px;
+
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
