@@ -72,9 +72,9 @@ class RoomController extends Controller
 
     public function show($id)
     {
-        $room = Room::where('id',$id);
+        $room = Room::where('id', $id)->first();
 
-        return view ('titles_User.room_info',['Room' => $room]);
+        return view ('titles_User.room_info',['room' => $room]);
     }
 
     public function update_rooms(Request $request, Room $rooms)

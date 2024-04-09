@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url('assets/dist/css/info.css') }}">
 
     @if ($room)
+        {{-- @dd($room); --}}
         <div class="room-name">
             <span>ห้องประชุม {{ $room->ro_name }}</span>
         </div>
