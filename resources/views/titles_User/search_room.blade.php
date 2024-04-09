@@ -65,7 +65,7 @@
 
 <div class="row">
     @foreach($rooms as $key => $room)
-    <div class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}">
+    <div  class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}" >
         <!-- Content for each room -->
         <span class="roominfo" id="statusRoom">
             <i class="fa-solid fa-earth-americas"></i>
