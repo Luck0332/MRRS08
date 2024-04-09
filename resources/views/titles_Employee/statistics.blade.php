@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
+     <!-- boootstrap -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <style>
         .box-dashboard{
             background-color: rgb(255, 255, 255);
@@ -18,6 +21,7 @@
             border: black solid 5px;/*ทำไว้ดูเสร็จแล้วให้ลบทิ้ง*/
             border-radius: 25px;
             align-items: center;
+            display: relative;
         }
         .info{
             height: 753px;
@@ -55,7 +59,7 @@
         }
     </style>
 @section('content')
-    <div class="box-dashboard">
+    <div class="container">
         <!-- content in card -->
         <div class="info">
             <!-- top-left-content -->
