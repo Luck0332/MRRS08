@@ -23,7 +23,7 @@
 
 
     </div>
-                                                            {{-- เหลือลงิค์กับไอดีห้อง --}}
+                                                            {{-- เหลือลิงค์กับไอดีห้อง --}}
     <div class="texthead">
         <span>สิ่งอำนวยความสะดวก</span>
     </div>
@@ -110,5 +110,5 @@
 
     </div>
 
-    <a href="" class="original-button">จองห้องประชุม</a>
+    <a href="" class="original-button">จองห้อง</a>
 @endsection
