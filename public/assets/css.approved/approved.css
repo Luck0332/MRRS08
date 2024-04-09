@@ -192,3 +192,23 @@ input {
 .btn-close{
     color: #ffffff;
 }
+
+.modal-body {
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับเนื้อหาใน modal-body เป็น 16px */
+}
+
+/* หรือคุณสามารถกำหนดเฉพาะส่วนของตัวอักษรที่ต้องการ */
+.modal-body h2 {
+    background-color: #3b81f2;
+    border-radius: 20px;
+    max-width: 100px;
+    margin-left: 50px;
+    font-weight: bold;
+    /* margin: 20px; */
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับหัวข้อ h2 เป็น 20px */
+}
+
+/* หรือถ้าคุณต้องการให้ขนาดตัวอักษรของบางส่วนเป็นพิเศษ */
+.modal-body tr {
+    font-size: 18px; /* กำหนดขนาดตัวอักษรสำหรับ tr เป็น 18px */
+}

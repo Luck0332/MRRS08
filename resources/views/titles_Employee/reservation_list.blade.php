@@ -189,14 +189,14 @@
                     </div>
 
                     <div class="modal-body">
+
                         <h2>รายละเอียดผู้จอง</h2>
-                        <tr>ชื่อ: ${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</tr>
-                        </br><tr>${reserver_information.us_lineid} </tr>
-                        </br><tr>${reserver_information.reserver_tel} </tr>
+                        <tr>ชื่อ :          ${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</tr>
+                        </br><tr>ID Line : ${reserver_information.us_lineid} </tr>
+                        </br><tr>เบอร์โทร : ${reserver_information.reserver_tel} </tr>
                         <h2>รายละเอียดการจอง</h2>
-                        <tr>${reservations.res_startdate}</tr>
-                        </br>
-                        <tr>${reservations.agenda}</tr>
+                        <tr>วันที่จอง : ${reservations.res_startdate}</tr>                        </br>
+                        <tr>วาระการจอง : ${reservations.agenda}</tr>
 
                         <h2>รายละเอียดห้อง</h2>
                         <tr>${room.ro_name}</tr>

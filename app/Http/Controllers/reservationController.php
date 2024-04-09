@@ -78,17 +78,17 @@ class reservationController extends Controller
         $data2 = Room::find($data1->room_id);
         $data3 = reserver_information::find($data1->resinfo_id);
 
-        /* $results = reservations::where('id', '=', "$id")
+
+        return response()->json(['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+
+    }
+  /* $results = reservations::where('id', '=', "$id")
             ->join('reserver_information', 'reservations.resinfo_id', '=', 'reserver_information.id')
             ->join('rooms', 'reservations.room_id', '=', 'rooms.id')
             ->get(); */
 
         // // ดึงข้อมูลผู้จองและข้อมูลอื่นๆ ที่เกี่ยวข้อง
         /* return view('titles_Employee.reservation_list', ['data3' => $data3,'data2' => $data2,'data1' => $data1])->render(); */
-
-        return response()->json(['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
-
-    }
 
     // public function reserver_information()
     // {
