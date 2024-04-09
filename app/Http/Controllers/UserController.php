@@ -3,45 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\M_titles;
-use App\Models\Reserver_info;
-use App\Models\Room;
 use App\Models\User;
+use App\Models\Room;
+use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function Submission(Request $request)
-    {
-        $dateData = $request->input('date');
-
-        // Redirect to search page with data
-        return redirect()->route('getsearch', ['date' => $dateData]);
-    }
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function getSearch(Request $request)
-    {
-        $dateData = $request->session()->get('dateData');
-        return view('titles_User.search_room', compact('dateData'));
+    public function Submission(Request $request){
+        $roomSize = $request->input('room_size');
+        $startDate = $request->input('date');
+        $endDate = $request->input('end_date');
+    
+        // ดึงห้องที่มีขนาดตรงกับที่ร้องขอ
+        $rooms = Room::where('ro_size', $roomSize)->get();
+    
+        return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize'));
     }
 
     public function getReserve()
     {
-        //
         return view('titles_User.reserve_room');
     }
 
-    public function getFollow(Request $req)
+    public function getFollow()
     {
-        $reservation = Reserver_info::findOrFail($req); //หาตำแหน่ง$req
-        $roomid = Room::findOrFail($reservation->ro_id);
-        $resinfo_id = User::findOdFail($reservation->id);
-
-
+        //
+        return view('titles_User.follow');
     }
 
     public function getInformation()
@@ -74,14 +63,8 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $data = Reserver_info::findOrFail($id); //ใช้ดึงชื่อ
-
-
-        return view ('titles_User.reserve_bill', compact('data'));
-
-
         //
     }
 
@@ -98,7 +81,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       //
+        //
     }
 
     /**
@@ -106,6 +89,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-    //
+        //
     }
 }
