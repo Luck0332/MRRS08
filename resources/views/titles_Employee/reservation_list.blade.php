@@ -9,6 +9,7 @@
 <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 
 <div class="head">
     <button id="prev">รายการ</button>
@@ -29,6 +30,7 @@
     </thead>
     <tbody>
         @foreach ($reservations as $reservation)
+
         @if ($reservation->res_status == 'A')
         <tr>
             <td>{{ $reservation->id}}</td>
@@ -55,14 +57,15 @@
                 {{-- <a href="#" onclick="showModal('{{ $reservation->id }}')">
                     <i class="fas fa-info-circle fa-lg" style="color: #242424"></i>
                 </a> --}}
-                <form class="btn btn-cancel"
-                action="{{ route('get-reservation-details', ['id' => $reservation->id]) }}"
-                method="POST" id="update-form-{{ $reservation->id }}">
-                @csrf
-                @method('GET')
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+
+                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                     Open modal
-                  </button>
+                </button> --}}
+
+                <button type="button" onclick="openModal({{$reservation->id}})" class="btn btn-primary open-modal-btn" data-bs-toggle="modal" data-bs-target="#myModal" data-reservation-id="{{ $reservation->id }}">
+                    Open modal
+                </button>
+
                 </form>
 
             </td>
@@ -73,16 +76,7 @@
 </table>
 
 </div>
-{{-- <div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>This is a modal. You can put whatever content you want here.</p>
-    </div>
-
-  </div> --}}
-</div>
 
 {{-- <!-- The Modal -->
 <div class="modal" id="myModal">
@@ -123,8 +117,9 @@
     </div>
   </div> --}}
 
-
+ {{-- @if ($reserver_informations) --}}
 <!-- The Modal -->
+{{-- @isset($results) --}}
  <div class="modal" id="myModal">
   <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content" id="modal-content">
@@ -136,29 +131,21 @@
       </div>
 
       <!-- Modal body -->
+
       <div class="modal-body">
        <h2>รายละเอียดผู้จอง</h2>
-          @foreach ($data2 as $reserver_informations)
-      <tr>{{ $reserver_informations->reserver_fname}}</tr>
-      <tr>{{ $reserver_informations->us_lineid }}</tr>
-      <tr>{{ $reserver_informations->reserver_tel }}</tr>
-      @endforeach
-          <h2>รายละเอียดการจอง</h2>
-          @foreach ($data3 as $reserver_information)
-          <tr>{{ $reserver_information->ro_name}}</tr>
-          <tr>{{ $reserver_information->ro_description }}</tr>
+      <tr>'assd'</tr>
+      <tr>'assd'</tr>
+      <tr>'assd'</tr>
+        <h2>รายละเอียดการจอง</h2>
+          <tr>'assd'</tr>
+          <tr>'assd'</tr>
 
-          @endforeach
           <h2>รายละเอียดห้อง</h2>
-          @foreach ($data2 as $rooms)
-          <tr>{{ $rooms->ro_name}}</tr>
-          <tr>{{ $rooms->ro_description }}</tr>
-          @if ($rooms->ro_typeroom == '1')
+          <tr>'assd'</tr>
+          <tr>'assd'</tr>
           <tr>"สาธารณะ"</tr>
-          @else
           <tr>"ส่วนบุคคล"</tr>
-          @endif
-          @endforeach
       </div>
 
       <!-- Modal footer -->
@@ -169,9 +156,65 @@
   </div>
   </div>
 </div>
-
 </div>
+{{-- @endisset --}}
+
+      {{-- @endif --}}
+
+
+
 <script>
+    async function openModal(id) {
+        console.log(id)
+        const url = `{{ route('get-reservation-details', ['id' => 1]) }}`
+        await $.ajax({
+            url: `/get-reservation-details/${id}`, // Update the URL according to your route
+            method: 'GET',
+            success: function(data) {
+                console.log(data)
+                const reserver_information = data.data3;
+                const room = data.data2;
+                const reservations = data.data1
+                const roomType = room.ro_typeroom ? "สาธารณะ" : "ส่วนบุคคล";
+                // Generate HTML for room description list
+                const roomDescriptionHTML = `
+
+                        ${room.ro_description.split(',').map(detail => `<tr>${detail.trim()}</tr></br>`).join('')}
+
+                `;
+                $('#modal-content').html(`
+                    <div class="modal-header" id="modal-header">
+                    <h4 class="modal-title" >รายละเอียด</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <h2>รายละเอียดผู้จอง</h2>
+                        <tr>ชื่อ: ${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</tr>
+                        </br><tr>${reserver_information.us_lineid} </tr>
+                        </br><tr>${reserver_information.reserver_tel} </tr>
+                        <h2>รายละเอียดการจอง</h2>
+                        <tr>${reservations.res_startdate}</tr>
+                        </br>
+                        <tr>${reservations.agenda}</tr>
+
+                        <h2>รายละเอียดห้อง</h2>
+                        <tr>${room.ro_name}</tr>
+                        </br>
+                        ${roomDescriptionHTML}
+                        <p>${roomType}</p>
+                    </div>
+
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>`); // Populate the modal content with the received HTML
+                $('#myModal').modal('show'); // Show the modal
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
 
     function confirmUpdate(id) {
         Swal.fire({
@@ -204,20 +247,20 @@
         });
     }
 
-    // function showModal(id) {
-    // $.ajax({
-    //     url: '/get-reservation-details/' + id, // Update the URL according to your route
-    //     type: 'GET',
-    //     dataType: 'json',
-    //     success: function(data) {
-    //         $('#modal-content').html(data.html); // Populate the modal content with the received HTML
-    //         $('#myModal').modal('show'); // Show the modal
-    //     },
-    //     error: function(xhr, status, error) {
-    //         console.error(xhr.responseText);
-    //     }
-    // });
-
+    /* function showModal(id) {
+    $.ajax({
+        url: '/get-reservation-details/' + id, // Update the URL according to your route
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#modal-content').html(data.html); // Populate the modal content with the received HTML
+            $('#myModal').modal('show'); // Show the modal
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+ */
 
     // Get the modal
 var modal = document.getElementById('myModal');
@@ -281,6 +324,62 @@ function showModal(id) {
         html: modalContent
     });
 }
+
+var openModalButtons = document.querySelectorAll('.open-modal-btn');
+
+// Loop through each button and attach a click event listener
+openModalButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Get the reservation ID from the data attribute
+        var reservationId = this.getAttribute('data-reservation-id');
+
+        // Call the function to show the modal and pass the reservation ID
+        showModal(reservationId);
+    });
+});
+function showModal(reservationId) {
+        // Here you can use the reservation ID to fetch reservation details via AJAX
+        // Once you have the details, you can populate the modal content dynamically
+        // For simplicity, I'll just log the reservation ID for demonstration
+        console.log('Reservation ID:', reservationId);
+
+        // You can now use the reservation ID to fetch reservation details via AJAX and populate the modal content
+        // Example AJAX call:
+        // $.ajax({
+        //     url: '/get-reservation-details/' + reservationId,
+        //     type: 'GET',
+        //     success: function(data) {
+        //         // Populate the modal content with the received data
+        //     },
+        //     error: function(xhr, status, error) {
+        //         console.error(xhr.responseText);
+        //     }
+        // });
+
+        // For demonstration purposes, I'm using a mock modal content
+        var modalContent = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reservation Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Reservation ID: ${reservationId}</p>
+                    <p>Other reservation details can go here...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        `;
+
+        // Update the modal content with the dynamically generated content
+        document.getElementById('modal-content').innerHTML = modalContent;
+
+        // Show the modal
+        $('#myModal').modal('show');
+    }
+
 
 
 </script>
