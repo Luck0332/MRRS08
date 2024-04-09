@@ -13,26 +13,39 @@ class MyAuth extends Controller
         return view('titles_Employee.login');
     }
 
-    function login_process(Request $req){
-        $req->validate([
+   public function login_process(Request $req)
+    {
+        $validatedData = $req->validate([
             'username' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'required',
+
         ]);
 
-        $data = $req->all();
+        // รับค่า input ชื่อ username และ password จาก request
+        $username = $req->input('username');
+        $password = $req->input('password');
 
-        // ใช้ where() ให้ถูกต้องโดยการใส่ array ภายใน array เพื่อเป็นเงื่อนไขของคำสั่ง WHERE
-        $login = User::where(['us_email' => $data['username'], 'us_password' => $data['password']])->first();
-        $login_user = User::where(['us_name' => $data['username'], 'us_password' => $data['password']])->first();
+        // เรียกใช้งานโมเดล User เพื่อทำการเปรียบเทียบ
+        $user = User::where('us_name', $username)->first();
 
-        // ตรวจสอบว่ามีผู้ใช้ที่ถูกต้องหรือไม่
-        if($login || $login_user){
-            // ใช้ use Illuminate\Support\Facades\Redirect; ด้านบนเพื่อให้ Redirect::to() ทำงานได้
-            return Redirect::to('Employee');
-        }else{
-            return Redirect::to('login');
+        // ตรวจสอบว่ามีข้อมูล user ที่มี us_name ตรงกับ username ที่รับเข้ามาหรือไม่
+        if ($user) {
+            // ถ้าพบ user ในฐานข้อมูล
+            if (password_verify($password, $user->us_password)) {
+                // ถ้า password ที่รับเข้ามาตรงกับ password ในฐานข้อมูล
+                // กำหนด session หรือตัวแปรอื่น ๆ ตามที่ต้องการเพื่อระบุการเข้าสู่ระบบ
+                // สามารถ redirect หรือทำการส่ง response กลับไปยังหน้าอื่น ๆ ต่อจากนี้ได้
+                return redirect()->intended('Employee');
+            } else {
+                // ถ้า password ไม่ตรงกับที่มีในฐานข้อมูล
+                return redirect()->back()->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+            }
+        } else {
+            // ถ้าไม่พบ user ในฐานข้อมูล
+            return redirect()->back()->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
         }
     }
+
 
 
     function logout_process(){
@@ -43,4 +56,5 @@ class MyAuth extends Controller
     function register_view(){
         return view('register');
     }
+
 }

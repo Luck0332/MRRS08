@@ -8,7 +8,6 @@ aside {
     height: 100vh;
     background-image: linear-gradient(30deg , #0048bd, #44a7fd);
 }
-
   aside a {
     font-size: 20px;
     color: #fff;
@@ -122,14 +121,9 @@ aside a.active::after {
 }
 
 #Accout:hover{
-
     color: #fff;
     background-color: rgba(255, 255, 255, 0.2);
-
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
 }
 #logout:hover{
 
@@ -137,10 +131,6 @@ aside a.active::after {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 12px;
     padding-left: 70px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
+    border-radius: 20px;
 }
 
