@@ -14,23 +14,29 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function handleFormSubmission(Request $request)
-    {
-        $dateData = $request->input('date');
+    public function Submission(Request $request){
+        $roomSize = $request->input('room_size');
 
-        // Redirect to search page with data
-        return redirect()->route('getsearch', ['date' => $dateData]);
+
+        $startDate = $request->input('date');
+        $endDate = $request->input('end_date');
+        $startAndEndDate = explode(' to ', $startDate);
+        $startDate = isset($startAndEndDate[0]) ? explode(' ', $startAndEndDate[0])[0] : '';
+        $endDate = isset($startAndEndDate[1]) ? explode(' ', $startAndEndDate[1])[0] : '';
+
+
+        $reserv_room = new reservations;
+        $reserv_room->res_startdate = $startDate;
+        $reserv_room->res_enddate = $endDate;
+
+        if($roomSize != null){
+            $rooms = Room::where('ro_size', $roomSize)->get();
+        }else{
+            $rooms = Room::all();
+        }
+        return view('titles_User.search_room', compact('rooms', 'reserv_room',));
     }
 
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function getSearch(Request $request)
-    {
-        $dateData = $request->session()->get('dateData');
-        return view('titles_User.search_room', compact('dateData'));
-    }
 
     public function getReserve()
     {
@@ -47,10 +53,10 @@ class UserController extends Controller
 
     }
 
-    public function getInformation()
+    public function getInformation($id)
     {
-        //
-        return view('titles_User.fill_information');
+        $id;
+        return view('titles_User.fill_information',['id' => $id]);
     }
     public function getcalender()
     {
@@ -58,17 +64,28 @@ class UserController extends Controller
         return view('titles_User.testcalender');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function submidreservation(Request $request,$reserv_room)
     {
-        //
+        $length = 10; // ความยาวของรหัสซีเรียลที่ต้องการ
+        $serialCode = uniqid('', true);
+        $serialCode = substr($serialCode, - $length);
+
+        $reserv_info = new reserver_information;
+        $reserv_info->reserver_fname = $request->us_fname;
+        $reserv_info->reserver_lname = $request->us_lname;
+        $reserv_info->reserver_tel = $request->us_tel;
+        $reserv_info->save;
+
+        $reserv_room->res_status = $request->newStatus;
+        $reserv_room->agenda = $request->agenda;
+        $reserv_room->resinfo_id = $reserv_info->id;
+        $reserv_room->res_serialcode = $serialCode;
+
+        $reserv_room->save;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         //
