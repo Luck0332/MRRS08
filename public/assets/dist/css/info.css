@@ -28,6 +28,7 @@
     background-color: #3a89ff;
     position: relative; /* or absolute, fixed, etc. depending on your layout */
     left: 380px; /* Change this value as needed */
+    margin-top: 160px;
 
 
 }
@@ -98,6 +99,11 @@
 
   }
 
+  .info{
+    font-weight: bold;
+    font-size: 20px;
+  }
+
   .info-box{
     width: 360px;
     height: 150px;
@@ -106,7 +112,12 @@
     margin-top: 10px;
     margin-left: 25px;
     font-family: 'Inter', sans-serif;
+    left: -50px;
 
+  }
+
+  #price i{
+    font-weight: bold;
   }
 
   #box1{
