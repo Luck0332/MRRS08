@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\M_titles;
 use App\Models\User;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -12,30 +13,31 @@ class UserController extends Controller
     public function handleFormSubmission(Request $request)
     {
         $dateData = $request->input('date');
-    
+
         // Redirect to search page with data
         return redirect()->route('getsearch', ['date' => $dateData]);
     }
-    
-    
+
+
     /**
      * Display a listing of the resource.
      */
     public function getSearch(Request $request)
     {
-        $dateData = $request->session()->get('dateData');
+        $rooms = Room::all(); // Fetch all rooms from the database
         return view('titles_User.search_room', compact('dateData'));
     }
-    
+
     public function getReserve()
     {
-        //
+        
         return view('titles_User.reserve_room');
     }
 
+
     public function getFollow()
     {
-        //
+        
         return view('titles_User.follow');
     }
 
@@ -49,7 +51,7 @@ class UserController extends Controller
         //
         return view('titles_User.testcalender');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -87,7 +89,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       //
+        //
     }
 
     /**
@@ -95,6 +97,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-    //
+        //
     }
 }
