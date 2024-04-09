@@ -61,15 +61,15 @@
 <label for="">{{ $roomSize }}</label> --}}
 
             <div class="row">
-                <label for="">{{$startDate}}</label>
-                <label for="">{{$endDate}}</label>
+                {{-- <label for="">{{$startDate}}</label>
+                <label for="">{{$endDate}}</label> --}}
                 @foreach ($rooms as $key => $room)
-                    <label for="">{{$room->ro_id}}</label>
+                    {{-- <label for="">{{$room->ro_id}}</label>
                     <label for="">{{$room->ro_name}}</label>
                     <label for="">{{$room->ro_size}}</label>
                     <label for="">{{$room->ro_price}}</label>
-                    <label for="">----------</label>
-                    {{-- <div class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}">
+                    <label for="">----------</label> --}}
+                    <div class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}">
                         <!-- Content for each room -->
                         <span class="roominfo" id="statusRoom">
                             <i class="fa-solid fa-earth-americas"></i>
@@ -86,7 +86,7 @@
                         <span class="roomname">
                             {{ $room->ro_name }}
                         </span>
-                    </div> --}}
+                    </div>
                 @endforeach
 
                 @push('scripts')
