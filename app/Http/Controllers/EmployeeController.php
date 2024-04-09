@@ -191,6 +191,7 @@ class EmployeeController extends Controller
         'roles' => $validatedData['position'],
         'us_password' => Hash::make($validatedData['password']), // Hash the password
     ]);
+    dd($user);
 
     // Redirect back to the user management page with success message
     return redirect()->route('titles_Employee.manage_account')->with('success', 'แก้ไขข้อมูลผู้ใช้สำเร็จ');

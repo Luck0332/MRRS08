@@ -49,7 +49,6 @@ class RoomController extends Controller
 
         $newRoom->save();
 
-        // dd($request);
         if($request->image){
             $file = $request->image;
 
@@ -78,7 +77,7 @@ class RoomController extends Controller
 
     }
 
-    public function update_rooms(Request $request, Room $room)
+    public function update_rooms(Request $request, Room $rooms)
 {
     // Validate the incoming form data
     $validatedData = $request->validate([
@@ -91,9 +90,8 @@ class RoomController extends Controller
         'typesplit' => 'required|boolean',
         'notation' => 'nullable|string|max:255',
     ]);
-
     // Update the room model with validated data
-    $room->update([
+    $rooms->update([
         'ro_name' => $validatedData['room'],
         'ro_price' => $validatedData['price'],
         'ro_size' => $validatedData['size_room'],
@@ -103,7 +101,7 @@ class RoomController extends Controller
         'ro_cansplit' => $validatedData['typesplit'],
         'ro_description' => $validatedData['notation'],
     ]);
-
+    
     // Redirect back to the room management page with success message
     return redirect()->route('titles_Employee.manage_rooms')->with('success', 'แก้ไขข้อมูลห้องสำเร็จ');
 }

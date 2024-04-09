@@ -125,11 +125,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($room->ro_available == 1)
+                                    @if ($room->ro_avaliable == 1)
                                         Available
-                                        @else
+                                    @else
                                         Unavailable
-                                        @endif
+                                    @endif
                                     </td>
                                     <td>
                                     <form id="delete-form-{{ $room->id }}" method="post" action="{{ route('titles_Employee.destroy-rooms', ['rooms' => $room]) }}" style="display: inline;">
@@ -139,7 +139,7 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <button type="button" class="btn btn-danger transparent-btn" onclick="deleteRoom('{{ $room->id }}')">
-                                            <i class="fas fa-trash-alt"></i>
+                                            <i class="fas fa-trash-alt" style="color: #FF0000;"></i>
                                         </button>
                                     </form>
 
