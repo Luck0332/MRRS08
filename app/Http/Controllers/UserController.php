@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\M_titles;
+use App\Models\Reserver_info;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -35,7 +37,7 @@ class UserController extends Controller
 
     public function getFollow(Request $req)
     {
-        $reservation = Reservation::findOrFail($req); //หาตำแหน่ง$req
+        $reservation = Reserver_info::findOrFail($req); //หาตำแหน่ง$req
         $roomid = Room::findOrFail($reservation->ro_id);
         $resinfo_id = User::findOdFail($reservation->id);
 

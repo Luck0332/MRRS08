@@ -87,9 +87,9 @@
 
 <script>
     function redirectToAnotherPage( idValue ) {
-        // สร้าง URL ใหม่โดยเพิ่ม Query String ด้วย ID
-        pageUrl = 'room_info.blade.php'
-        var newUrl = pageUrl + '?id=' + idValue;
+
+
+        var newUrl = '{{ route("roominfo", ["id" => ":id"]) }}'.replace(':id', idValue);
         // ไปยังหน้าใหม่
         window.location.href = newUrl;
     }
