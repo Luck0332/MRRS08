@@ -15,8 +15,7 @@ class UserController extends Controller
         $roomSize = $request->input('room_size');
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
-    
-        // ดึงห้องที่มีขนาดตรงกับที่ร้องขอ
+
         $rooms = Room::where('ro_size', $roomSize)->get();
     
         return view('titles_User.search_room', compact('rooms','startDate', 'endDate', 'roomSize'));
