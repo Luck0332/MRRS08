@@ -22,6 +22,7 @@ class UserController extends Controller
     $startDate = explode(' ', $startDateTimeParts[0])[0];
     $endDate = explode(' ', $startDateTimeParts[1])[0];
 
+    //code here
     $rooms = Room::select('rooms.id AS room_id', 'rooms.ro_name', 'rooms.ro_size', 'rooms.ro_price')
         ->leftJoin('reservations', function ($join) use ($startDate, $endDate) {
             $join->on('rooms.id', '=', 'reservations.room_id')

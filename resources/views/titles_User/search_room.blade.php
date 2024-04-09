@@ -69,7 +69,7 @@
                     <label for="">{{$room->ro_size}}</label>
                     <label for="">{{$room->ro_price}}</label>
                     <label for="">----------</label> --}}
-                    <div class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}">
+                    <div class="boxRoom" id="box{{ $key + 1 }}" >
                         <!-- Content for each room -->
                         <span class="roominfo" id="statusRoom">
                             <i class="fa-solid fa-earth-americas"></i>
@@ -105,7 +105,7 @@
 
 
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="boxRoom" id="box1">
 
                     <span class="roominfo" id="statusRoom">
@@ -214,7 +214,7 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <script>
             // Initialize Flatpickr datetime pickers for both inputs
