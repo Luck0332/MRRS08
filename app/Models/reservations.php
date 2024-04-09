@@ -21,6 +21,7 @@ class reservations extends Model
         'id',
         'res_status',
         'updated_at',
+        'res_startdate',
         'res_enddate',
         'res_serialcode',
         'res_total',
