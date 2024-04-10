@@ -6,6 +6,7 @@ use App\Http\Controllers\MyAuth;
 use App\Http\Controllers\reservationController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FollowReserved;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,7 @@ Route::get('/fillInformation/{id}/{start_date}/{end_date}', [UserController::cla
 Route::post('/Reserve/store', [UserController::class, 'StoreInfo'])->name('reservation.StoreInfo');
 Route::get('/Success', [UserController::class, 'ToSuccess'])->name('Reserve_success');
 
-Route::get('/follow', [UserController::class,'getFollow']);
+
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/calender', [UserController::class,'getcalender']);
 
@@ -77,6 +78,9 @@ Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class,
 
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
 
+Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');
+Route::put('/FollowReserved/{id}', [FollowReserved::class, 'updatefollow'])->name('Follow.update');
+Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
 
 
 
