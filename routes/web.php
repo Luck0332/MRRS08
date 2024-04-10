@@ -60,7 +60,7 @@ Route::get('/Accout', [EmployeeController::class, 'accout'])->name('account');
 
 Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
-Route::post('/login' , [MyAuth::class,'login_process'])->name('login');
+Route::post('/login' , [MyAuth::class,'login_process']);
 Route::get('reservations/byMonth', [EmployeeController::class, 'getReservationsByMonth'])->name('reservations.byMonth');
 
 
