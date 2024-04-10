@@ -6,7 +6,7 @@
 @section('content')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,12 +19,10 @@
 
     <!-- Main content -->
     <div class="container">
-        <div class="row justify-content-center mt-3" style="width: 1200px;">
+        <div class="row justify-content-center mt-5" style="width: 1200px;">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-primary text-white">{{ __('Add Room') }}
-                    <i class="fa-solid fa-xmark" id="closeCard" style="position: absolute ;    right: 10px; font-size: 24px" ></i>
-                    </div>
+                    <div class="card-header bg-primary text-white">{{ __('Add Room') }}</div>
                 </div>
             <!-- /.card-header -->
                 <div class="card-body">
@@ -173,6 +171,7 @@
             }
         });
     </script>
+<<<<<<< HEAD
     <script>
     $(document).ready(function() {
         // Add click event handler to the close button
@@ -182,4 +181,6 @@
         });
     });
     </script>
+=======
+>>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
 @endsection

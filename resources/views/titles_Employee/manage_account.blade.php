@@ -141,7 +141,7 @@
                                                 <td>{{ $user->us_name }}</td>
                                                 <td>{{ $user->us_fname }} {{ $user->us_lname }}</td>
                                                 <td>{{ $user->us_tel }}</td>
-                                                <td>{{ $user->created_at->format('d-m-Y') }}</td>
+                                                <td>{{ $user->startdate }}</td>
                                                 <td>
                                                     <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('titles_Employee.destroy-user', ['user' => $user]) }}" style="display: inline;">
                                                         @csrf

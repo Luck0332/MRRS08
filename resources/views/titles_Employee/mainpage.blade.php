@@ -43,8 +43,6 @@
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: 1fr;
             gap: 10px;
-            justify-content: center;
-            text-align: center;
         }
         .less-pop-room{
             display: grid;
@@ -68,26 +66,20 @@
     <div class="container">
         <!-- content in card -->
         <div class="info">
-        <div class="top-left-content">
-            <div class="item">
-                @if (isset($roomStatistics[0]))
-                ห้องอันดับที่ 1
-                    Room ID: {{ $roomStatistics[0]->id }} - {{ $roomStatistics[0]->ro_name }} มีการจองทั้งหมด{{ $roomStatistics[0]->reservation_count }} reservations
-                @endif
+            <!-- top-left-content -->
+            <div class="top-left-content">
+                <div class="item">
+                    first
+                </div>
+                <div class="less-pop-room">
+                    <div class="item">
+                        second
+                    </div>
+                    <div class="item">
+                        third
+                    </div>
+                </div>
             </div>
-        <div class="less-pop-room">
-            <div class="item">
-                @if (isset($roomStatistics[1]))
-                    Room ID: {{ $roomStatistics[1]->id }} - {{ $roomStatistics[1]->ro_name }} ({{ $roomStatistics[1]->reservation_count }} reservations)
-                @endif
-            </div>
-            <div class="item">
-                @if (isset($roomStatistics[2]))
-                    Room ID: {{ $roomStatistics[2]->id }} - {{ $roomStatistics[2]->ro_name }} ({{ $roomStatistics[2]->reservation_count }} reservations)
-                @endif
-            </div>
-        </div>
-    </div>
             <!-- /.top-left-content -->
 
             <!-- top-right-content -->
