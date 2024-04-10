@@ -119,8 +119,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 <script>
     $(document).ready(function() {
@@ -131,8 +129,5 @@
         });
     });
 </script>
-=======
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
-=======
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
+
 @endsection

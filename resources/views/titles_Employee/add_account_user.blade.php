@@ -109,8 +109,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 <script>
     $(document).ready(function() {
         // Add click event handler to the close button
@@ -120,5 +118,4 @@
         });
     });
 </script>
->>>>>>> parent of 629be80 (Revert "Merge branch 'main' of https://github.com/Luck0332/MRRS08")
 @endsection

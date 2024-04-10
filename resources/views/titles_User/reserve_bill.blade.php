@@ -16,7 +16,7 @@
                 <span>ห้องประชุม {{ $room->ro_name }}</span>
             </div>
             <div class="room-name">
-                <span>รหัสติดตามการจอง : {{ $username->res_serialcode }}</span>
+                <span>รหัสติดตามการจอง : {{ $reserv_room->res_serialcode }}</span>
             </div>
         </div>
 
@@ -65,12 +65,12 @@
                         </li>
                         <li>ระยะเวลา:
                             {{
-                                \Carbon\Carbon::parse($username->res_startdate)->locale('th')
+                                \Carbon\Carbon::parse($reserv_room->res_startdate)->locale('th')
                                 ->isoFormat('DD MMM ', 'numeric')
                             }}
                             -
                             {{
-                                \Carbon\Carbon::parse($username->res_enddate)->locale('th')
+                                \Carbon\Carbon::parse($reserv_room->res_enddate)->locale('th')
                                 ->isoFormat('DD MMM YYYY', 'numeric')
                             }}
                         </li>

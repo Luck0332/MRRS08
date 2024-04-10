@@ -171,8 +171,7 @@
             }
         });
     </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <script>
     $(document).ready(function() {
         // Add click event handler to the close button
@@ -182,8 +181,5 @@
         });
     });
     </script>
-=======
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
-=======
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
+
 @endsection

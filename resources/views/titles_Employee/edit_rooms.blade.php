@@ -137,20 +137,15 @@
                                 <button type="submit" class="btn btn-info">Submit</button>
                                 <button type="reset" class="btn btn-default float-right">Reset</button>
                             </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
-                        
+
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
                                 <a href="{{ route('titles_Employee.edit_rooms', ['rooms' => $rooms]) }}"
                                     class="btn btn-warning" style="background-color: #d9d9d9;border-color: transparent">{{ __('Reset') }}</a>
                             </div>
-                            
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
+
+
                         </form>
                     </div>
                 </div>
@@ -183,8 +178,7 @@
             }
         });
     </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <script>
     $(document).ready(function() {
         // Add click event handler to the close button
@@ -194,10 +188,7 @@
         });
     });
     </script>
-=======
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
-=======
->>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
+
 
 @endsection
 
