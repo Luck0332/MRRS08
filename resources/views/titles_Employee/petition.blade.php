@@ -89,7 +89,7 @@
     <script>
         async function openModal(id) {
             console.log(id)
-            const url = "{{ route('get-details', ['id' => 1]) }}"
+            const url = "{{ route('get-details', ['id' => 1]) }}";
             await $.ajax({
                 url: `/Petition_detail/${id}`, // Update the URL according to your route
                 method: 'GET',
@@ -112,73 +112,75 @@
                     </div>
 
                     <div class="modal-body">
-                        <div class="container">
-                            <div class="details-section">
-                                <h2>รายละเอียดผู้จอง</h2>
-                                    <ul>
-                                        <li>
-                                            <span class="label">ชื่อ :</span>
-                                            <span class="value">${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</span>
-                                        </li>
-
-                                        <li>
-                                            <span class="label">ID Line :</span>
-                                            <span class="value">${reserver_information.us_lineid}</span>
-                                        </li>
-
-                                        <li>
-                                            <span class="label">เบอร์โทร :</span>
-                                            <span class="value">${reserver_information.reserver_tel}</span>
-                                        </li>
-
-                                    </ul>
-                            </div>
-                        </div>
-
-                        <div class="container">
-                            <div class="details-section">
-                                <h2>รายละเอียดผู้จอง</h2>
+                    <div class="container">
+                        <div class="details-section">
+                            <h2>รายละเอียดผู้จอง</h2>
                                 <ul>
                                     <li>
-                                        <span class="label">วันที่จอง :</span>
-                                        <span class="value">${reservations.res_startdate}</span>
+                                        <span class="label">ชื่อ :</span>
+                                        <span class="value">${reserver_information.reserver_fname} ${reserver_information.reserver_lname}</span>
                                     </li>
 
                                     <li>
-                                        <span class="label">วาระการประชุม : </span>
-                                        <span class="value">${reservations.agenda}</span>
+                                        <span class="label">ID Line :</span>
+                                        <span class="value">${reserver_information.us_lineid}</span>
+                                    </li>
+
+                                    <li>
+                                        <span class="label">เบอร์โทร :</span>
+                                        <span class="value">${reserver_information.reserver_tel}</span>
                                     </li>
 
                                 </ul>
-                            </div>
                         </div>
+                    </div>
 
+                    <div class="container">
+                        <div class="details-section">
+                            <h2>รายละเอียดผู้จอง</h2>
+                            <ul>
+                                <li>
+                                    <span class="label">วันที่จอง :</span>
+                                    <span class="value">${reservations.res_startdate}</span>
+                                </li>
 
-                        <div class="container">
-                            <div class="details-section">
-                                <h2>รายละเอียดห้อง</h2>
-                                <ul>
-                                    <li>
-                                    <span class="label">ชื่อห้อง : </span>
-                                    <span class="value">${room.ro_name}</span>
-                                    </li>
+                                <li>
+                                    <span class="label">วาระการประชุม : </span>
+                                    <span class="value">${reservations.agenda}</span>
+                                </li>
 
-                                    <li>
-                                    <span class="label">ประเภทห้อง :  </span>
-                                    <span class="value">${roomType}</span>
-                                    </li>
-
-                                    <li>
-                                    <span class="label">รายละเอียด :  </span>
-                                    <span class="value">${roomDescriptionHTML} </span>
-                                    </li>
-
-                                </ul>
-                            </div>
+                            </ul>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="details-section">
+                            <h2>รายละเอียดห้อง</h2>
+                            <ul>
+                                <li>
+                                <span class="label">ชื่อห้อง : </span>
+                                <span class="value">${room.ro_name}</span>
+                                </li>
+
+                                <li>
+                                <span class="label">ประเภทห้อง :  </span>
+                                <span class="value">${roomType}</span>
+                                </li>
+
+                                <li>
+                                <span class="label">รายละเอียด :  </span>
+                                <span class="value">${roomDescriptionHTML} </span>
+                                </li>
+
+                            </ul>
                         </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>`); // Populate the modal content with the received HTML
                     $('#myModal').modal('show'); // Show the modal
                 },
