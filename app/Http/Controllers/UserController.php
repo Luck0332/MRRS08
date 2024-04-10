@@ -45,12 +45,7 @@ class UserController extends Controller
             $rooms = Room::all();
         }
         
-        if ($request->hasFile('image')) {
-            foreach ($rooms as $room) {
-                $path = $request->file('image')->store('assets/images', 'public');
-                $room->ro_pic1 = $path;
-            }
-        }
+        
         return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
     }
     public function ToSuccess(){

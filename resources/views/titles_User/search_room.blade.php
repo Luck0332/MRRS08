@@ -3,58 +3,53 @@
 @section('title', 'จองห้องประชุม')
 
 @section('content')
-<!DOCTYPE html>
-            <html>
-            <head>
-            <script src="https://kit.fontawesome.com/e71f46c45f.js" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="{{ url('assets/dist/css/reservation.css') }}">
-            </head>
-            <body>  
-                <div class="center">
-                    <div class="content-header">
-                    <i class="fa fa-angle-left" style="font-size:72px; margin-right: 20px;"></i>
-                        <div class="icon-container">
-                            <div class="circle-icon-active">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-
-                        </div>
-
-                        <div class="line-between-active"></div>
-
-                        <div class="icon-container">
-                            <div class="circle-icon-active">
-                                <i class="fas fa-file"></i>
-                            </div>
-
-                        </div>
-
-                        <div class="line-between"></div>
-
-                        <div class="icon-container">
-                            <div class="circle-icon-inactive">
-                                <i class="fas fa-pencil"></i>
-                            </div>
-
-                        </div>
-                        <div class="line-between"></div>
-                        <div class="icon-container">
-                            <div class="circle-icon-inactive">
-                                <i class="fas fa-check"></i>
-                            </div>
-                        </div>
+    <script src="https://kit.fontawesome.com/e71f46c45f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url('assets/dist/css/reservation.css') }}">
+    <body>  
+        <div class="center">
+            <div class="content-header">
+            <i class="fa fa-angle-left" style="font-size:72px; margin-right: 20px;"></i>
+                <div class="icon-container">
+                    <div class="circle-icon-active">
+                        <i class="fas fa-calendar-days"></i>
                     </div>
-                    <div class="text-container">
-                        <div class="status1" >จองห้อง</div>
-                        <div class="status2" >รายละเอียดห้องประชุม</div>
-                        <div class="status3" >กรอกข้อมูลการจอง</div>
-                        <div class="status4" >เสร็จสิ้น</div>
-                    </div>
-                    @yield('reserv')
+
                 </div>
 
-            </body>
-            </html>
+                <div class="line-between-active"></div>
+
+                <div class="icon-container">
+                    <div class="circle-icon-active">
+                        <i class="fas fa-file"></i>
+                    </div>
+
+                </div>
+
+                <div class="line-between"></div>
+
+                <div class="icon-container">
+                    <div class="circle-icon-inactive">
+                        <i class="fas fa-pencil"></i>
+                    </div>
+
+                </div>
+                <div class="line-between"></div>
+                <div class="icon-container">
+                    <div class="circle-icon-inactive">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="text-container">
+                <div class="status1" >จองห้อง</div>
+                <div class="status2" >รายละเอียดห้องประชุม</div>
+                <div class="status3" >กรอกข้อมูลการจอง</div>
+                <div class="status4" >เสร็จสิ้น</div>
+            </div>
+            @yield('reserv')
+        </div>
+
+    </body>
     <!-- Include Flatpickr library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -119,24 +114,22 @@
                     <a href="{{ route('roominfo', ['roomId' => $room->id, 'res_startdate' => $reserv_room->res_startdate, 'res_enddate' => $reserv_room->res_enddate]) }}"
                         class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}"
                         style="background-image: url('{{ asset('image/' . $room->ro_pic1) }}');
-                        background-size: cover;"
+                        background-size: cover;
                         background-position: center;
-                        justify-content: center;
-                        display: flex;
-                        align-items: center;
-                        background-repeat: no-repeat;>
+                        background-repeat: no-repeat;
+                        align-items: center;">
 
                         <!-- Content for each room -->
-                        <span class="roominfo" id="statusRoom">
+                        <span class="roominfo" id="statusRoom" st>
                             <i class="fa-solid fa-earth-americas"></i>
                         </span>
-                        <span class="roominfo">
-                            <i class="fa-sharp fa-solid fa-s">{{ $room->ro_size }}</i>
+                        <span class="roominfo" style="position: absolute; left: 10px; top: 50;">
+                        <i class="fa-solid fa-expand"> {{ $room->ro_size }}</i>
                         </span>
-                        <span class="roominfo">
+                        <span class="roominfo" style="position: absolute; left: 10px; top: 100px;">
                             <i class="fa-regular fa-money-bill-1"> ราคา {{ $room->ro_price }} บาท/วัน</i>
                         </span>
-                        <span class="roominfo">
+                        <span class="roominfo" style="position: absolute; left: 10px; top: 150px;">
                             <i class="fa-solid fa-laptop">{{ $room->ro_description }}</i>
                         </span>
                         <span class="roomname">
