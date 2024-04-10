@@ -38,7 +38,9 @@ class MyAuth extends Controller
                 return redirect()->intended('Employee');
             } else {
                 // ถ้า password ไม่ตรงกับที่มีในฐานข้อมูล
-                return redirect()->back()->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+                return redirect()->back()->withInput()->withErrors([
+                    'error' => 'Invalid username or password.', // Error message to display
+                ]);
             }
         } else {
             // ถ้าไม่พบ user ในฐานข้อมูล

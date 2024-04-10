@@ -13,6 +13,7 @@ use App\Models\reserver_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -33,8 +34,29 @@ class EmployeeController extends Controller
 
     public function mainpage()
     {
-        //
-        return view('titles_Employee.mainpage');
+        
+        $smallRoomCount = Room::where('ro_size', 'S')->count();
+        $mediumRoomCount = Room::where('ro_size', 'M')->count();
+        $largeRoomCount = Room::where('ro_size', 'L')->count();
+        $waitReservationCount = reservations::where('res_status', 'W')->count();
+        $data = [
+            'wait_reservation_count' => $waitReservationCount,
+            'user_count' => User::count(),
+            'room_count' => Room::count(),
+            'room_sizes' => [
+                'S' => $smallRoomCount,
+                'M' => $mediumRoomCount,
+                'L' => $largeRoomCount,
+            ]
+        ];
+        $roomStatistics = DB::table('rooms')
+        ->leftJoin('reservations', 'rooms.id', '=', 'reservations.room_id')
+        ->select('rooms.id', 'rooms.ro_name', DB::raw('COUNT(reservations.id) as reservation_count'))
+        ->groupBy('rooms.id', 'rooms.ro_name')
+        ->orderByDesc('reservation_count')
+        ->limit(3)
+        ->get();
+        return view('titles_Employee.mainpage' , compact('data','roomStatistics'));
     }
 
     public function reserve()
@@ -77,17 +99,49 @@ class EmployeeController extends Controller
 
     // หน้าสถิติการจอง
     public function statistics(){
+        $smallRoomCount = Room::where('ro_size', 'S')->count();
+        $mediumRoomCount = Room::where('ro_size', 'M')->count();
+        $largeRoomCount = Room::where('ro_size', 'L')->count();
+        $waitReservationCount = reservations::where('res_status', 'W')->count();
         $data = [
+            'wait_reservation_count' => $waitReservationCount,
             'user_count' => User::count(),
             'room_count' => Room::count(),
+            'room_sizes' => [
+                'S' => $smallRoomCount,
+                'M' => $mediumRoomCount,
+                'L' => $largeRoomCount,
+            ]
         ];
         return view('titles_Employee.statistics' , compact('data'));
 
     }
 
+    public function getReservationsByMonth()
+    {
+        $dataA = reservations::selectRaw('COUNT(*) as count, MONTH(res_startdate) as month')
+        ->where('res_status', 'A')
+        ->groupBy(DB::raw('MONTH(res_startdate)'))
+        ->orderBy(DB::raw('MONTH(res_startdate)'))
+        ->get();
+
+        $dataR = reservations::selectRaw('COUNT(*) as count, MONTH(res_startdate) as month')
+                ->where('res_status', 'R')
+                ->groupBy(DB::raw('MONTH(res_startdate)'))
+                ->orderBy(DB::raw('MONTH(res_startdate)'))
+                ->get();
+
+        return response()->json([
+        'dataA' => $dataA,
+        'dataR' => $dataR
+        ]);
+    }
+    
+
     public function accout()
     {
-        //
+
+        // Pass user data to the 'accout' view
         return view('titles_Employee.accout');
     }
 
@@ -161,7 +215,7 @@ class EmployeeController extends Controller
     $validatedData = $request->validate([
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
+        'email' => 'required|email|max:30',
         'mobile' => ['required', 'numeric', 'digits:10', function ($attribute, $value, $fail) {
             // Custom validator to check if mobile number has exactly 10 digits
             if (strlen($value) !== 10) {
