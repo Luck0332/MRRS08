@@ -28,6 +28,7 @@
     <table class="rwd-table">
         <thead>
             <tr>
+<<<<<<< HEAD
                 <th>ไอดี</th>
                 <th>วันที่จอง</th>
                 <th>สถานะห้องประชุม</th>
@@ -35,6 +36,29 @@
                 <th>วันที่จะเข้าใช้</th>
                 <th>รอดำเนินการ</th>
                 <th></th>
+=======
+                <td>{{ $reservation->id }}</td>
+                <td>{{ $reservation->updated_at->format('d-m-Y') }}</td>
+                <td>{{ $reservation->res_status }}</td>
+                <td>{{ $reservation->res_serialcode }}</td>
+                <td>{{ $reservation->res_typeroom }}</td>
+                <td>
+                    <form id="updateStatusForm"
+                        action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" name="newStatus" value="C"
+                            style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
+                                style="color: #63E6BE;"></i></button>
+                        <button type="submit" name="newStatus" value="A"
+                            style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
+                                style="color: #ff1a1a;"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <a><i class="fas fa-info-circle fa-lg" id="detail" style="color: #242424"></i></a>
+                </td>
+>>>>>>> Reserveeiuwueiei
             </tr>
         </thead>
         <tbody>
