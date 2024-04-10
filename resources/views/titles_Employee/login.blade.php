@@ -83,13 +83,13 @@
                         <div class="mb-5">
                             <form action="{{ url('login') }}" method="post">
                         @csrf
-                        <div class="input-group mb-4">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
+                        <div class="input-group mb-4" >
+                            <div class="input-group-append" >
+                                <div class="input-group-text" >
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
-                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Username">
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Username" >
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
