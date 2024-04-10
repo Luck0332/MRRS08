@@ -65,7 +65,7 @@
             Accout
         </a>
         <p id="line"></p>
-        <a href="{{url('logout')}}" id="Logout">
+        <a href="{{url('index')}}" id="Logout">
             <i class="" aria-hidden="true"></i>
             ออกจากระบบ
         </a>
