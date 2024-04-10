@@ -55,6 +55,7 @@ Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
 
 //route for managing rooms
+Route::get('reservations/byMonth', [EmployeeController::class, 'getReservationsByMonth'])->name('reservations.byMonth');
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');
 Route::get('/Manage_rooms/add-rooms',[RoomController::class,'create_rooms'])->name('titles_Employee.add_rooms');
 Route::post('/Manage_rooms', [RoomController::class, 'store_rooms'])->name('titles_Employee.store_rooms');

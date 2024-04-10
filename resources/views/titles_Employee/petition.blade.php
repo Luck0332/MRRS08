@@ -27,7 +27,7 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>ไอดี</th>
+                <th>#</th>
                 <th>วันที่จอง</th>
                 <th>สถานะห้องประชุม</th>
                 <th>เลขห้อง</th>
@@ -39,10 +39,10 @@
         <tbody>
             @foreach ($reservationsW as $reservation)
                 <tr>
-                    <td>{{ $reservation->id }}</td>
+                    <td>{{ $reservation->room_id }}</td>
                     <td>{{ $reservation->updated_at }}</td>
                     <td>{{ $reservation->res_status }}</td>
-                    <td>{{ $reservation->room_id }}</td>
+                    <td>{{ $reservation->res_serialcode}}</td>
                     <td>{{ $reservation->res_startdate }}</td>
                     <td>
                         <form id="updateStatusForm"

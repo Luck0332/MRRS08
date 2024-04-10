@@ -28,7 +28,7 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>ไอดี</th>
+                <th>#</th>
                 <th>วันที่จอง</th>
                 <th>สถานะห้องประชุม</th>
                 <th>เลขห้อง</th>

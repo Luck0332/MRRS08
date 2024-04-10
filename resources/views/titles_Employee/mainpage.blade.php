@@ -10,35 +10,39 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
-        <!-- Bootstrap JS and Chart.js -->
+    <!-- Bootstrap JS and Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .box-dashboard{
+        .box-dashboard {
             background-color: rgb(255, 255, 255);
-            width: 1320px ;
+            width: 1320px;
             /*margin: auto ;*/
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 25px;
             align-items: center;
             display: relative;
         }
-        .info{
+
+        .info {
             margin: 25px;
-           /*margin: auto ;*/
+            /*margin: auto ;*/
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 10px;
-            
+
         }
+
         .top-content {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
-        grid-template-rows: 1fr;
-        gap: 10px;
-    }
-        .top-left-content{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* Two columns */
+            grid-template-rows: 1fr;
+            gap: 10px;
+        }
+
+        .top-left-content {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: 1fr;
@@ -46,48 +50,64 @@
             justify-content: center;
             text-align: center;
         }
-        .less-pop-room{
+
+        .less-pop-room {
             display: grid;
             grid-template: repeat(2, 1fr);
             gap: 10px;
         }
-        .top-right-content{
+
+        .top-right-content {
             display: grid;
             grid-template: repeat(3, 1fr);
             gap: 10px;
         }
-        .item{
+
+        .item {
             background-color: #DCF2F1;
-            
+            text-align: center;
+
         }
+
+
         .p {
             margin: 0px;
         }
+
     </style>
 @section('content')
     <div class="container">
         <!-- content in card -->
         <div class="info">
-        <div class="top-left-content">
-            <div class="item">
-                @if (isset($roomStatistics[0]))
-                ห้องอันดับที่ 1
-                    Room ID: {{ $roomStatistics[0]->id }} - {{ $roomStatistics[0]->ro_name }} มีการจองทั้งหมด{{ $roomStatistics[0]->reservation_count }} reservations
-                @endif
+            <div class="top-left-content">
+                <div class="item item-No.1" style="background-color: rgba(255, 217, 0, 0.745)">
+                    @if (isset($roomStatistics[0]))
+                        <br>
+                        <i class="fa-solid fa-crown fa-3xl" style="color: #ee8711; border:#000000;font-size:50px;"></i><br><br>
+                        <h3 style="font-weight: bold;">ห้องอันดับที่ 1</h3> <br>
+                        Room ID: {{ $roomStatistics[0]->id }} - {{ $roomStatistics[0]->ro_name }} <br> มีการจองทั้งหมด
+                        <br>({{ $roomStatistics[0]->reservation_count }} reservations)
+                    @endif
+                </div>
+                <div class="less-pop-room">
+                    <div class="item itemNo.2" style="background-color:rgba(192, 192, 192, 0.642);">
+                        <br>
+                        @if (isset($roomStatistics[1]))
+                            <h3 style="font-weight: bold;">ห้องอันดับที่ 2</h3> <br>
+                            Room ID: {{ $roomStatistics[1]->id }} - {{ $roomStatistics[1]->ro_name }} <br> มีการจองทั้งหมด
+                            <br>({{ $roomStatistics[1]->reservation_count }} reservations)
+                        @endif
+                    </div>
+                    <div class="item itemNo.3" style="background-color:rgba(156, 52, 52, 0.778);">
+                        @if (isset($roomStatistics[2]))
+                            <br>
+                            <h3 style="font-weight: bold;">ห้องอันดับที่ 3</h3> <br>
+                            Room ID: {{ $roomStatistics[2]->id }} - {{ $roomStatistics[2]->ro_name }} <br> มีการจองทั้งหมด
+                            <br>({{ $roomStatistics[2]->reservation_count }} reservations)
+                        @endif
+                    </div>
+                </div>
             </div>
-        <div class="less-pop-room">
-            <div class="item">
-                @if (isset($roomStatistics[1]))
-                    Room ID: {{ $roomStatistics[1]->id }} - {{ $roomStatistics[1]->ro_name }} ({{ $roomStatistics[1]->reservation_count }} reservations)
-                @endif
-            </div>
-            <div class="item">
-                @if (isset($roomStatistics[2]))
-                    Room ID: {{ $roomStatistics[2]->id }} - {{ $roomStatistics[2]->ro_name }} ({{ $roomStatistics[2]->reservation_count }} reservations)
-                @endif
-            </div>
-        </div>
-    </div>
             <!-- /.top-left-content -->
 
             <!-- top-right-content -->
@@ -107,7 +127,7 @@
                         <h3>{{ $data['room_count'] }}</h3>
                         <p>จำนวนห้องประชุม</p>
                         <div class="icon">
-                            <i class="fas fa-chart-pie" ></i>
+                            <i class="fas fa-chart-pie"></i>
                         </div>
                     </div>
                 </div>
@@ -125,13 +145,13 @@
             <!-- /.top-right-content -->
 
             <!-- bot-left-content -->
-            <div class="item" style="display: flex; justify-content: center; align-items: center; height: 100%;">   
+            <div class="item" style="display: flex; justify-content: center; align-items: center; height: 100%;">
                 <div class="card-header border-0 text-center" style="background-color: transparent;">
-                    <div class="card-title " >
+                    <div class="card-title ">
                         จำนวนห้อง </div>
-                        <div class="container text-center">
-                            <canvas id="myDoughnutChart" width="200" height="200"></canvas>
-     
+                    <div class="container text-center">
+                        <canvas id="myDoughnutChart" width="200" height="200"></canvas>
+
                     </div>
                 </div>
             </div>
@@ -139,131 +159,131 @@
 
 
             <!-- bot-right-content -->
-            
+
             <div class="item" style="display: flex; justify-content: center; align-items: center; height: 100%;">
                 <div class="card-header border-0 text-center" style="background-color: transparent;">
                     <div class="card-title">
                         สถิติการจอง</div>
 
-                        <div class="container">
-                            <canvas id="reservationChart" width="550" height="300"></canvas>
-                        </div>
+                    <div class="container">
+                        <canvas id="reservationChart" width="550" height="300"></canvas>
                     </div>
                 </div>
-        <!-- /.content in card -->
-    </div>
+            </div>
+            <!-- /.content in card -->
+        </div>
 
 
-<script>
-    // JavaScript code for creating the doughnut chart
-    var roomSizesData = @json($data['room_sizes']);
-    var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        <script>
+            // JavaScript code for creating the doughnut chart
+            var roomSizesData = @json($data['room_sizes']);
+            var ctx = document.getElementById('myDoughnutChart').getContext('2d');
 
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['ห้องขนาดเล็ก', 'ห้องขนาดกลาง', 'ห้องขนาดใหญ่'],
-            datasets: [{
-                    label: 'Room Sizes',
-                    data: Object.values(roomSizesData), // Use room size counts from PHP variable
-                    backgroundColor: ['#818FB4', '#435585', '#363062'],
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) ;
-                        }
-                    }
-                }
-            }
-        }
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-    fetch('{{ route("reservations.byMonth") }}')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-
-            const months = [];
-            const countsA = [];
-            const countsR = [];
-
-            // Assuming data contains counts for each month from 1 to 12
-            for (let i = 1; i <= 12; i++) {
-                months.push(i);
-                const countA = data.dataA.find(item => item.month === i)?.count || 0;
-                const countR = data.dataR.find(item => item.month === i)?.count || 0;
-                countsA.push(countA);
-                countsR.push(countR);
-            }
-
-            const ctx = document.getElementById('reservationChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
+            var myDoughnutChart = new Chart(ctx, {
+                type: 'doughnut',
                 data: {
-                    labels: months,
+                    labels: ['ห้องขนาดเล็ก', 'ห้องขนาดกลาง', 'ห้องขนาดใหญ่'],
                     datasets: [{
-                        label: 'อนุมัติการจอง',
-                        data: countsA,
-                        backgroundColor:'rgba(75, 192, 192, 1)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        fill: false
-                    }, {
-                        label: 'ปฏิเสธการจอง',
-                        data: countsR,
-                        backgroundColor: 'rgba(255, 99, 132, 1)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 2,
-                        fill: false
+                        label: 'Room Sizes',
+                        data: Object.values(roomSizesData), // Use room size counts from PHP variable
+                        backgroundColor: ['#818FB4', '#435585', '#363062'],
                     }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
                         legend: {
-                            display: true,
-                            position: 'top'
-                        }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'เดือน'
-                            },
-                            type: 'linear',
-                            min: 0,
-                            max: 12,
-                            stepSize: 1
+                            position: 'top',
                         },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'จำนวนการจอง'
-                            },
-                            min: 0, // Start Y-axis at 0
-                            max: Math.ceil(Math.max(...countsA, ...countsR) / 10) * 10, // Set max value rounded to the nearest 10
-                            ticks: {
-                                stepSize: 10 // Set the step size to 10 for scaling by 10
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2);
+                                }
                             }
                         }
                     }
                 }
             });
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-});
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('{{ route('reservations.byMonth') }}')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
 
-</script>
+                        const months = [];
+                        const countsA = [];
+                        const countsR = [];
 
-@endsection
+                        // Assuming data contains counts for each month from 1 to 12
+                        for (let i = 1; i <= 12; i++) {
+                            months.push(i);
+                            const countA = data.dataA.find(item => item.month === i)?.count || 0;
+                            const countR = data.dataR.find(item => item.month === i)?.count || 0;
+                            countsA.push(countA);
+                            countsR.push(countR);
+                        }
+
+                        const ctx = document.getElementById('reservationChart').getContext('2d');
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: months,
+                                datasets: [{
+                                    label: 'อนุมัติการจอง',
+                                    data: countsA,
+                                    backgroundColor: 'rgba(75, 192, 192, 1)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    borderWidth: 2,
+                                    fill: false
+                                }, {
+                                    label: 'ปฏิเสธการจอง',
+                                    data: countsR,
+                                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    borderWidth: 2,
+                                    fill: false
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        display: true,
+                                        position: 'top'
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'เดือน'
+                                        },
+                                        type: 'linear',
+                                        min: 0,
+                                        max: 12,
+                                        stepSize: 1
+                                    },
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: 'จำนวนการจอง'
+                                        },
+                                        min: 0, // Start Y-axis at 0
+                                        max: Math.ceil(Math.max(...countsA, ...countsR) / 10) *
+                                        10, // Set max value rounded to the nearest 10
+                                        ticks: {
+                                            stepSize: 10 // Set the step size to 10 for scaling by 10
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            });
+        </script>
+
+    @endsection
