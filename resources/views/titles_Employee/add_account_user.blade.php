@@ -3,7 +3,7 @@
 @section('title', 'Add User Account')
 
 @section('content')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="container">
     <div class="row justify-content-center mt-5" style="width: 1200px;">
         <div class="col-md-8">

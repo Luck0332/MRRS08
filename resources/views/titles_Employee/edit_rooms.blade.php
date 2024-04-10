@@ -11,9 +11,9 @@
     {{-- <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
-
-    <div class="container my-5">
-        <div class="row justify-content-center my-5" style="width: 1200px;">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div class="container my-3">
+        <div class="row justify-content-center my-4" style="width: 1200px;">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header" style="background-color: #5E96EB; color:#fff">
@@ -138,12 +138,6 @@
                                 <button type="submit" class="btn btn-info">Submit</button>
                                 <button type="reset" class="btn btn-default float-right">Reset</button>
                             </div>
-                        
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
-                                <a href="{{ route('titles_Employee.edit_rooms', ['rooms' => $rooms]) }}"
-                                    class="btn btn-warning" style="background-color: #d9d9d9;border-color: transparent">{{ __('Reset') }}</a>
-                            </div>
                             
                         </form>
                     </div>
@@ -176,6 +170,15 @@
                 reader.readAsDataURL(file);
             }
         });
+    </script>
+    <script>
+    $(document).ready(function() {
+        // Add click event handler to the close button
+        $('#closeCard').click(function() {
+            // Redirect to the desired route
+            window.location.href = '/Manage_account';
+        });
+    });
     </script>
 
 @endsection
