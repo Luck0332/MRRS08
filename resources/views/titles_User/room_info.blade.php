@@ -11,7 +11,9 @@
 
 
 
-
+    <label for="">{{$room->id}}</label>
+    <label for="">{{$res_startdate}}</label>
+    <label for="">{{$res_enddate}}</label>
     @if ($room)
         {{-- @dd($room); --}}
         <div class="room-name">
@@ -85,7 +87,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('fillInformation', ['id' => $room->id]) }}" class="original-button">จองห้อง</a>
+            <a href="{{ route('fillInformation', ['id' => $room->id, 'start_date' => $res_startdate, 'end_date' => $res_enddate]) }}" class="original-button">จองห้อง</a>
         @else
             <p>ห้องประชุมไม่ถูกพบ</p>
     @endif

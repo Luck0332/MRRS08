@@ -71,24 +71,12 @@ class RoomController extends Controller
         return view('titles_Employee.edit_rooms', ['rooms' => $rooms]);
     }
 
-    public function show($id,$reserv_sd,$reserv_ed)
-    {
-        $room = Room::where('id', $id)->first();
+    public function show(Request $request, $roomId) {
+        $room = Room::where('id',$roomId)->first();
+        $res_startdate = $request->query('res_startdate');
+        $res_enddate = $request->query('res_enddate');
 
-        dd($reserv_sd);
-        // if ($room) {
-        //     $reserv_room->room_id = $room->id;
-        //     $diff_in_days = $reserv_room->res_startdate->diffInDays($reserv_room->res_enddate);
-        //     $reserv_room->res_total = $diff_in_days * $room->ro_price;
-        //     $type_rooom = '0';
-        //     $reserv_room->res_typeroom = $type_rooom;
-        //     $type_day = 'F';
-        //     $reserv_room->res_daytype = $type_day;
-
-        //     // Rest of your code
-        // }
-
-        return view ('titles_User.room_info',['room' => $room]);
+        return view('titles_User.room_info', compact('room','res_startdate','res_enddate'));
     }
 
     public function update_rooms(Request $request, Room $rooms)
