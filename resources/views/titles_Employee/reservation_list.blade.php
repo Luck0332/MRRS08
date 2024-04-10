@@ -21,7 +21,7 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>รหัสการจอง</th>
+                <th>ลำดับ</th>
                 <th>วันที่เข้าใช้</th>
                 <th>ชื่อผู้จอง</th>
                 <th>ชื่อห้อง</th>
@@ -32,14 +32,14 @@
         <tbody>
             @foreach ($reservations as $reservation)
                 <tr>
-                    <td>{{ $reservation->res_serialcode }}</td>
+                    <td>{{ $reservation->id }}</td>
                     <td>{{ $reservation->res_startdate }}</td>
                     {{-- เริ่มต้นด้วยการตรวจสอบว่ามีข้อมูลของการจองนี้หรือไม่ --}}
                     {{-- @if (isset($reserver_information[$reservation->id]))
                 <td>{{ $reserver_information[$reservation->id]->reserver_fname }}</td>
             @else --}}
                     @foreach ($reserver_information as $data)
-                        @if ($data->id == $reservation->resinfo_id && )
+                        @if ($data->id == $reservation->resinfo_id)
                             <td>{{ $data->reserver_fname }} {{ $data->reserver_lname }}</td>
                         @endif
                     @endforeach
@@ -207,7 +207,6 @@
 
 
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>`); // Populate the modal content with the received HTML
                     $('#myModal').modal('show'); // Show the modal
                 },
