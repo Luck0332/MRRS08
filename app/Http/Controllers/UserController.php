@@ -45,8 +45,8 @@ class UserController extends Controller
         } else {
             $rooms = Room::all();
         }
-        
-        
+
+
         return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
     }
     public function ToSuccess()
@@ -76,7 +76,7 @@ class UserController extends Controller
         $reservation->resinfo_id = $res_info->id;
 
         $reservation->save();
-        
+
         return redirect()->route('Reserve_success',);
     }
 
