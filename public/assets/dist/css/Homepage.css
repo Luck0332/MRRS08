@@ -1,41 +1,88 @@
 
 *{
     color:#ffffff;
-    padding: 5px;
 }
-
-h1{
-    font-size: 80px;
-    filter: drop-shadow(3px 3px 3px black);
-}
-
-h2{
-    font-family: 'Inter', sans-serif; /* เปลี่ยน font-family เป็น 'Inter' */
-}
-
 body{
-    background: linear-gradient(to right, #5E96EB, #5E96EB, #FD84F1)
+    background: linear-gradient(to right, #5E96EB, #5E96EB, #FD84F1);
 }
-
-.staff {
-    float: right;
+h1{
+    margin: 53px 0px 42px 0px;
+    font-size: 80px;
+    font-weight: bold;
+    padding-left: 50px;
+    text-shadow: 1px 2px 7px rgba(0,0,0,0.6);
 }
-
-.buttons {
+h2{
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 50px;
+}
+button{
+    width: 280px;
+    height: 36px;
+    color: #5E96EB;
+    background-color: #ffffff;
+    text-align: center;
+    margin-right: 20px;
+    border: #ffffff solid 1px;
+    border-radius: 10px;
+    font-family: sans-serif; /* Or a specific font name */
+    font-size: 16px;
+    box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
+    font-family: 'Inter';
+}
+button:hover{
+    cursor: pointer;
+    transform: scale(1.01);
+}
+.header{
+    margin: 15px 0px 15px 0px;
+    padding: 0px 0px 0px 50px;
     display: flex;
-    margin-top: 20px;
-
+    flex-direction: row;
+    justify-content: space-between;
 }
-
-.buttons .button {
-    display: inline-block;
-    margin: 0 10px;
+#staff{
+    width: 152px !important;
+    height: 36px;
+    background-color: #ffffff ;
+    opacity: 0.75;
+    text-align: center;
+    margin-right: 20px;
+    border: #adadad solid 1px;
+    border-radius: 10px;
+    font-family: sans-serif; /* Or a specific font name */
+    font-size: 16px;
+    font-family: 'Inter';
+    padding: 5px 0px 5px 0px;
+    box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
+    font-family: 'Inter';
 }
+.divider{
 
-.divider {
-    border: none;
-    border-top: 1px solid #ffffff;
-    margin-bottom: 20px;
+    border-top: 2px solid #ffffff;
+    margin: 15px 0px 0px 0px;
 }
-
-
+.button-group{
+    padding-left: 50px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+}
+.deck{
+    position: fixed;
+    width: 2280px;
+    height: 680px;
+    left: 10px;
+    top: 540px;
+    background: #FFFFFF;
+    transform: rotate(-16deg);
+}
+.deck-element{
+    position: fixed;
+    left: 600px;
+    top: 168px;
+}

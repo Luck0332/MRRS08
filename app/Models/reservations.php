@@ -18,16 +18,21 @@ class reservations extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
+        'res_id',
         'res_status',
-        'updated_at',
+        'res_startdate',
         'res_enddate',
         'res_serialcode',
         'res_total',
         'res_typeroom',
         'res_dayType',
+        'room_id',
+        'reserver_id',
+        'resinfo_id',
         'res_cancel',
         'agenda',
+        'room_id',
+        'resinfo_id',
         'created_at',
     ];
 
