@@ -55,6 +55,12 @@
             margin: 0 auto;
         }
         #log-bot{
+            width: 252px;
+            background: rgba(68, 109, 255, 0.616246);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            text-align: center;
+            margin: 0 auto;
             font-family: sans-serif; /* Or a specific font name */
             font-weight: bold;
             color: #fff;
@@ -77,14 +83,14 @@
                         <div class="mb-5">
                             <form action="{{ url('login') }}" method="post">
                         @csrf
-                        <div class="input-group mb-4">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
+                        <div class="input-group mb-4" >
+                            <div class="input-group-append" >
+                                <div class="input-group-text" >
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
-                            <input id="username" type="text"  name="username" @error('username') is-invalid @enderror class="form-control" placeholder="Username">
-                            @error('username')
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required placeholder="Username" >
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -96,16 +102,28 @@
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
-                            <input id="password" type="password" name="password" @error('password') is-invalid @enderror class="form-control" placeholder="Password">
-                            @error('password')
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password">
+                                @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
                         </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="btn-login">
-                            <button type="submit" class="btn" id="log-bot">{{ __('Login') }}</button>
+                        <button type="submit" class="btn" id="log-bot">{{ __('Login') }}</button>
                         </div>
+
+
                     </form>
                         </div>
                     </div>
