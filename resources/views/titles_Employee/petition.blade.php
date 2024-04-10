@@ -41,10 +41,14 @@
                 <tr>
                     <td>{{ $reservation->id }}</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <td>{{ $reservation->updated_at }}</td>
 =======
                     <td>{{ $reservation->updated_at->format('d-m-Y') }}</td>
 >>>>>>> parent of a422c6a (Merge branch 'main' of https://github.com/Luck0332/MRRS08)
+=======
+                    <td>{{ $reservation->updated_at }}</td>
+>>>>>>> parent of 893aba2 (updateStatus)
                     <td>{{ $reservation->res_status }}</td>
                     <td>{{ $reservation->room_id }}</td>
                     <td>{{ $reservation->res_startdate }}</td>
