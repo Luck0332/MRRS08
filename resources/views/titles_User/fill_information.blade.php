@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url('assets/dist/css/fillinformation.css') }}">
 
 
-        {{-- <div id="popup" class="popup">
+   {{-- <div id="popup" class="popup">
         <div class="popup-content">
             <h2>Line ยืนยันตัวตน!</h2>
             <p>โปรดเข้าสู่ระบบไลน์เพื่อยืนยันตัวตน:</p>
