@@ -84,7 +84,7 @@
                             </div>
                         </div>
 
-                        
+
                         <!-- Password and Confirm Password -->
                         <div class="row mb-3 justify-content-between">
                             <div class="col-md-5">
@@ -109,4 +109,16 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+<script>
+    $(document).ready(function() {
+        // Add click event handler to the close button
+        $('#closeCard').click(function() {
+            // Redirect to the desired route
+            window.location.href = '{{url('/Manage_account')}}';
+        });
+    });
+</script>
+>>>>>>> parent of 629be80 (Revert "Merge branch 'main' of https://github.com/Luck0332/MRRS08")
 @endsection
