@@ -3,6 +3,7 @@
 <html>
 
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="assets\dist\img\LOGOMRRS.ico">
     <title>@yield('title')</title>
     <style>
 
