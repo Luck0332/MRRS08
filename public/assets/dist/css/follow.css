@@ -210,4 +210,30 @@ main{
     color: #242424;
 
 }
+.large-button {
+    width: 150px; /* ปรับขนาดตามที่คุณต้องการ /
+    height: 50px; / ปรับขนาดตามที่คุณต้องการ */
+}
+table {
+    margin: auto;
+    border-collapse: collapse;
+}
 
+
+table, th, td {
+    border: none;
+}
+
+td:first-child {
+    text-align: left;
+}
+.large-button {
+    width: 150px; /* ปรับขนาดตามที่คุณต้องการ */
+    height: 50px; /* ปรับขนาดตามที่คุณต้องการ */
+}
+
+.large-button {
+    width: 150px; /* ปรับขนาดตามที่คุณต้องการ */
+    height: 50px; /* ปรับขนาดตามที่คุณต้องการ */
+
+}

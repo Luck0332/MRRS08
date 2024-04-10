@@ -3,26 +3,34 @@
 
 <html>
     <head>
+
         <title>@yield('title')</title>
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/dist/css/sidbar.css') }}">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="https://kit.fontawesome.com/e71f46c45f.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     </head>
     <body>
 
-            <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
         <link rel="stylesheet" href="{{ url('assets/dist/css/sidbar.css') }}">
 
         @section('sidebar')
+
         <aside>
-            <p href="Homepage"> Menu </p>
+            <div class="logo-container justify-content-center align-items-center" >
+                <img src="{{ url('assets\dist\img\LOGOMRRS.png') }}" alt="โลโก้ระบบจองห้องประชุม" style="max-height: 125px;">
+            </div>
+
             <a href="User" class="sidebar-link">
                 <i class="" aria-hidden="true"></i>
                 จองห้อง
@@ -31,6 +39,10 @@
                 <i class="" aria-hidden="true"></i>
                 ติดตามสถานะการจอง
             </a>
+            {{-- <a href="follow" class="sidebar-link">
+                <i class="" aria-hidden="true"></i>
+                ติดตามสถานะการจอง
+            </a> --}}
         </aside>
 
         <script>

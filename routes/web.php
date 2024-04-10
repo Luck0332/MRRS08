@@ -30,13 +30,20 @@ Route::get('/', function () {
 //     return view('Homepage');
 // });
 
-Route::get('/roominfo/{id}/{reserv_room}', [RoomController::class, 'show'])->name('roominfo');;
+Route::get('/roominfo/{id}/{reserv_room}', [RoomController::class, 'show'])->name('roominfo');
+
 
 
 
 
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/fillInformation/{id}/{reserv_room}', [UserController::class,'getInformation'])->name('fillInformation');;
+Route::get('/fillInformation/{id}/{reserv_room}', [UserController::class,'getInformation'])->name('fillInformation');
+
+
+
+Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
+Route::get('/fillInformation', [UserController::class,'getInformation']);
+
 Route::get('/calender', [UserController::class,'getcalender']);
 
 
@@ -75,13 +82,18 @@ Route::get('/Manage_rooms/{rooms}/edit-rooms', [RoomController::class, 'edit_roo
 Route::put('/Manage_rooms/{rooms}/update-rooms', [RoomController::class, 'update_rooms'])->name('titles_Employee.update_rooms');
 Route::delete('/Manage_account/{rooms}/destroy-rooms', [RoomController::class, 'destroy_rooms'])->name('titles_Employee.destroy-rooms');
 
-//route for managing users ไว้เข้าถึงหน้าใน Employee
+
 Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
 Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
 Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
 Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
 Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
+
+
+
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+
 
 
 Route::get('/Petition_detail/{id}',[EmployeeController::class,'getPetitionDetails'])->name('get-details');
@@ -91,6 +103,9 @@ Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->na
 Route::get('/Petition_reject_detail/{id}',[EmployeeController::class,'getPetitionDetailsReject'])->name('get-popup');
 Route::put('/Petition_reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
+
+
+
 
 
 
