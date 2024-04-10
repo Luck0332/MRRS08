@@ -96,7 +96,7 @@
                                     <i class="fas fa-times-circle text-danger"></i>
 
                                     &nbsp;
-                                    <text class = "fas text-danger" style="font-size: 20px;">ไม่ได้รับการอนุมัติ</text>
+                                    <text class = "fas text-danger" style="font-size: 20px;">คำขอจองถูกยกเลิก</text>
 
                                     <br>
                                 @else
