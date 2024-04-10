@@ -35,15 +35,15 @@
             <i class="" aria-hidden="true"></i>
             หน้าหลัก
         </a>
-        <a href="{{url('/Reserve')}}" class="sidebar-link ">
+        {{-- <a href="{{url('/Reserve')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             จองห้อง
-        </a>
+        </a> --}}
         <a href="{{url('/Petition')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             คำร้องขอจอง
         </a>
-        <a href="{{url('/Petition_reject')}}" class="sidebar-link ">
+        <a href="{{url('/reject')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             คำร้องขอยกเลิก
         </a>

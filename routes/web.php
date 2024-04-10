@@ -92,8 +92,8 @@ Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
 
 Route::get('/Petition_reject_detail/{id}',[EmployeeController::class,'getPetitionDetailsReject'])->name('get-popup');
-Route::put('/Petition_reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
-Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
+Route::put('/reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
+Route::get('/reject',[EmployeeController::class,'petition_reject'])->name('pageR');
 
 
 
