@@ -1,9 +1,60 @@
-@extends('layout.Status')
+@extends('layout.User')
 
 @section('title', 'จองห้องประชุม')
 
-@section('reserv')
+@section('content')
+<!DOCTYPE html>
+            <html>
+            <head>
+            <script src="https://kit.fontawesome.com/e71f46c45f.js" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="{{ url('assets/dist/css/reservation.css') }}">
+            </head>
+            <body>  
+                <div class="center">
+                    <div class="content-header">
+                    <i class="fa fa-angle-left" style="font-size:72px; margin-right: 20px;"></i>
+                        <div class="icon-container">
+                            <div class="circle-icon-active">
+                                <i class="fas fa-calendar-days"></i>
+                            </div>
 
+                        </div>
+
+                        <div class="line-between-active"></div>
+
+                        <div class="icon-container">
+                            <div class="circle-icon-active">
+                                <i class="fas fa-file"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="line-between"></div>
+
+                        <div class="icon-container">
+                            <div class="circle-icon-inactive">
+                                <i class="fas fa-pencil"></i>
+                            </div>
+
+                        </div>
+                        <div class="line-between"></div>
+                        <div class="icon-container">
+                            <div class="circle-icon-inactive">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <div class="status1" >จองห้อง</div>
+                        <div class="status2" >รายละเอียดห้องประชุม</div>
+                        <div class="status3" >กรอกข้อมูลการจอง</div>
+                        <div class="status4" >เสร็จสิ้น</div>
+                    </div>
+                    @yield('reserv')
+                </div>
+
+            </body>
+            </html>
     <!-- Include Flatpickr library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -66,7 +117,15 @@
                 <label for="">{{$endDate}}</label> --}}
                 @foreach ($rooms as $key => $room)
                     <a href="{{ route('roominfo', ['roomId' => $room->id, 'res_startdate' => $reserv_room->res_startdate, 'res_enddate' => $reserv_room->res_enddate]) }}"
-                        class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}">
+                        class="boxRoom" id="box{{ $key + 1 }}" data-room-id="{{ $room->id }}"
+                        style="background-image: url('{{ asset('image/' . $room->ro_pic1) }}');
+                        background-size: cover;"
+                        background-position: center;
+                        justify-content: center;
+                        display: flex;
+                        align-items: center;
+                        background-repeat: no-repeat;>
+
                         <!-- Content for each room -->
                         <span class="roominfo" id="statusRoom">
                             <i class="fa-solid fa-earth-americas"></i>
@@ -85,6 +144,7 @@
                         </span>
                     </a>
                 @endforeach
+
 
                 @push('scripts')
                     <script>

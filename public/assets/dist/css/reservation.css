@@ -27,7 +27,9 @@
     height: 5px;
     background-color: #d9d9d9;
 }
-.line-between:active{
+.line-between-active{
+    width: 175px;
+    height: 5px;
     background-color: #8DCDE1;
 }
 

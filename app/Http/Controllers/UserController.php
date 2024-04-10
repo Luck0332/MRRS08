@@ -19,6 +19,7 @@ class UserController extends Controller
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
 
+
         // แยกวันที่และเวลาเริ่มต้นและสิ้นสุด
         $startDateTimeParts = explode(' to ', $startDate);
         $startDate = explode(' ', $startDateTimeParts[0])[0];
@@ -42,6 +43,13 @@ class UserController extends Controller
             $rooms = Room::where('ro_size', $roomSize)->get();
         } else {
             $rooms = Room::all();
+        }
+        
+        if ($request->hasFile('image')) {
+            foreach ($rooms as $room) {
+                $path = $request->file('image')->store('assets/images', 'public');
+                $room->ro_pic1 = $path;
+            }
         }
         return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
     }
