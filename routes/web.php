@@ -43,6 +43,7 @@ Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->na
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
+<<<<<<< HEAD
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('test');
 // Route::get('/get-Petition/{id}',[EmployeeController::class,'getPetition'])->name('get-Petition');
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
@@ -60,6 +61,9 @@ Route::get('/get-petition/{id}',[EmployeeController::class,'getPetition'])->name
 
 
 Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservationDetails'])->name('get-reservation-details');
+=======
+
+>>>>>>> parent of 5dd7787 (popup)
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
 
@@ -81,7 +85,21 @@ Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'up
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 
+<<<<<<< HEAD
 Route::post('/changeDataApprove', [EmployeeController::class, 'petition1'])->name('changeDataApprove');
 Route::post('/changeDataReject', [EmployeeController::class, 'petition2'])->name('changeDataReject');
+=======
+Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject']);
+
+// Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
+
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
+
+
+
+>>>>>>> parent of 5dd7787 (popup)
 
 
