@@ -49,37 +49,51 @@ class UserController extends Controller
 
         return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
     }
-    public function ToSuccess()
+    public function ToSuccess(Request $req)
     {
-        return view('titles_User.reserve_bill');
+        // Get the latest reservation ID directly
+        $latestId = reserver_information::latest()->firstOrFail()->id;
+
+        // Use the latest ID to fetch reservation information
+        $resinfo_id = reserver_information::where('id', $latestId)->firstOrFail();
+        $username = reservations::where('id', $latestId)->firstOrFail();
+        $room = Room::where('id', $username->room_id)->firstOrFail();
+
+        // Access additional data from Request object (if needed)
+        $res_startdate = $req->query('res_startdate');
+        $res_enddate = $req->query('res_enddate');
+
+        return view('titles_User.reserve_bill', compact('username', 'resinfo_id', 'room', 'res_startdate', 'res_enddate'));
     }
 
-    public function StoreInfo(Request $request)
-    {
-        $length = 4;
-        $serialCode = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2);
-        $serialCode .= sprintf("%04d", mt_rand(0, 9999));
 
-        $res_info = new reserver_information();
-        $res_info->reserver_fname = $request->us_name;
-        $res_info->reserver_lname = $request->us_fname;
-        $res_info->reserver_tel = $request->us_tel;
-        $res_info->save();
+        public function StoreInfo(Request $request)
+        {
+            $length = 4;
+            $serialCode = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2);
+            $serialCode .= sprintf("%04d", mt_rand(0, 9999));
 
-        $reservation = new reservations();
-        $reservation->room_id = $request->id;
-        $reservation->res_startdate = $request->start_date;
-        $reservation->res_enddate = $request->end_date;
-        $reservation->res_status = 'W';
-        $reservation->res_serialcode = $serialCode;
-        $reservation->agenda = $request->agenda;
-        $reservation->resinfo_id = $res_info->id;
+            $res_info = new reserver_information();
+            $res_info->reserver_fname = $request->us_name;
+            $res_info->reserver_lname = $request->us_fname;
+            $res_info->reserver_tel = $request->us_tel;
+            $res_info->save();
 
-        $reservation->save();
+            $reservation = new reservations();
+            $reservation->room_id = $request->id;
+            $reservation->res_startdate = $request->start_date;
+            $reservation->res_enddate = $request->end_date;
+            $reservation->res_status = 'W';
+            $reservation->res_serialcode = $serialCode;
+            $reservation->agenda = $request->agenda;
+            $reservation->resinfo_id = $res_info->id;
 
-        return redirect()->route('Reserve_success',);
-    }
+            $reservation->save();
 
+            return redirect()->route('Reserve_success', ['req' => $request, 'id' => $reservation->id]);
+
+
+        }
 
 
 

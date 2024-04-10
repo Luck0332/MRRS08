@@ -68,7 +68,7 @@ Route::get('/User', [UserController::class,'getReserve']);
 Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
 Route::get('/fillInformation/{id}/{start_date}/{end_date}', [UserController::class,'getInformation'])->name('fillInformation');
 Route::post('/Reserve/store', [UserController::class, 'StoreInfo'])->name('reservation.StoreInfo');
-Route::get('/Success', [UserController::class, 'ToSuccess'])->name('Reserve_success');
+Route::get('/Success/{id}', [UserController::class, 'ToSuccess'])->name('Reserve_success');
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');
