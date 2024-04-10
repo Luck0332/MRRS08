@@ -1,6 +1,6 @@
 @extends('layout.Employee')
 
-@section('title', 'คำร้องขอจอง')
+@section('title', 'คำร้องขอยกเลิก')
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -12,15 +12,16 @@
     <div class="flex-container">
         <div>
             <br>
-            <span class="title">คำขอการจอง</span><br>
-            <span class="number"
-                style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{ $tableRowCount }}</span>
+            <span class="title">คำขอยกเลิก</span><br>
+            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{$tableRowCount}}</span>
             <span>รายการ</span>
         </div>
     </div>
 
+
+    <!-- แสดงข้อมูลสถานะ 'R' -->
     <div class="head">
-        <button id="prev">คำขอการจอง</button>
+        <button id="prev">คำขอยกเลิก</button>
     </div>
     <!-- แสดงข้อมูลสถานะ 'W' -->
 
@@ -37,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($reservationsW as $reservation)
+            @foreach ($rejectR as $reservation)
                 <tr>
                     <td>{{ $reservation->id }}</td>
                     <td>{{ $reservation->updated_at }}</td>
@@ -46,13 +47,13 @@
                     <td>{{ $reservation->res_startdate }}</td>
                     <td>
                         <form id="updateStatusForm"
-                            action="{{ route('Petition_statuses.updateW', ['id' => $reservation->id]) }}" method="POST">
+                            action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit" name="newStatus" value="A" onclick="approveStatus()"
+                            <button type="submit" name="newStatus" value="C" onclick="approveStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
                                     style="color: #63E6BE;"></i></button>
-                            <button type="submit" name="newStatus" value="C" onclick="rejectStatus()"
+                            <button type="submit" name="newStatus" value="A" onclick="rejectStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
                                     style="color: #ff1a1a;"></i></button>
                         </form>
@@ -66,8 +67,8 @@
         </tbody>
     </table>
     <div class="card-footer">
-        <ul class="pagination-sm m-0" style="width: 100%">
-            {!! $reservationsW->links('pagination::bootstrap-5') !!}
+        <ul class="pagination-sm m-0">
+            {!! $rejectR->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
     <div class="modal" id="myModal">
@@ -89,9 +90,9 @@
     <script>
         async function openModal(id) {
             console.log(id)
-            const url = "{{ route('get-details', ['id' => 1]) }}";
+            const url = "{{ route('get-popup', ['id' => 1]) }}";
             await $.ajax({
-                url: `/Petition_detail/${id}`, // Update the URL according to your route
+                url: `/Petition_reject_detail/${id}`, // Update the URL according to your route
                 method: 'GET',
                 success: function(data) {
                     console.log(data)
@@ -190,72 +191,16 @@
             });
         }
     </script>
-    <style>
-        .custom-alert {
-            padding: 20px;
-            background-color: #f2f2f2;
-            color: #333;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 200px;
-            text-align: center;
-            /* จัดตำแหน่งข้อความให้อยู่ตรงกลาง */
-            display: flex;
-            /* จัดวางเนื้อหาด้วย Flexbox */
-            align-items: center;
-            /* จัดวางตำแหน่งในแนวตั้งกลาง */
-            justify-content: center;
-            /* จัดวางตำแหน่งในแนวนอนกลาง */
-        }
-
-        .custom-alert h1 {
-            font-size: 24px;
-            /* กำหนดขนาดตัวหนังสือใหญ่ขึ้น */
-            font-weight: bold;
-            /* ทำให้ตัวหนังสือเป็นตัวหนา */
-        }
-
-        .success {
-            font-size: 20px;
-            background-color: #d4edda;
-            color: #155724;
-            border-color: #c3e6cb;
-        }
-
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border-color: #f5c6cb;
-        }
-    </style>
     <script>
         function approveStatus() {
-            var approveAlert = document.createElement('div');
-            approveAlert.textContent = "Approved successfully!";
-            approveAlert.classList.add('custom-alert', 'success');
-            document.body.appendChild(approveAlert);
-            setTimeout(function() {
-                approveAlert.remove();
-            }, 3000);
+            alert("Approved successfully!");
+
         }
 
         function rejectStatus() {
-            var rejectAlert = document.createElement('div');
-            rejectAlert.textContent = "Rejected successfully!";
-            rejectAlert.classList.add('custom-alert', 'error');
-            document.body.appendChild(rejectAlert);
-            setTimeout(function() {
-                rejectAlert.remove();
-            }, 3000);
+            alert("Rejected successfully!");
         }
     </script>
-
-
 
     <script>
         // เลือกตารางโดยใช้ class

@@ -1,4 +1,4 @@
-.container{
+.container {
     background-color: #ffffff; /* Dark background color */
     border-radius: 10px; /* Rounded corners */
     padding: 20px; /* Reduced padding for content */
@@ -8,6 +8,7 @@
     position: relative;
     height: 93vh;
     width: 1060px;
+
 
 }
 
@@ -218,6 +219,7 @@ table {
     border-collapse: collapse;
 }
 
+
 table, th, td {
     border: none;
 }
@@ -229,7 +231,9 @@ td:first-child {
     width: 150px; /* ปรับขนาดตามที่คุณต้องการ */
     height: 50px; /* ปรับขนาดตามที่คุณต้องการ */
 }
+
 .large-button {
     width: 150px; /* ปรับขนาดตามที่คุณต้องการ */
     height: 50px; /* ปรับขนาดตามที่คุณต้องการ */
+
 }

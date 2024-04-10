@@ -30,6 +30,12 @@ class reservations extends Model
         'res_cancel',
         'agenda',
         'created_at',
+        'room_id',
+        'reserver_id',
+        'resinfo_id',
+    
     ];
+
+
 
 }

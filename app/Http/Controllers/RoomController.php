@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\reservations;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +18,7 @@ class RoomController extends Controller
 
     public function manage_rooms()
     {
-        $rooms = Room::orderBy('id')->get();
+        $rooms = Room::orderBy('id','desc')->paginate(10);
         return view('titles_Employee.manage_rooms', ['rooms' => $rooms]);
     }
 
@@ -70,39 +71,43 @@ class RoomController extends Controller
         return view('titles_Employee.edit_rooms', ['rooms' => $rooms]);
     }
 
-    public function show()
-    {
-        $room = Room::all();
+    public function show(Request $request, $roomId) {
+        $room = Room::where('id',$roomId)->first();
+        $res_startdate = $request->query('res_startdate');
+        $res_enddate = $request->query('res_enddate');
 
-        return view ('titles_User.room_info',['Room' => $room]);
-
+        return view('titles_User.room_info', compact('room','res_startdate','res_enddate'));
     }
 
     public function update_rooms(Request $request, Room $rooms)
-    {
-        $data = $request->validate([
-            'room' => 'required',
-            'price'  => 'required',
-            'size_room' => 'required',
-            'capacity' => 'required',
-            'typeroom' => 'required',
-            'status_room' => 'required',
-            'typesplit' => 'required',
-            'notation' => 'required'
-        ]);
-        $rooms->ro_name= $request->room;
-        $rooms->ro_price = $request->price;
-        $rooms->ro_size = $request->size_room;
-        $rooms->ro_capacity = $request->capacity;
-        $rooms->ro_typeroom = $request->typeroom;
-        $rooms->ro_avaliable = $request->status_room;
-        $rooms->ro_cansplit = $request->typesplit;
-        $rooms->ro_description = $request->notation;
-        $rooms->save();
+{
+    // Validate the incoming form data
+    $validatedData = $request->validate([
+        'room' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'size_room' => 'required|string|max:255',
+        'capacity' => 'required|integer',
+        'typeroom' => 'required|boolean',
+        'status_room' => 'required|boolean',
+        'typesplit' => 'required|boolean',
+        'notation' => 'nullable|string|max:255',
+    ]);
+    // Update the room model with validated data
+    $rooms->update([
+        'ro_name' => $validatedData['room'],
+        'ro_price' => $validatedData['price'],
+        'ro_size' => $validatedData['size_room'],
+        'ro_capacity' => $validatedData['capacity'],
+        'ro_typeroom' => $validatedData['typeroom'],
+        'ro_avaliable' => $validatedData['status_room'],
+        'ro_cansplit' => $validatedData['typesplit'],
+        'ro_description' => $validatedData['notation'],
+    ]);
 
+    // Redirect back to the room management page with success message
+    return redirect()->route('titles_Employee.manage_rooms')->with('success', 'แก้ไขข้อมูลห้องสำเร็จ');
+}
 
-        return redirect()->route('titles_Employee.manage_rooms')->with('success', 'แก้ไขข้อมูลห้องสำเร็จ');;
-    }
     public function destroy_rooms(Room $rooms)
     {
         // ลบข้อมูลผู้ใช้ออกจากฐานข้อมูล
