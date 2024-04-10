@@ -85,19 +85,6 @@
                         </span>
                     </a>
                 @endforeach
-
-                @push('scripts')
-                    <script>
-                        document.querySelectorAll('.boxRoom').forEach(box => {
-                            box.addEventListener('click', () => {
-                                const roomId = box.getAttribute('data-room-id');
-                                const path = '{{ route('test', ':id') }}'.replace(':id', roomId);
-                                window.location.href = path;
-                            });
-                        });
-                    </script>
-                @endpush
-
             </div>
 
 
