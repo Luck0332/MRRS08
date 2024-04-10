@@ -36,14 +36,7 @@ Route::get('/roominfo', [RoomController::class, 'show']);
 
 
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
-=======
->>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
+Route::get('/follow', [FollowReserved::class,'search']);
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
@@ -75,28 +68,18 @@ Route::get('/Manage_rooms/{rooms}/edit-rooms', [RoomController::class, 'edit_roo
 Route::put('/Manage_rooms/{rooms}/update-rooms', [RoomController::class, 'update_rooms'])->name('titles_Employee.update_rooms');
 Route::delete('/Manage_account/{rooms}/destroy-rooms', [RoomController::class, 'destroy_rooms'])->name('titles_Employee.destroy-rooms');
 
-// //route for managing users ไว้เข้าถึงหน้าใน Employee
-// Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
-// Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
-// Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
-// Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
-// Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
-// Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
+//route for managing users ไว้เข้าถึงหน้าใน Employee
+Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
+Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
+Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
+Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
+Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
+Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
-<<<<<<< HEAD
-=======
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
-<<<<<<< HEAD
->>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
-=======
->>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
-
+Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
 Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');
 Route::put('/FollowReserved/{id}', [FollowReserved::class, 'updatefollow'])->name('Follow.update');
 Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
-
-
-
-
 
 
