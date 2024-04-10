@@ -24,13 +24,13 @@ aside {
     color: #fff;
     background-color: rgba(255, 255, 255, 0.2);
     display: block;
-    padding: 18px;
-    padding-left: 70px;
+    /* padding: 18px;
+    padding-left: 70px; */
     text-decoration: none;
     -webkit-tap-highlight-color:transparent;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    margin-top: 8px;
+    /* margin-top: 8px; */
   }
 
 
@@ -132,5 +132,8 @@ aside a.active::after {
     padding: 12px;
     padding-left: 70px;
     border-radius: 20px;
+}
+.sidebar-link{
+    margin-top: 100px;
 }
 

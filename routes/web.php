@@ -37,7 +37,10 @@ Route::get('/roominfo', [RoomController::class, 'show']);
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
@@ -77,10 +80,16 @@ Route::delete('/Manage_account/{rooms}/destroy-rooms', [RoomController::class, '
 // Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 // Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
+<<<<<<< HEAD
+=======
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 
 Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');
 Route::put('/FollowReserved/{id}', [FollowReserved::class, 'updatefollow'])->name('Follow.update');
 Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
+
+
 
 
 
