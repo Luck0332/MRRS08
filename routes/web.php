@@ -89,8 +89,6 @@ Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class,
 // Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
-
-
 Route::put('/Petition_reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
 

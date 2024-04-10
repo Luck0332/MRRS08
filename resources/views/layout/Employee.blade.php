@@ -65,7 +65,7 @@
             Accout
         </a>
         <p id="line"></p>
-        <a href="index" id="Logout">
+        <a href="" id="Logout">
             <i class="" aria-hidden="true"></i>
             ออกจากระบบ
         </a>

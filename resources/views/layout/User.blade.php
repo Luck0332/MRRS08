@@ -22,7 +22,9 @@
 
         @section('sidebar')
         <aside>
-            <p href="Homepage"> Menu </p>
+            <div class="logo-container d-flex justify-content-center align-items-center" >
+                <img src="{{ url('assets\dist\img\LOGOMRRS.png') }}" alt="โลโก้ระบบจองห้องประชุม" style="max-height: 125px;">
+            </div>
             <a href="User" class="sidebar-link">
                 <i class="" aria-hidden="true"></i>
                 จองห้อง
