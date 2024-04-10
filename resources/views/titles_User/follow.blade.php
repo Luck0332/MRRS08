@@ -27,7 +27,8 @@
         <div>
             <td>
                 @foreach ($results as $re)
-                    {{ $re->ro_pic1 }}<br>
+                <img src="{{ asset('image/' . $re->ro_pic1) }}" alt="{{ $re->ro_name }}" width="500">
+                    <br>
                     {{ 'รหัสการจอง : ' }}
                     {{ $re->res_serialcode }}<br>
                     {{ 'ห้องประชุม : ' }}

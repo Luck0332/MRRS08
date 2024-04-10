@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MyAuth;
 use App\Http\Controllers\reservationController;
 use App\Http\Controllers\RoomController;
-use App\Models\FollowReserved;
+use App\Http\Controllers\FollowReserved;
 use Illuminate\Support\Facades\Route;
 
 /*
