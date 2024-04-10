@@ -45,14 +45,27 @@ class UserController extends Controller
         } else {
             $rooms = Room::all();
         }
-        
-        
+
+
         return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
     }
-    public function ToSuccess()
-    {
-        return view('titles_User.reserve_bill');
-    }
+    public function ToSuccess(Request $req)
+{
+    // Get the latest reservation ID directly
+    $latestId = reserver_information::latest()->firstOrFail()->id;
+
+    // Use the latest ID to fetch reservation information
+    $resinfo_id = reserver_information::where('id', $latestId)->firstOrFail();
+    $username = reservations::where('id', $latestId)->firstOrFail();
+    $room = Room::where('id', $username->room_id)->firstOrFail();
+
+    // Access additional data from Request object (if needed)
+    $res_startdate = $req->query('res_startdate');
+    $res_enddate = $req->query('res_enddate');
+
+    return view('titles_User.reserve_bill', compact('username', 'resinfo_id', 'room', 'res_startdate', 'res_enddate'));
+}
+
 
     public function StoreInfo(Request $request)
     {
@@ -76,8 +89,10 @@ class UserController extends Controller
         $reservation->resinfo_id = $res_info->id;
 
         $reservation->save();
-        
-        return redirect()->route('Reserve_success',);
+
+        return redirect()->route('Reserve_success', ['req' => $request, 'id' => $reservation->id]);
+
+
     }
 
 
