@@ -19,7 +19,7 @@
             <img src="{{ url('assets\dist\img\LOGOMRRS.png') }}" alt="โลโก้ระบบจองห้องประชุม" style="max-height: 75px;">
         </div>
         <div style="padding: 20px 0px 20px 0px;">
-            <a href="../login">
+            <a href="{{url('/login')}}">
                 <button id="staff">สำหรับเจ้าหน้าที่</button>
             </a>
         </div>
@@ -32,10 +32,10 @@
     <h2>ยินดีต้อนรับเข้าสู่ระบบจองห้องประชุม โปรดเลือกการปฏิบัติงาน <br>
             ที่ท่านต้องการดำเนินการในส่วนถัดไป</h2>
     <div class="button-group">
-        <a href="../User">
+        <a href="{{url('/User')}}">
             <button>จองห้องประชุม</button>
         </a>
-        <a href="../Employee">
+        <a href="{{url('/Employee')}}">
             <button>ติดตามสถานะการจอง</button>
         </a>
     </div>
