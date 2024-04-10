@@ -47,6 +47,8 @@
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: 1fr;
             gap: 10px;
+            justify-content: center;
+            text-align: center;
         }
 
         .less-pop-room {
