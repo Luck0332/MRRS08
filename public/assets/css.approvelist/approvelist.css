@@ -217,3 +217,38 @@ div.card-footer{
 	display: inline-block;
 	margin: 100px auto;
 }
+
+/* ----------------------------------------------------------------------- */
+
+.modal-content{
+    justify-content: center;
+    min-width: 800px;
+    height: 800px;
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-header{
+    background-color: #3b81f2;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+#modal-header{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.modal-title{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+#modal-content{
+     /* background-color: #3b81f2; */
+
+    border-radius: 15px;
+
+}

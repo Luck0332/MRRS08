@@ -9,6 +9,7 @@ use App\Models\approves;
 use App\Http\Controllers\Validator;
 use App\Http\Controllers\UserController;
 use App\Models\reservations;
+use App\Models\reserver_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
@@ -224,5 +225,27 @@ class EmployeeController extends Controller
         $Approve->save();
 
         return redirect()->route('pageR')->with('success', 'Status updated successfully!');
+    }
+    public function getPetitionDetails($id)
+    {
+
+        $data1 = reservations::find($id);
+        $data2 = Room::find($data1->room_id);
+        $data3 = reserver_information::find($data1->resinfo_id);
+
+
+        return response()->json(['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+
+    }
+    public function getPetitionDetailsReject($id)
+    {
+
+        $data1 = reservations::find($id);
+        $data2 = Room::find($data1->room_id);
+        $data3 = reserver_information::find($data1->resinfo_id);
+
+
+        return response()->json(['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+
     }
     }
