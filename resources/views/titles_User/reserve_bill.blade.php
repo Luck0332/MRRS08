@@ -46,7 +46,7 @@
                         <span>รายละเอียดการจอง</span>
                     </div>
                     <ul>
-                        
+
                         <li>ขนาดห้อง:
                             @if ($room->ro_size == 'S')
                                 <td> ห้องขนาดเล็ก </td>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <a href="" class="original-button">เสร็จสิ้น</a>
+        <a href="{{ url('/') }}" class="original-button">เสร็จสิ้น</a>
     </body>
 
 
