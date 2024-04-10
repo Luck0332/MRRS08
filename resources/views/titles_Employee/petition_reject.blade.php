@@ -9,13 +9,13 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <div class="flex-container">
         <div>
+            <br>
             <span class="title">คำขอยกเลิก</span><br>
             <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{$tableRowCount}}</span>
             <span>รายการ</span>
         </div>
     </div>
     <br><br>
-
 
     <!-- แสดงข้อมูลสถานะ 'R' -->
     <div class="head">
@@ -48,10 +48,10 @@
                             action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit" name="newStatus" value="C"
+                            <button type="submit" name="newStatus" value="C" onclick="approveStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
                                     style="color: #63E6BE;"></i></button>
-                            <button type="submit" name="newStatus" value="A"
+                            <button type="submit" name="newStatus" value="A" onclick="rejectStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
                                     style="color: #ff1a1a;"></i></button>
                         </form>
@@ -68,6 +68,16 @@
             {!! $rejectR->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
+    <script>
+        function approveStatus() {
+            alert("Approved successfully!");
+        }
+
+        function rejectStatus() {
+            alert("Rejected successfully!");
+        }
+    </script>
+
     <script>
         // เลือกตารางโดยใช้ class
         var table = document.querySelector('.rwd-table');
