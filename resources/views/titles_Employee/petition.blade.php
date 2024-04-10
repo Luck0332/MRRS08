@@ -9,28 +9,23 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <div class="flex-container">
         <div>
+            <br>
             <span class="title">คำขอการจอง</span><br>
-            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)"></span>
-            <span>รายการ</span>
-        </div>
-        <div>
-            <span class="title">คำขอยกเลิก</span><br>
-            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">4</span>
+            <span class="number"
+                style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{ $tableRowCount }}</span>
             <span>รายการ</span>
         </div>
     </div>
     <br><br>
     <div class="head">
         <button id="prev">คำขอการจอง</button>
-        {{-- <input type="search" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
-        <button type="button" onclick="searchTable()">Search</button> --}}
     </div>
     <!-- แสดงข้อมูลสถานะ 'W' -->
 
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>ลำดับ</th>
+                <th>ไอดี</th>
                 <th>วันที่เข้าใช้</th>
                 <th style="width: 19%">สถานะห้องประชุม</th>
                 <th>เลขห้อง</th>
@@ -49,13 +44,13 @@
                     <td>{{ $reservation->res_typeroom }}</td>
                     <td>
                         <form id="updateStatusForm"
-                            action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
+                            action="{{ route('Petition_statuses.updateW', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit" name="newStatus" value="A"
+                            <button type="submit" name="newStatus" value="A" onclick="approveStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
                                     style="color: #63E6BE;"></i></button>
-                            <button type="submit" name="newStatus" value="C"
+                            <button type="submit" name="newStatus" value="C" onclick="rejectStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
                                     style="color: #ff1a1a;"></i></button>
                         </form>
@@ -72,6 +67,16 @@
             {!! $reservationsW->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
+    <script>
+        function approveStatus() {
+            alert("Approved successfully!");
+        }
+
+        function rejectStatus() {
+            alert("Rejected successfully!");
+        }
+    </script>
+
     <script>
         // เลือกตารางโดยใช้ class
         var table = document.querySelector('.rwd-table');

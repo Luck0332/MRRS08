@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\M_titles;
 use App\Models\Room;
 use App\Models\User;
+use App\Models\approves;
 use App\Http\Controllers\Validator;
 use App\Http\Controllers\UserController;
-use App\Models\approves;
 use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
-
 
 class EmployeeController extends Controller
 {
@@ -43,12 +42,36 @@ class EmployeeController extends Controller
         return view('titles_Employee.reserve_privet');
     }
     public function petition()
-{
-    $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
-    $reservationsR = reservations::where('res_status', 'R')->orderBy("id", "asc")->paginate(2);
-    return view('titles_Employee.petition', compact('reservationsW', 'reservationsR'));
-}
+    {
+        $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
+        $tableRowCount = $reservationsW->total();
+        return view('titles_Employee.petition', compact('reservationsW', 'tableRowCount'));
+        // , 'tableRowCount'
+    }
+    public function petition_reject()
+    {
+        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(2);
+        $tableRowCount = $rejectR->total();
+        return view('titles_Employee.petition_reject', compact('rejectR', 'tableRowCount'));
+    }
 
+    public function reservation_list()
+    {
+        $data['reservations'] =  reservations::all();
+        return view('titles_Employee.reservation_list',$data);
+    }
+
+    public function reservation_cancel(Request $request, $res_serialcode)
+    {
+        // หาข้อมูลการจองด้วย res_serialcode
+        $reservation = reservations::where('res_serialcode', $res_serialcode)->firstOrFail();
+
+        // ทำการอัปเดตสถานะของการจองเป็น 'C' (ยกเลิก)
+        $reservation->res_status = 'C';
+        $reservation->save();
+
+        return redirect()->route('titles_Employee.manage_account')->with('success', 'ยกเลิกการจองเรียบร้อยแล้ว');
+    }
 
 
     // หน้าสถิติการจอง
@@ -159,7 +182,6 @@ class EmployeeController extends Controller
         'roles' => $validatedData['position'],
         'us_password' => Hash::make($validatedData['password']), // Hash the password
     ]);
-    dd($user);
 
     // Redirect back to the user management page with success message
     return redirect()->route('titles_Employee.manage_account')->with('success', 'แก้ไขข้อมูลผู้ใช้สำเร็จ');
@@ -172,14 +194,13 @@ class EmployeeController extends Controller
 
         return redirect(route('titles_Employee.manage_account'))->with('success', 'ลบข้อมูลผู้ใช้สำเร็จ');
     }
-
     public function updatePetitionW(Request $request, $id)
     {
         $request->validate([
             'newStatus' => 'required',
         ]);
         $reservation = reservations::findOrFail($id);
-        $Approve = new approves();
+        $Approve = approves::findOrFail($id);
 
         $reservation->res_status = $request->newStatus;
         $Approve->app_status_reserve = $request->newStatus;
@@ -195,22 +216,13 @@ class EmployeeController extends Controller
             'newStatus' => 'required',
         ]);
         $reservation = reservations::findOrFail($id);
-        $Approve = new approves();
-
+        $Approve = approves::findOrFail($id);
         $reservation->res_status = $request->newStatus;
         $Approve->app_status_reserve = $request->newStatus;
 
         $reservation->save();
         $Approve->save();
 
-        return redirect()->route('pageR
-        ')->with('success', 'Status updated successfully!');
+        return redirect()->route('pageR')->with('success', 'Status updated successfully!');
     }
-    public function petition_reject()
-    {
-        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(2);
-        return view('titles_Employee.petition_reject', compact('rejectR'));
     }
-
-    }
-

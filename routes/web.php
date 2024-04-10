@@ -42,6 +42,7 @@ Route::get('/Success', [UserController::class, 'ToSuccess'])->name('Reserve_succ
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
 Route::get('/calender', [UserController::class,'getcalender']);
 
+Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->name('submit.form');
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
@@ -57,8 +58,6 @@ Route::get('/Accout',[EmployeeController::class,'accout']);
 Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
-
-
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');
@@ -76,11 +75,17 @@ Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit
 Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
-Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
 
-Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');
-Route::put('/FollowReserved/{id}', [FollowReserved::class, 'updatefollow'])->name('Follow.update');
-Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
+
+
+Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
+Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
+
+
+Route::put('/Petition_reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
+Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
+
+
 
 
 
