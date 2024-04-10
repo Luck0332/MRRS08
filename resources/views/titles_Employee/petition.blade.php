@@ -40,7 +40,7 @@
             @foreach ($reservationsW as $reservation)
                 <tr>
                     <td>{{ $reservation->id }}</td>
-                    <td>{{ $reservation->updated_at }}</td>
+                    <td>{{ $reservation->updated_at->format('d-m-Y')  }}</td>
                     <td>{{ $reservation->res_status }}</td>
                     <td>{{ $reservation->room_id }}</td>
                     <td>{{ $reservation->res_startdate }}</td>
