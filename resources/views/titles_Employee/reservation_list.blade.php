@@ -33,8 +33,7 @@
             @foreach ($reservations as $reservation)
                 <tr>
                     <td>{{ $reservation->id }}</td>
-                    <td>{{ \Carbon\Carbon::parse($reservation->created_at)->format('d-m-Y') }}</td>
-
+                    <td>{{ $reservation->res_startdate }}</td>
                     {{-- เริ่มต้นด้วยการตรวจสอบว่ามีข้อมูลของการจองนี้หรือไม่ --}}
                     {{-- @if (isset($reserver_information[$reservation->id]))
                 <td>{{ $reserver_information[$reservation->id]->reserver_fname }}</td>
