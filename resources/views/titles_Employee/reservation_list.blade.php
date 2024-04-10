@@ -41,12 +41,13 @@
                 <td>N/A</td>
             @endif
             {{-- เริ่มต้นด้วยการตรวจสอบว่ามีข้อมูลของห้องที่ตรงกับการจองนี้หรือไม่ --}}
-            @if(isset($room[$reservation->id]))
-                <td>{{ $room[$reservation->id]->ro_name }}</td>
+            @if(isset( $reservation->room_id))
+                {{-- <td>{{ $room[$reservation->id]->ro_name }}</td> --}}
+                <td> IF-{{ $reservation->room_id}}</td>
             @else
                 <td>N/A</td>
             @endif
-
+                
             @if ($reservation->res_typeroom == 1)
                 <td>สาธารณะ</td>
             @else
