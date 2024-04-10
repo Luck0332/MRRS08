@@ -132,7 +132,7 @@ tr:nth-child(even) {
     padding: 60px 40px;
 }
 
-div.card-footer{
+div.card-Fer{
     background-color: #3b81f2 !important;
     padding: 8px 8px;
     border-bottom-left-radius: 20px;
@@ -227,7 +227,7 @@ div.card-footer{
 .modal-content{
     justify-content: center;
     min-width: 800px;
-    height: 615px;
+    height: 650px;
 
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -256,9 +256,7 @@ div.card-footer{
     border-radius: 15px;
 
 }
-/* #btn-color{
-    color: #ffffff
-} */
+
 
 .btn-close{
     color: #ffffff;
@@ -271,6 +269,7 @@ div.card-footer{
 /* หรือคุณสามารถกำหนดเฉพาะส่วนของตัวอักษรที่ต้องการ */
 .modal-body h2 {
     background-color: #3b81f2;
+    color: white;
     border-radius: 20px;
     max-width: 180px;
     height: 40px;

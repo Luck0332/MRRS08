@@ -42,7 +42,7 @@
                     <td>{{ $reservation->room_id }}</td>
                     <td>{{ $reservation->created_at }}</td>
                     <td>{{ $reservation->res_status }}</td>
-                    <td>{{ $reservation->res_serialcode}}</td>
+                    <td>{{ $reservation->res_serialcode }}</td>
                     <td>{{ $reservation->res_startdate }}</td>
                     <td>
                         <form id="updateStatusForm"
@@ -89,7 +89,7 @@
     <script>
         async function openModal(id) {
             console.log(id)
-            const url = "{{ route('get-details', ['id' => 1]) }}";
+            const url = "{{ route('get-details', ['id' => 1]) }}"
             await $.ajax({
                 url: `/Petition_detail/${id}`, // Update the URL according to your route
                 method: 'GET',
@@ -176,9 +176,6 @@
                             </ul>
                         </div>
                     </div>
-
-
-
                     <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>`); // Populate the modal content with the received HTML
