@@ -27,10 +27,10 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>ไอดี</th>
+                <th>#</th>
                 <th>วันที่จอง</th>
                 <th>สถานะห้องประชุม</th>
-                <th>เลขห้อง</th>
+                <th>รหัสการจอง</th>
                 <th>วันที่จะเข้าใช้</th>
                 <th>รอดำเนินการ</th>
                 <th></th>
@@ -39,14 +39,10 @@
         <tbody>
             @foreach ($reservationsW as $reservation)
                 <tr>
-                    <td>{{ $reservation->id }}</td>
-<<<<<<< HEAD
-                    <td>{{ $reservation->updated_at }}</td>
-=======
-                    <td>{{ $reservation->updated_at->format('d-m-Y') }}</td>
->>>>>>> parent of a422c6a (Merge branch 'main' of https://github.com/Luck0332/MRRS08)
-                    <td>{{ $reservation->res_status }}</td>
                     <td>{{ $reservation->room_id }}</td>
+                    <td>{{ $reservation->created_at }}</td>
+                    <td>{{ $reservation->res_status }}</td>
+                    <td>{{ $reservation->res_serialcode }}</td>
                     <td>{{ $reservation->res_startdate }}</td>
                     <td>
                         <form id="updateStatusForm"
@@ -93,7 +89,7 @@
     <script>
         async function openModal(id) {
             console.log(id)
-            const url = "{{ route('get-details', ['id' => 1]) }}";
+            const url = "{{ route('get-details', ['id' => 1]) }}"
             await $.ajax({
                 url: `/Petition_detail/${id}`, // Update the URL according to your route
                 method: 'GET',
@@ -180,9 +176,6 @@
                             </ul>
                         </div>
                     </div>
-
-
-
                     <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>`); // Populate the modal content with the received HTML

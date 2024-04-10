@@ -252,27 +252,34 @@ class EmployeeController extends Controller
             'newStatus' => 'required',
         ]);
         $reservation = reservations::findOrFail($id);
-        $Approve = approves::findOrFail($id);
         $reservation->res_status = $request->newStatus;
-        $Approve->app_status_reserve = $request->newStatus;
 
-        $reservation->save();
+
+        $Approve = new approves();
+        $Approve->res_id = $reservation->resinfo_id;
+
+        $Approve->app_status = $request->newStatus;
+        $Approve->ro_id = $reservation->room_id;
+
         $Approve->save();
+        $reservation->save();
 
         return redirect()->route('pageW')->with('success', 'Status updated successfully!');
     }
     public function updatePetitionR(Request $request, $id)
     {
-        $request->validate([
-            'newStatus' => 'required',
-        ]);
         $reservation = reservations::findOrFail($id);
-        $Approve = approves::findOrFail($id);
         $reservation->res_status = $request->newStatus;
-        $Approve->app_status_reserve = $request->newStatus;
 
-        $reservation->save();
+
+        $Approve = new approves();
+        $Approve->res_id = $reservation->resinfo_id;
+
+        $Approve->app_status = $request->newStatus;
+        $Approve->ro_id = $reservation->room_id;
+
         $Approve->save();
+        $reservation->save();
 
         return redirect()->route('pageR')->with('success', 'Status updated successfully!');
     }
