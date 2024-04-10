@@ -18,6 +18,7 @@
         </div>
     </div>
 
+
     <!-- แสดงข้อมูลสถานะ 'R' -->
     <div class="head">
         <button id="prev">คำขอยกเลิก</button>
@@ -28,10 +29,10 @@
         <thead>
             <tr>
                 <th>ไอดี</th>
-                <th>วันที่เข้าใช้</th>
+                <th>วันที่จอง</th>
                 <th>สถานะห้องประชุม</th>
                 <th>เลขห้อง</th>
-                <th>ประเภทของห้อง</th>
+                <th>วันที่จะเข้าใช้</th>
                 <th>รอดำเนินการ</th>
                 <th></th>
             </tr>
@@ -42,8 +43,8 @@
                     <td>{{ $reservation->id }}</td>
                     <td>{{ $reservation->updated_at }}</td>
                     <td>{{ $reservation->res_status }}</td>
-                    <td>{{ $reservation->res_serialcode }}</td>
-                    <td>{{ $reservation->res_typeroom }}</td>
+                    <td>{{ $reservation->room_id }}</td>
+                    <td>{{ $reservation->res_startdate }}</td>
                     <td>
                         <form id="updateStatusForm"
                             action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
