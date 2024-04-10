@@ -20,6 +20,8 @@ class FollowReserved extends Controller
             ->where('res_serialcode', $search)
             ->get();
 
+
+
         return view('titles_User.follow', ['results' => $results]);
     }
      public function updatefollow(Request $request, $id)

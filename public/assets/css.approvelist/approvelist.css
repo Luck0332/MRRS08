@@ -217,3 +217,153 @@ div.card-footer{
 	display: inline-block;
 	margin: 100px auto;
 }
+
+/* ----------------------------------------------------------------------- */
+
+.head{
+    margin-top: 60px;
+}
+
+.modal-content{
+    justify-content: center;
+    min-width: 800px;
+    height: 615px;
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-header{
+    background-color: #3b81f2;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+#modal-header{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.modal-title{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+#modal-content{
+     /* background-color: #3b81f2; */
+
+    border-radius: 15px;
+
+}
+/* #btn-color{
+    color: #ffffff
+} */
+
+.btn-close{
+    color: #ffffff;
+}
+
+.modal-body {
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับเนื้อหาใน modal-body เป็น 16px */
+}
+
+/* หรือคุณสามารถกำหนดเฉพาะส่วนของตัวอักษรที่ต้องการ */
+.modal-body h2 {
+    background-color: #3b81f2;
+    border-radius: 20px;
+    max-width: 180px;
+    height: 40px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center; /* Align text vertically */
+    justify-content: center; /* Align text horizontally */
+}
+
+
+
+
+/* หรือถ้าคุณต้องการให้ขนาดตัวอักษรของบางส่วนเป็นพิเศษ */
+.modal-body tr {
+    padding: 50px;
+    font-size: 18px; /* กำหนดขนาดตัวอักษรสำหรับ tr เป็น 18px */
+}
+
+.custom-icon:hover .fas {
+    color: #333; /* เปลี่ยนสีไอคอนเป็นเทาเข้มเมื่อเมาส์ชี้ไปที่นั้น */
+  }
+
+#modal-header {
+    background-color: #3b81f2;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+#text{
+    width: 200px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: i;
+}
+
+
+.modal-body {
+    padding: 20px;
+}
+
+.details-section {
+    margin-bottom: 30px;
+}
+
+.details-section h2 {
+    justify-self: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.details-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.details-section ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Style for room description list */
+.details-section ul ul {
+    margin-top: 5px;
+    font-size: 16px;
+
+    margin-left: 20px;
+}
+
+/* Style for room type */
+.details-section ul li.room-type {
+    font-weight: bold;
+}
+
+.details-section li {
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+    color: #666;
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.value {
+    display: inline-block;
+    flex: 1;
+}
+/* Add more styles as needed */

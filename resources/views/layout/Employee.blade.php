@@ -31,41 +31,41 @@
         <div class="logo-container d-flex justify-content-center align-items-center" >
             <img src="{{ url('assets\dist\img\LOGOMRRS.png') }}" alt="โลโก้ระบบจองห้องประชุม" style="max-height: 125px;">
         </div>
-        <a href="Employee" class="sidebar-link  ">
+        <a href="{{url('/Employee')}}" class="sidebar-link  ">
             <i class="" aria-hidden="true"></i>
             หน้าหลัก
         </a>
-        <a href="Reserve" class="sidebar-link ">
+        <a href="{{url('/Reserve')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             จองห้อง
         </a>
-        <a href="Petition" class="sidebar-link ">
+        <a href="{{url('/Petition')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             คำร้องขอจอง
         </a>
-        <a href="Petition_reject" class="sidebar-link ">
+        <a href="{{url('/Petition_reject')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             คำร้องขอยกเลิก
         </a>
-        <a href="Reservation_list" class="sidebar-link ">
+        <a href="{{url('/Reservation_list')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             รายการจองห้อง
         </a>
-        <a href="Manage_account" class="sidebar-link ">
+        <a href="{{url('/Manage_account')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             จัดการบัญชี
         </a>
-        <a href="Manage_rooms" class="sidebar-link ">
+        <a href="{{url('/Manage_rooms')}}" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             จัดการห้องประชุม
         </a>
 
-        <a href="Accout" id="Accout">
+        <a  id="Accout">
             <i class="" aria-hidden="true"></i>
             Accout
         </a>
         <p id="line"></p>
-        <a href="Homepage" id="Logout">
+        <a href="{{url('/')}}" id="Logout">
             <i class="" aria-hidden="true"></i>
             ออกจากระบบ
         </a>

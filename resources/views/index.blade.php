@@ -35,7 +35,7 @@
         <a href="{{url('/User')}}">
             <button>จองห้องประชุม</button>
         </a>
-        <a href="{{url('/Employee')}}">
+        <a href="{{url('/follow')}}">
             <button>ติดตามสถานะการจอง</button>
         </a>
     </div>

@@ -22,12 +22,14 @@
 
         @section('sidebar')
         <aside>
-            <p href="Homepage"> Menu </p>
-            <a href="User" class="sidebar-link">
+            <div class="logo-container d-flex justify-content-center align-items-center" >
+                <img src="{{ url('assets\dist\img\LOGOMRRS.png') }}" alt="โลโก้ระบบจองห้องประชุม" style="max-height: 125px;">
+            </div>
+            <a href="{{url('/User')}}" class="sidebar-link">
                 <i class="" aria-hidden="true"></i>
                 จองห้อง
             </a>
-            <a href="follow" class="sidebar-link">
+            <a href="{{url('/follow')}}" class="sidebar-link">
                 <i class="" aria-hidden="true"></i>
                 ติดตามสถานะการจอง
             </a>

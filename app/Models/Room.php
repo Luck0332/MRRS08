@@ -29,7 +29,7 @@ class Room extends Authenticatable
         'ro_subroomB',
         'ro_statusroomA',
         'ro_statusroomB',
-        'ro_pic1',
+        'ro_pic1'
     ];
 
     /**
