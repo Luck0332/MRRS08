@@ -51,7 +51,7 @@ class UserController extends Controller
     }
     public function ToSuccess()
     {
-        return view('titles_User.Reserve_success');
+        return view('titles_User.reserve_bill');
     }
 
     public function StoreInfo(Request $request)
@@ -76,7 +76,8 @@ class UserController extends Controller
         $reservation->resinfo_id = $res_info->id;
 
         $reservation->save();
-        return redirect()->route('Reserve_success');
+        
+        return redirect()->route('Reserve_success',);
     }
 
 
