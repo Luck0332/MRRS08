@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <a href="" class="original-button">เสร็จสิ้น</a>
+        <a href="{{url('/')}}" class="original-button">เสร็จสิ้น</a>
     </body>
 
 
