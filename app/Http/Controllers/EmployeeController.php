@@ -49,7 +49,14 @@ class EmployeeController extends Controller
                 'L' => $largeRoomCount,
             ]
         ];
-        return view('titles_Employee.mainpage' , compact('data'));
+        $roomStatistics = DB::table('rooms')
+        ->leftJoin('reservations', 'rooms.id', '=', 'reservations.room_id')
+        ->select('rooms.id', 'rooms.ro_name', DB::raw('COUNT(reservations.id) as reservation_count'))
+        ->groupBy('rooms.id', 'rooms.ro_name')
+        ->orderByDesc('reservation_count')
+        ->limit(3)
+        ->get();
+        return view('titles_Employee.mainpage' , compact('data','roomStatistics'));
     }
 
     public function reserve()
