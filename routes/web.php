@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FollowReserved;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MyAuth;
 use App\Http\Controllers\reservationController;
@@ -35,9 +36,12 @@ Route::get('/roominfo/{id}/{reserv_room}', [RoomController::class, 'show'])->nam
 
 
 
-Route::get('/follow', [UserController::class,'getFollow']);
+Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');
+Route::put('/FollowReserved/{id}', [FollowReserved::class, 'updatefollow'])->name('Follow.update');
+Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
 Route::get('/fillInformation/{id}/{reserv_room}', [UserController::class,'getInformation'])->name('fillInformation');;
 Route::get('/calender', [UserController::class,'getcalender']);
+
 
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
