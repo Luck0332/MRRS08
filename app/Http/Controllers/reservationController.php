@@ -18,11 +18,8 @@ class reservationController extends Controller
         $statuscheck = 'A';
         $room = Room::all();
         $reservation = reservations::all();
-
-
-
         $reservations = reservations::where('res_status', $statuscheck)->orderBy("id", "asc")->paginate(5);
-        
+
         // return view('titles_Employee.reservation_list',['reservations' => $reservations, 'data' => $data, 'data2'=>$data2, 'data3'=>$data3]);
         return view('titles_Employee.reservation_list', compact('reserver_information', 'room', 'reservations'));
         // dd($room);

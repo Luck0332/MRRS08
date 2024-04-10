@@ -21,7 +21,7 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>ลำดับ</th>
+                <th>รหัสการจอง</th>
                 <th>วันที่เข้าใช้</th>
                 <th>ชื่อผู้จอง</th>
                 <th>ชื่อห้อง</th>
@@ -32,14 +32,14 @@
         <tbody>
             @foreach ($reservations as $reservation)
                 <tr>
-                    <td>{{ $reservation->id }}</td>
+                    <td>{{ $reservation->res_serialcode }}</td>
                     <td>{{ $reservation->res_startdate }}</td>
                     {{-- เริ่มต้นด้วยการตรวจสอบว่ามีข้อมูลของการจองนี้หรือไม่ --}}
                     {{-- @if (isset($reserver_information[$reservation->id]))
                 <td>{{ $reserver_information[$reservation->id]->reserver_fname }}</td>
             @else --}}
                     @foreach ($reserver_information as $data)
-                        @if ($data->id == $reservation->resinfo_id)
+                        @if ($data->id == $reservation->resinfo_id && )
                             <td>{{ $data->reserver_fname }} {{ $data->reserver_lname }}</td>
                         @endif
                     @endforeach
