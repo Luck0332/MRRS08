@@ -44,7 +44,7 @@ Route::get('/calender', [UserController::class,'getcalender']);
 
 
 
-Route::get('/Employee',[EmployeeController::class,'mainpage']);
+Route::get('/Employee',[EmployeeController::class,'mainpage'])->middleware('auth');
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
 
 
