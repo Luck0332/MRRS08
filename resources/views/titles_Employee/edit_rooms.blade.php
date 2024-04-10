@@ -130,7 +130,7 @@
                                 <button type="submit" class="btn btn-info">Submit</button>
                                 <button type="reset" class="btn btn-default float-right">Reset</button>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
         // Add click event handler to the close button
         $('#closeCard').click(function() {
             // Redirect to the desired route
-            window.location.href = '/Manage_account';
+            window.location.href = '{{url('/Manage_room')}}';
         });
     });
     </script>

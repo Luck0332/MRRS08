@@ -126,7 +126,7 @@
         // Add click event handler to the close button
         $('#closeCard').click(function() {
             // Redirect to the desired route
-            window.location.href = '/Manage_account';
+            window.location.href = '{{url('/Manage_account')}}';
         });
     });
 </script>

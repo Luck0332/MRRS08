@@ -32,7 +32,7 @@
                     <form action="{{ route('titles_Employee.store_rooms') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('post')
-                        
+
 
                         <div class="mb-3">
                             <label for="room" class="form-label">{{ __('ห้องประชุม') }}</label>
@@ -103,7 +103,7 @@
                                     <input type="radio" id="unavailable" name="status_room" value="0" />
                                     <label for="unavailable">ปรับปรุง</label>
                                 </div>
-                            </div>    
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="typesplit">สามารถแบ่งห้องได้</label>
@@ -178,7 +178,7 @@
         // Add click event handler to the close button
         $('#closeCard').click(function() {
             // Redirect to the desired route
-            window.location.href = '/Manage_account';
+            window.location.href = '{{url('/Manage_room')}}';
         });
     });
     </script>
