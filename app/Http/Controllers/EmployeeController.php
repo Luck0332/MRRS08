@@ -34,7 +34,7 @@ class EmployeeController extends Controller
 
     public function mainpage()
     {
-        
+
         $smallRoomCount = Room::where('ro_size', 'S')->count();
         $mediumRoomCount = Room::where('ro_size', 'M')->count();
         $largeRoomCount = Room::where('ro_size', 'L')->count();
@@ -49,6 +49,10 @@ class EmployeeController extends Controller
                 'L' => $largeRoomCount,
             ]
         ];
+
+
+
+
         return view('titles_Employee.mainpage' , compact('data'));
     }
 
@@ -129,7 +133,7 @@ class EmployeeController extends Controller
         'dataR' => $dataR
         ]);
     }
-    
+
 
     public function accout()
     {
