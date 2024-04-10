@@ -12,20 +12,26 @@ use Illuminate\Http\Request;
 
 class reservationController extends Controller
 {
+    // public function reservation_list()
+    // {
+    //     $reserver_information = reserver_information::all();
+    //     $statuscheck = 'A';
+    //     $room = Room::all();
+    //     $reservation = reservations::all();
+
+    //     $reservations = reservations::where('res_status', $statuscheck)->orderBy("id", "desc")->paginate(5);
     public function reservation_list()
     {
-        $reserver_information = reserver_information::all();
-        $statuscheck = 'A';
-        $room = Room::all();
         $reservation = reservations::all();
+        $reserver_information = reserver_information::find('id',$reservation->resinfo_id);
+        $statuscheck = 'A';
+        $room = Room::find('id',$reservation->room_id);
 
 
+        $reservations = reservations::where('res_status', $statuscheck)->orderBy("id", "desc")->paginate(5);
 
-        $reservations = reservations::where('res_status', $statuscheck)->orderBy("id", "asc")->paginate(5);
-        
         // return view('titles_Employee.reservation_list',['reservations' => $reservations, 'data' => $data, 'data2'=>$data2, 'data3'=>$data3]);
         return view('titles_Employee.reservation_list', compact('reserver_information', 'room', 'reservations'));
-        // dd($room);
         // $reservation = reservations::where('res_status')->orderBy("id", "desc")->paginate(5);
         // return view('titles_Employee.reservation_list',['reservations' => $reservation]);
         //$data['reservations'] = reservations::all()->paginate(5);
@@ -80,50 +86,24 @@ class reservationController extends Controller
         $data2 = Room::find($data1->room_id);
         $data3 = reserver_information::find($data1->resinfo_id);
 
+        /* $results = reservations::where('id', '=', "$id")
 
-        return response()->json(['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
 
-    }
-  /* $results = reservations::where('id', '=', "$id")
+
+
             ->join('reserver_information', 'reservations.resinfo_id', '=', 'reserver_information.id')
             ->join('rooms', 'reservations.room_id', '=', 'rooms.id')
             ->get(); */
 
+    // public function getReservationDetails($id)
         // // ดึงข้อมูลผู้จองและข้อมูลอื่นๆ ที่เกี่ยวข้อง
         /* return view('titles_Employee.reservation_list', ['data3' => $data3,'data2' => $data2,'data1' => $data1])->render(); */
+
+        return response()->json(['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+
+    }
+}
 
     // public function reserver_information()
     // {
     //     $reserver_information = reserver_information::all();
-    //     return view('titles_Employee.reservation_list',compact('reserver_information'));
-    // }
-
-    // public function store_user(Request $request)
-    // {
-    //     // ทำการตรวจสอบและบันทึกข้อมูล
-    //     $data = $request->validate([
-    //         'first_name' => 'required',
-    //         'last_name'  => 'required',
-    //         'email' => 'required',
-    //         'mobile' => 'required',
-    //         'username' => 'required',
-    //         'position' => 'required',
-    //         'password' => 'required'
-    //     ]);
-
-    //     $newUser = new User;
-    //     $newUser->us_fname = $request->first_name;
-    //     $newUser->us_lname = $request->last_name;
-    //     $newUser->us_email = $request->email;
-    //     $newUser->us_tel = $request->mobile;
-    //     $newUser->us_name = $request->username;
-    //     $newUser->roles = $request->position;
-    //     $newUser->us_password = bcrypt($request->password);
-    //     $newUser->save();
-
-    //     return redirect()->route('titles_Employee.store');
-    // }
-
-
-
-}
