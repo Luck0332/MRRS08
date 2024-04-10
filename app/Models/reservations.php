@@ -32,4 +32,6 @@ class reservations extends Model
         'created_at',
     ];
 
+
+    
 }
