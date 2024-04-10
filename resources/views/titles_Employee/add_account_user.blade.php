@@ -85,7 +85,7 @@
                             </div>
                         </div>
 
-                        
+
                         <!-- Password and Confirm Password -->
                         <div class="row mb-3 justify-content-between">
                             <div class="col-md-5">
@@ -115,7 +115,7 @@
         // Add click event handler to the close button
         $('#closeCard').click(function() {
             // Redirect to the desired route
-            window.location.href = '/Manage_account';
+            window.location.href = '{{url('/Manage_account')}}';
         });
     });
 </script>
