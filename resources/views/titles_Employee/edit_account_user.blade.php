@@ -12,13 +12,14 @@
     {{-- <link rel="stylesaheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <div class="container " >
         <div class="row justify-content-center my-5" style="width: 1200px;">
             <div class="col-md-8 ">
-                <div class="card ">
-                    <div class="card-header" style="background-color: #5E96EB; color:#fff">{{ __('Edit User Account') }}</div>
+                <div class="card " >
+                    <div class="card-header" style="background-color: #5E96EB; color:#fff">{{ __('Edit User Account') }}
+                    <i class="fa-solid fa-xmark" id="closeCard" style="position: absolute ;    right: 10px; font-size: 24px" ></i></div>
 
                     <div class="card-body ">
                         <form method="POST" action="{{ route('titles_Employee.update_user', ['user' => $user]) }}">
@@ -87,7 +88,7 @@
 
                                 <div class="col-md-5">
                                     <label for="password" class="form-label">{{ __('Password') }}</label>
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="กรอกรหัสผ่าน 8 หลักขึ้นไป">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -119,4 +120,14 @@
             </div>
         </div>
     </div>
+
+<script>
+    $(document).ready(function() {
+        // Add click event handler to the close button
+        $('#closeCard').click(function() {
+            // Redirect to the desired route
+            window.location.href = '/Manage_account';
+        });
+    });
+</script>
 @endsection

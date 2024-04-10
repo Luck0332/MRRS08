@@ -47,15 +47,19 @@ Route::get('/Reserve',[EmployeeController::class,'reserve']);
 Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservationDetails'])->name('get-reservation-details');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
-Route::get('/Statistics',[EmployeeController::class,'statistics'])->name('titles_Employee.manage_account');
+Route::get('/Statistics',[EmployeeController::class,'statistics']);
 
 Route::get('/Manage_account',[EmployeeController::class,'manage_account']);
 Route::get('/Manage_rooms',[EmployeeController::class,'manage_rooms']);
-Route::get('/Accout',[EmployeeController::class,'accout']);
+Route::get('/Accout', [EmployeeController::class, 'accout'])->name('account');
+
 
 Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
+Route::get('reservations/byMonth', [EmployeeController::class, 'getReservationsByMonth'])->name('reservations.byMonth');
+
+
 
 Route::get('/User', [UserController::class,'getReserve']);
 Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
@@ -70,12 +74,12 @@ Route::put('/Manage_rooms/{rooms}/update-rooms', [RoomController::class, 'update
 Route::delete('/Manage_account/{rooms}/destroy-rooms', [RoomController::class, 'destroy_rooms'])->name('titles_Employee.destroy-rooms');
 
 //route for managing users ไว้เข้าถึงหน้าใน Employee
-// Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
-// Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
-// Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
-// Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
-// Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
-// Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
+Route::get('/Manage_account',[EmployeeController::class,'manage_account'])->name('titles_Employee.manage_account');
+Route::get('/Manage_account/add-user', [EmployeeController::class, 'create_user'])->name('titles_Employee.add_account_user');
+Route::post('/Manage_account', [EmployeeController::class, 'store_user'])->name('titles_Employee.store');
+Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit_user'])->name('titles_Employee.edit_user');
+Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
+Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 // Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');

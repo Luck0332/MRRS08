@@ -26,8 +26,11 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 @section('sidebar')
+
     <aside>
-        <p href="Homepage"> Menu </p>
+        <div class="logo-container d-flex justify-content-center align-items-center" >
+            <img src="{{ url('assets\dist\img\LOGOMRRS.png') }}" alt="โลโก้ระบบจองห้องประชุม" style="max-height: 125px;">
+        </div>
         <a href="Employee" class="sidebar-link  ">
             <i class="" aria-hidden="true"></i>
             หน้าหลัก
@@ -47,10 +50,6 @@
         <a href="Reservation_list" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>
             รายการจองห้อง
-        </a>
-        <a href="Statistics" class="sidebar-link ">
-            <i class="" aria-hidden="true"></i>
-            สถิติการจอง
         </a>
         <a href="Manage_account" class="sidebar-link ">
             <i class="" aria-hidden="true"></i>

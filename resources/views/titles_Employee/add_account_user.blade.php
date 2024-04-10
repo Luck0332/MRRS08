@@ -3,12 +3,13 @@
 @section('title', 'Add User Account')
 
 @section('content')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="container">
     <div class="row justify-content-center mt-5" style="width: 1200px;">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">{{ __('Add User Account') }}</div>
-
+                <div class="card-header bg-primary text-white">{{ __('Add User Account') }}
+                <i class="fa-solid fa-xmark" id="closeCard" style="position: absolute ;    right: 10px; font-size: 24px;" ></i></div>
                 <div class="card-body" >
                     <form method="POST" action="{{ route('titles_Employee.store') }}">
                         @csrf
@@ -48,7 +49,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label for="mobile" class="form-label">{{ __('Mobile Number') }}</label>
-                                <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required>
+                                <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required >
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -84,11 +85,12 @@
                             </div>
                         </div>
 
+                        
                         <!-- Password and Confirm Password -->
                         <div class="row mb-3 justify-content-between">
                             <div class="col-md-5">
                                 <label for="password" class="form-label">{{ __('Password') }}</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="กรอกรหัสผ่าน 8 หลักขึ้นไป">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -97,7 +99,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label for="confirm_password" class="form-label">{{ __('Confirm Password') }}</label>
-                                <input id="confirm_password" type="password" class="form-control" name="confirm_password" required>
+                                <input id="confirm_password" type="password" class="form-control" name="confirm_password" required placeholder="ยืนยันรหัสผ่าน">
                             </div>
                         </div>
 
@@ -108,4 +110,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        // Add click event handler to the close button
+        $('#closeCard').click(function() {
+            // Redirect to the desired route
+            window.location.href = '/Manage_account';
+        });
+    });
+</script>
 @endsection
