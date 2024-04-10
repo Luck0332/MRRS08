@@ -38,7 +38,10 @@ Route::get('/roominfo', [RoomController::class, 'show']);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 =======
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
@@ -83,6 +86,9 @@ Route::delete('/Manage_account/{rooms}/destroy-rooms', [RoomController::class, '
 <<<<<<< HEAD
 =======
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+<<<<<<< HEAD
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
+=======
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 
 Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');

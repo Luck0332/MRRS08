@@ -219,12 +219,18 @@ table {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 table, th, td {
     border: none;
 }
 
 td:first-child {
     text-align: left;
+=======
+.large-button {
+    width: 150px; /* ปรับขนาดตามที่คุณต้องการ */
+    height: 50px; /* ปรับขนาดตามที่คุณต้องการ */
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 =======
 .large-button {
     width: 150px; /* ปรับขนาดตามที่คุณต้องการ */

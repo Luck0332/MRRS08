@@ -14,7 +14,10 @@ class FollowReserved extends Controller
     {
         $search = $request->input('search');
 <<<<<<< HEAD
+<<<<<<< HEAD
         $room = Room::all();
+=======
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 =======
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 
@@ -25,9 +28,13 @@ class FollowReserved extends Controller
             ->get();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 
             return view('titles_User.follow', compact('results', 'room'));
+=======
+        return view('titles_User.follow', ['results' => $results]);
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 =======
         return view('titles_User.follow', ['results' => $results]);
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95

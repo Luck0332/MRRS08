@@ -21,6 +21,9 @@
                     <label for="text" class="absolute left-2 top-6 pt-1 pl-3 text-gray-500"></label>
                     <button id="detail" type="submit" class="fa-solid fa-magnifying-glass ml-2"
                         style="text-decoration: none;"></button>
+<<<<<<< HEAD
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
+=======
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
                     <div class="databox">
                     </div>
@@ -32,6 +35,7 @@
         <div>
             <td>
                 @foreach ($results as $re)
+<<<<<<< HEAD
 <<<<<<< HEAD
                 {{-- <img src="{{ asset('image/' . $re->ro_pic1) }}" alt="{{ $re->ro_name }}" width="200"> --}}
 
@@ -145,6 +149,34 @@
                             style="color: #FF0000;">
 
 
+=======
+                <div>
+                    {{ $re->ro_pic1 }}<br>
+                </div>
+                <div class="large">
+                    {{ 'รหัสการจอง : ' }}
+                    {{ $re->res_serialcode }}<br>
+                    {{ 'ห้องประชุม : ' }}
+                    {{ $re->ro_name }}<br>
+                    {{ 'ชื่อผู้จอง : ' }}
+                    {{ $re->reserver_fname}}
+                    {{ $re->reserver_lname}}<br>
+                    {{ 'วันที่จอง : ' }}
+                    {{ $re->res_startdate }}<br>
+                    {{ 'วันสิ้นสุดการจอง : ' }}
+                    {{ $re->res_enddate }}<br>
+                </div>
+                <div class="large">
+                    @if ($re->res_status == 'W')
+                        <i class="fa-solid fa-clock-rotate-left">รออนุมัติ</i>
+                        <br>
+                        <br>
+                        <br>
+                        <button type="button" onclick="deleteUser()" class="btn btn-danger transparent-btn"
+                            style="color: #FF0000;">
+
+
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
                             <form id="updateStatusForm"
                                 action="{{ route('Follow.update', ['id' => $re->id]) }}" method="POST">
                                 @csrf
@@ -165,6 +197,9 @@
                     <br>
                 </div>
 
+<<<<<<< HEAD
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
+=======
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
 
                     <script>
@@ -184,7 +219,10 @@
                                         text: "Your file has been deleted.",
                                         icon: "success"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
                                         <form id="updateStatusForm"
                                     action="{{ route('Follow.update', ['id' => $re->id]) }}"
                                     method="POST">
@@ -194,13 +232,19 @@
                                         style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
                                             style="color: #63E6BE;"></i></button>
                                 </form>
+<<<<<<< HEAD
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
+=======
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
                                     });
                                 }
                             });
                         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
                         function deleteUser2() {
                             Swal.fire({
                                 title: "ต้องการยกเลิกการจอง ? ",
@@ -220,6 +264,9 @@
                                 }
                             });
                         }
+<<<<<<< HEAD
+>>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
+=======
 >>>>>>> 10706a9decf0b4637c386b9066240088b1c19f95
                     </script>
                 @endforeach
