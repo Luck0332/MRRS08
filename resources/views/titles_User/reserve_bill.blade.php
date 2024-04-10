@@ -13,10 +13,10 @@
     <body>
         <div class="head-row">
             <div class="room-name">
-                <span>ห้องประชุม {{ $room->ro_name }}</span>
+                {{-- <span>ห้องประชุม {{ $room->ro_name }}</span> --}}
             </div>
             <div class="room-name">
-                <span>รหัสติดตามการจอง : {{ $username->res_serialcode }}</span>
+                {{-- <span>รหัสติดตามการจอง : {{ $username->res_serialcode }}</span> --}}
             </div>
         </div>
 
@@ -33,9 +33,9 @@
                         <span>รายละเอียดผู้จอง</span>
                     </div>
                     <ul>
-                        <li>ชื่อ: {{ $resinfo_id->reserver_fname }} {{ $resinfo_id->reserver_lname }}</li>
+                        {{-- <li>ชื่อ: {{ $resinfo_id->reserver_fname }} {{ $resinfo_id->reserver_lname }}</li>
                         <li>ID Line: {{ $resinfo_id->us_lineid }}</li>
-                        <li>เบอร์โทรศัพท์: {{ $resinfo_id->reserver_tel }}</li>
+                        <li>เบอร์โทรศัพท์: {{ $resinfo_id->reserver_tel }}</li> --}}
                     </ul>
                 </span>
             </div>
@@ -48,23 +48,23 @@
                     <ul>
                         {{-- {{-- <li>วันที่: {{ $reservation->date }}</li> --}}
                         <li>ขนาดห้อง:
-                            @if ($room->ro_size == 'S')
+                            {{-- @if ($room->ro_size == 'S')
                                 <td> ห้องขนาดเล็ก </td>
                             @elseif ($room->ro_size == 'M')
                                 <td> ห้องขนาดกลาง </td>
                             @else
                                 <td> ห้องขนาดใหญ่
-                            @endif
+                            @endif --}}
                         </li>
                         <li>ประเภทห้องประชุม:
-                            @if ($room->ro_typeroom)
+                            {{-- @if ($room->ro_typeroom)
                                 <td> ห้องประชุมทั่วไป
                                 @else
                                 <td> ห้องประชุมส่วนบุคคล
-                            @endif
+                            @endif --}}
                         </li>
                         <li>ระยะเวลา:
-                            {{
+                            {{-- {{
                                 \Carbon\Carbon::parse($username->res_startdate)->locale('th')
                                 ->isoFormat('DD MMM ', 'numeric')
                             }}
@@ -72,11 +72,11 @@
                             {{
                                 \Carbon\Carbon::parse($username->res_enddate)->locale('th')
                                 ->isoFormat('DD MMM YYYY', 'numeric')
-                            }}
+                            }} --}}
                         </li>
 
                         <li>ค่าใช้จ่าย: <tr>
-                                <td>{{ $room->ro_price }}
+                                {{-- <td>{{ $room->ro_price }} --}}
                             </tr>
                             /วัน</li>
                     </ul>

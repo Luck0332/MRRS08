@@ -60,10 +60,12 @@ Route::post('/login' , [MyAuth::class,'login_process']);
 Route::get('reservations/byMonth', [EmployeeController::class, 'getReservationsByMonth'])->name('reservations.byMonth');
 
 
-
+Route::get('/roominfo/{roomId}', [RoomController::class, 'show'])->name('roominfo');
 Route::get('/User', [UserController::class,'getReserve']);
 Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
-Route::post('/submid_reservation' , [UserController::class, 'submidreservation'])->name('submit_reservation.form');
+Route::get('/fillInformation/{id}/{start_date}/{end_date}', [UserController::class,'getInformation'])->name('fillInformation');
+Route::post('/Reserve/store', [UserController::class, 'StoreInfo'])->name('reservation.StoreInfo');
+Route::get('/Success', [UserController::class, 'ToSuccess'])->name('Reserve_success');
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');
@@ -82,11 +84,11 @@ Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'up
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
 
-// Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+Route::get('/Petition_detail/{id}',[EmployeeController::class,'getPetitionDetails'])->name('get-details');
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
 
-
+Route::get('/Petition_reject_detail/{id}',[EmployeeController::class,'getPetitionDetailsReject'])->name('get-popup');
 Route::put('/Petition_reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
 
