@@ -6,10 +6,9 @@ th {
     color: white;
     font-size: 20px;
     font-weight: bold;
-
     text-align: center;
     width: 250px;
-    height: 40px;
+    height: 60px;
 }
 
 td {
@@ -21,9 +20,11 @@ td {
 
 }
 .flex-container>div {
+    justify-content: center; /* จัดข้อความตรงกลางทางนอน */
+  align-items: center;
     background-color: #f1f1f1;
-    width: 200px;
-    height: 100px;
+    width: 250px;
+    height:160px;
     margin: 5px;
     text-align: center;
     line-height: 40px;
@@ -53,6 +54,9 @@ input {
     display: block;
 }
 
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 .rwd-table {
     min-width: 10px;
     width: 100%;
@@ -61,14 +65,13 @@ input {
     overflow: hidden;
     border-collapse: collapse;
     text-align: center;
-
 }
 
 #prev {
     font-weight: bold;
     font-size: 20px;
     color: white;
-    padding: 15px 20px;
+    padding: 25px 25px;
     border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -79,44 +82,11 @@ input {
     font-weight: bold;
     font-size: 20px;
     color: white;
-    padding: 15px 20px;
+    padding: 25px 25px;
     border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: #3b81f2;
-}
-#prev:focus,
-#next:focus {
-    background-color: #3b81f2;
-    color: white;
-    border-collapse: collapse;
-}
-
-#popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-30%, -100%);
-    z-index: 10;
-    width: 300px;
-    height: 200px;
-    background-color: #f1f1f1;
-    color: black;
-    visibility: hidden;
-}
-
-#popup.show {
-    visibility: visible;
-}
-
-#close-popup {
-    margin-left: 250px;
-    margin-top: 400px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    color: black;
 }
 
 .bar {
@@ -161,3 +131,239 @@ input {
     background-color: #3b81f2 !important;
     padding: 60px 40px;
 }
+
+div.card-footer{
+    background-color: #3b81f2 !important;
+    padding: 8px 8px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.p.small.text-muted{
+    color: #3b81f2;
+}
+
+.modal-confirm {
+	color: #636363;
+	width: 325px;
+	font-size: 14px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+}
+.modal-confirm .modal-header {
+	border-bottom: none;
+	position: relative;
+}
+.modal-confirm h4 {
+	text-align: center;
+	font-size: 26px;
+	margin: 30px 0 -15px;
+}
+.modal-confirm .form-control, .modal-confirm .btn {
+	min-height: 40px;
+	border-radius: 3px;
+}
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}
+.modal-confirm .modal-footer {
+	border: none;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 13px;
+}
+.modal-confirm .icon-box {
+	color: #fff;
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: -70px;
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+	z-index: 9;
+	background: #82ce34;
+	padding: 15px;
+	text-align: center;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.modal-confirm .icon-box i {
+	font-size: 58px;
+	position: relative;
+	top: 3px;
+}
+.modal-confirm.modal-dialog {
+	margin-top: 80px;
+}
+.modal-confirm .btn {
+	color: #fff;
+	border-radius: 4px;
+	background: #82ce34;
+	text-decoration: none;
+	transition: all 0.4s;
+	line-height: normal;
+	border: none;
+}
+.modal-confirm .btn:hover, .modal-confirm .btn:focus {
+	background: #6fb32b;
+	outline: none;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
+}
+
+/* ----------------------------------------------------------------------- */
+
+.head{
+    margin-top: 60px;
+}
+
+.modal-content{
+    justify-content: center;
+    min-width: 800px;
+    height: 615px;
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-header{
+    background-color: #3b81f2;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+#modal-header{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.modal-title{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+#modal-content{
+     /* background-color: #3b81f2; */
+
+    border-radius: 15px;
+
+}
+/* #btn-color{
+    color: #ffffff
+} */
+
+.btn-close{
+    color: #ffffff;
+}
+
+.modal-body {
+    font-size: 20px; /* กำหนดขนาดตัวอักษรสำหรับเนื้อหาใน modal-body เป็น 16px */
+}
+
+/* หรือคุณสามารถกำหนดเฉพาะส่วนของตัวอักษรที่ต้องการ */
+.modal-body h2 {
+    background-color: #3b81f2;
+    border-radius: 20px;
+    max-width: 180px;
+    height: 40px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center; /* Align text vertically */
+    justify-content: center; /* Align text horizontally */
+}
+
+
+
+
+/* หรือถ้าคุณต้องการให้ขนาดตัวอักษรของบางส่วนเป็นพิเศษ */
+.modal-body tr {
+    padding: 50px;
+    font-size: 18px; /* กำหนดขนาดตัวอักษรสำหรับ tr เป็น 18px */
+}
+
+.custom-icon:hover .fas {
+    color: #333; /* เปลี่ยนสีไอคอนเป็นเทาเข้มเมื่อเมาส์ชี้ไปที่นั้น */
+  }
+
+#modal-header {
+    background-color: #3b81f2;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+#text{
+    width: 200px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: i;
+}
+
+
+.modal-body {
+    padding: 20px;
+}
+
+.details-section {
+    margin-bottom: 30px;
+}
+
+.details-section h2 {
+    justify-self: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.details-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.details-section ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Style for room description list */
+.details-section ul ul {
+    margin-top: 5px;
+    font-size: 16px;
+
+    margin-left: 20px;
+}
+
+/* Style for room type */
+.details-section ul li.room-type {
+    font-weight: bold;
+}
+
+.details-section li {
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+    color: #666;
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.value {
+    display: inline-block;
+    flex: 1;
+}
+/* Add more styles as needed */

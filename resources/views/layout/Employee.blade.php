@@ -21,9 +21,8 @@
     <link rel="stylesheet" href="{{ url('assets/dist/css/sidbar.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://kit.fontawesome.com/e71f46c45f.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 @section('sidebar')
 
@@ -60,38 +59,38 @@
             จัดการห้องประชุม
         </a>
 
-        <a href="Accout" id="Accout">
-            <i class="" aria-hidden="true"></i>
-            Accout
-        </a>
-        <p id="line"></p>
-        <a href="Homepage" id="Logout">
-            <i class="" aria-hidden="true"></i>
-            ออกจากระบบ
-        </a>
-    </aside>
-    <script>
-        const activeLinks = document.querySelectorAll('.sidebar-link ,[href*="' + window.location.pathname + '"]');
+            <a href="Accout" id="Accout">
+                <i class="" aria-hidden="true"></i>
+                Accout
+            </a>
+            <p id="line"></p>
+            <a href="Homepage" id="Logout">
+                <i class="" aria-hidden="true"></i>
+                ออกจากระบบ
+            </a>
+        </aside>
+        <script>
+            const activeLinks = document.querySelectorAll('.sidebar-link ,[href*="' + window.location.pathname + '"]');
 
-        // วนลูปผ่าน element ทั้งหมด
-        for (const activeLink of activeLinks) {
-            if (activeLink.href.includes(window.location.pathname)) {
-                // ลบ element ออกจาก sidebar
-                activeLink.classList.add('active');
+            // วนลูปผ่าน element ทั้งหมด
+            for (const activeLink of activeLinks) {
+                if (activeLink.href.includes(window.location.pathname)) {
+                    // ลบ element ออกจาก sidebar
+                    activeLink.classList.add('active');
 
-            } else {
-                activeLink.classList.remove('active');
+                } else {
+                    activeLink.classList.remove('active');
+                }
             }
-        }
-    </script>
+        </script>
 
-    <div class="container ">
-        @yield('content')
-    </div>
-</body>
+        <div class="container ">
+            @yield('content')
+        </div>
+    </body>
 
-<style>
+    <style>
 
-</style>
+    </style>
 
-</html>
+    </html>

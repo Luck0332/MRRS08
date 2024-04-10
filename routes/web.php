@@ -23,47 +23,36 @@ Route::get('/', function () {
 });
 
 Route::get('/Test', function () {
-    return view('homepage');
+    return view('Homepage');
 });
 
 Route::get('/Homepage',function(){
     return view('Homepage');
 });
 
-Route::get('/roominfo/{id}/{reserv_room}', [RoomController::class, 'show'])->name('roominfo');;
+Route::get('/roominfo', [RoomController::class, 'show']);
 
-
-
-
+Route::get('/User', [UserController::class,'getReserve']);
 Route::get('/follow', [UserController::class,'getFollow']);
-Route::get('/fillInformation/{id}/{reserv_room}', [UserController::class,'getInformation'])->name('fillInformation');;
+Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
+Route::get('/fillInformation', [UserController::class,'getInformation']);
 Route::get('/calender', [UserController::class,'getcalender']);
 
+Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->name('submit.form');
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
 Route::get('/Reserve',[EmployeeController::class,'reserve']);
 
-
-Route::get('/get-reservation-details/{id}',[reservationController::class,'getReservationDetails'])->name('get-reservation-details');
 Route::get('/Reservation_list',[reservationController::class,'reservation_list'])->name('show_reservation_list');
 Route::put('/Reservation_list/{id}', [reservationController::class, 'updateReservation_Cancel'])->name('reservation_list_Cancel');
 Route::get('/Statistics',[EmployeeController::class,'statistics']);
-
 Route::get('/Manage_account',[EmployeeController::class,'manage_account']);
 Route::get('/Manage_rooms',[EmployeeController::class,'manage_rooms']);
-Route::get('/Accout', [EmployeeController::class, 'accout'])->name('account');
-
+Route::get('/Accout',[EmployeeController::class,'accout']);
 
 Route::get('/login' , [MyAuth::class,'login_view']);
 Route::get('/logout' , [MyAuth::class,'logout_prrocess']);
 Route::post('/login' , [MyAuth::class,'login_process']);
-Route::get('reservations/byMonth', [EmployeeController::class, 'getReservationsByMonth'])->name('reservations.byMonth');
-
-
-
-Route::get('/User', [UserController::class,'getReserve']);
-Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.form');
-Route::post('/submid_reservation' , [UserController::class, 'submidreservation'])->name('submit_reservation.form');
 
 //route for managing rooms
 Route::get('/Manage_rooms',[RoomController::class,'manage_rooms'])->name('titles_Employee.manage_rooms');
@@ -81,15 +70,16 @@ Route::get('/Manage_account/{user}/edit-user', [EmployeeController::class, 'edit
 Route::put('/Manage_account/{user}/update-user', [EmployeeController::class, 'update_user'])->name('titles_Employee.update_user');
 Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class, 'destroy_user'])->name('titles_Employee.destroy-user');
 
-// Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetition'])->name('Petition_statuses.update');
+
+Route::get('/Petition_detail/{id}',[EmployeeController::class,'getPetitionDetails'])->name('get-details');
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
-Route::get('/Petition_reject',[EmployeeController::class,'petition_reject']);
-
-// Route::get('/Petition', [EmployeeController::class, 'petitionR'])->name('changeDataApprove');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
-Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 
+Route::get('/Petition_reject_detail/{id}',[EmployeeController::class,'getPetitionDetailsReject'])->name('get-popup');
+Route::put('/Petition_reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
+
+
 
 
 
