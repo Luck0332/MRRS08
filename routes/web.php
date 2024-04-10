@@ -37,11 +37,6 @@ Route::post('/submit-form',[UserController::class, 'Submission'])->name('submit.
 Route::get('/fillInformation/{id}/{start_date}/{end_date}', [UserController::class,'getInformation'])->name('fillInformation');
 Route::post('/Reserve/store', [UserController::class, 'StoreInfo'])->name('reservation.StoreInfo');
 Route::get('/Success', [UserController::class, 'ToSuccess'])->name('Reserve_success');
-
-
-Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
-Route::get('/calender', [UserController::class,'getcalender']);
-
 Route::post('/submit-form', [UserController::class, 'handleFormSubmission'])->name('submit.form');
 
 Route::get('/Employee',[EmployeeController::class,'mainpage']);
@@ -77,15 +72,19 @@ Route::delete('/Manage_account/{user}/destroy-user', [EmployeeController::class,
 
 
 
-
 Route::get('/Petition',[EmployeeController::class,'petition'])->name('pageW');
 Route::put('/Petition/{id}', [EmployeeController::class, 'updatePetitionW'])->name('Petition_statuses.updateW');
-
 
 Route::put('/Petition_reject/{id}', [EmployeeController::class, 'updatePetitionR'])->name('Petition_statuses.updateR');
 Route::get('/Petition_reject',[EmployeeController::class,'petition_reject'])->name('pageR');
 
 
+Route::get('/follow', [FollowReserved::class,'search'])->name('follow.main');
+Route::put('/FollowReserved/{id}', [FollowReserved::class, 'updatefollow'])->name('Follow.update');
+Route::post('/FollowReserved',[FollowReserved::class, 'search'])->name('search.Reserved');
 
 
 
+
+// Route::get('/getsearch/{date}', [UserController::class, 'getSearch'])->name('getsearch');
+// Route::get('/calender', [UserController::class,'getcalender']);
