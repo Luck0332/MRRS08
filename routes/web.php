@@ -18,17 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/Test', function () {
-    return view('homepage');
-});
-
-Route::get('/Homepage',function(){
-    return view('Homepage');
-});
+// Route::get('/Homepage',function(){
+//     return view('Homepage');
+// });
 
 Route::get('/roominfo/{id}/{reserv_room}', [RoomController::class, 'show'])->name('roominfo');;
 
