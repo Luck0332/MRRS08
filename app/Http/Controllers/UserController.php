@@ -51,7 +51,7 @@ class UserController extends Controller
 
     public function StoreInfo(Request $request)
     {
-        $length = 4; 
+        $length = 4;
         $serialCode = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2);
         $serialCode .= sprintf("%04d", mt_rand(0, 9999));
 
@@ -82,7 +82,7 @@ class UserController extends Controller
 
     public function getReserve()
     {
-        return view('titles_User.reserve_room');
+        return view('titles_User.Reserve_room');
     }
 
     public function getFollow()
