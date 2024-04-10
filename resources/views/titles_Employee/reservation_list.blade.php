@@ -150,12 +150,12 @@
                                     <span class="label">วันที่จอง :</span>
                                     <span class="value">${reservations.res_startdate}</span>
                                 </li>
-                                
+
                                 <li>
                                     <span class="label">วาระการประชุม : </span>
                                     <span class="value">${reservations.agenda}</span>
                                 </li>
-                            
+
                             </ul>
                         </div>
                     </div>
@@ -167,17 +167,17 @@
                             <ul>
                                 <li>
                                 <span class="label">ชื่อห้อง : </span>
-                                <span class="value">${room.ro_name}</span>    
+                                <span class="value">${room.ro_name}</span>
                                 </li>
 
                                 <li>
                                 <span class="label">ประเภทห้อง :  </span>
-                                <span class="value">${roomType}</span>   
+                                <span class="value">${roomType}</span>
                                 </li>
 
                                 <li>
                                 <span class="label">รายละเอียด :  </span>
-                                <span class="value">${roomDescriptionHTML} </span>   
+                                <span class="value">${roomDescriptionHTML} </span>
                                 </li>
 
                             </ul>

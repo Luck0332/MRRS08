@@ -12,12 +12,21 @@ use Illuminate\Http\Request;
 
 class reservationController extends Controller
 {
+    // public function reservation_list()
+    // {
+    //     $reserver_information = reserver_information::all();
+    //     $statuscheck = 'A';
+    //     $room = Room::all();
+    //     $reservation = reservations::all();
+
+    //     $reservations = reservations::where('res_status', $statuscheck)->orderBy("id", "desc")->paginate(5);
     public function reservation_list()
     {
-        $reserver_information = reserver_information::all();
-        $statuscheck = 'A';
-        $room = Room::all();
         $reservation = reservations::all();
+        $reserver_information = reserver_information::find('id',$reservation->resinfo_id);
+        $statuscheck = 'A';
+        $room = Room::find('id',$reservation->room_id);
+
 
         $reservations = reservations::where('res_status', $statuscheck)->orderBy("id", "desc")->paginate(5);
 
