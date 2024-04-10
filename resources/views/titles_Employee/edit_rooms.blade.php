@@ -18,6 +18,7 @@
                 <div class="card">
                     <div class="card-header" style="background-color: #5E96EB; color:#fff">
                         {{ __('Edit Room') }}
+                        <i class="fa-solid fa-xmark" id="closeCard" style="position: absolute ;    right: 10px; font-size: 24px" ></i></div>
                     </div>
 
                     <div class="card-body">

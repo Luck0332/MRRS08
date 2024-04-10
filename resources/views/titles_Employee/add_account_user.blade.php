@@ -3,12 +3,13 @@
 @section('title', 'Add User Account')
 
 @section('content')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="container">
     <div class="row justify-content-center mt-5" style="width: 1200px;">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">{{ __('Add User Account') }}</div>
-
+                <div class="card-header bg-primary text-white">{{ __('Add User Account') }}
+                <i class="fa-solid fa-xmark" id="closeCard" style="position: absolute ;    right: 10px; font-size: 24px;" ></i></div>
                 <div class="card-body" >
                     <form method="POST" action="{{ route('titles_Employee.store') }}">
                         @csrf
@@ -109,4 +110,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        // Add click event handler to the close button
+        $('#closeCard').click(function() {
+            // Redirect to the desired route
+            window.location.href = '/Manage_account';
+        });
+    });
+</script>
 @endsection
