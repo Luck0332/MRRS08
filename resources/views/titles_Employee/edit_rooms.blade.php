@@ -126,14 +126,6 @@
                                     </span>
                                 @enderror
                             </div>
-                                                {{-- code up load filr image here --}}
-                            <div class="form-group">
-                                <label for="image">อัปโหลดรูปภาพ (สูงสุด 3 รูป)</label>
-                                <input type="file" class="form-control" id="image" name="image" accept="image/*" multiple>
-                                <small id="imageHelp" class="form-text text-muted">เลือกรูปภาพได้สูงสุด 3 รูป</small>
-                                <!-- แสดงรูปภาพที่เลือก -->
-                                <div id="imagePreview" class="mt-2"></div>
-                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-info">Submit</button>
                                 <button type="reset" class="btn btn-default float-right">Reset</button>
