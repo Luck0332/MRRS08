@@ -10,6 +10,7 @@ use App\Models\reserver_information;
 use App\Models\resinfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -48,13 +49,14 @@ class UserController extends Controller
         
         return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
     }
-    public function ToSuccess(){
+    public function ToSuccess()
+    {
         return view('titles_User.Reserve_success');
     }
 
     public function StoreInfo(Request $request)
     {
-        $length = 4; 
+        $length = 4;
         $serialCode = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2);
         $serialCode .= sprintf("%04d", mt_rand(0, 9999));
 
@@ -71,16 +73,13 @@ class UserController extends Controller
         $reservation->res_status = 'W';
         $reservation->res_serialcode = $serialCode;
         $reservation->agenda = $request->agenda;
-
-        //$reservation->us_name = $request->us_name;
-        //$reservation->us_fname = $request->us_fname;
-        //$reservation->us_tel = $request->us_tel;
-        //$reservation->agenda = $request->agenda;
+        $reservation->resinfo_id = $res_info->id;
 
         $reservation->save();
-
         return redirect()->route('Reserve_success');
     }
+
+
 
 
     public function getReserve()

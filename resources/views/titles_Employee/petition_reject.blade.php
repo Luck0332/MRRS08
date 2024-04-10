@@ -1,6 +1,6 @@
 @extends('layout.Employee')
 
-@section('title', 'คำร้องขอจอง')
+@section('title', 'คำร้องขอยกเลิก')
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -10,15 +10,16 @@
     <div class="flex-container">
         <div>
             <br>
-            <span class="title">คำขอการจอง</span><br>
-            <span class="number"
-                style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{ $tableRowCount }}</span>
+            <span class="title">คำขอยกเลิก</span><br>
+            <span class="number" style="font-size:40px;font-weight: bold; color:rgb(18, 18, 124)">{{$tableRowCount}}</span>
             <span>รายการ</span>
         </div>
     </div>
     <br><br>
+
+    <!-- แสดงข้อมูลสถานะ 'R' -->
     <div class="head">
-        <button id="prev">คำขอการจอง</button>
+        <button id="prev">คำขอยกเลิก</button>
     </div>
     <!-- แสดงข้อมูลสถานะ 'W' -->
 
@@ -27,7 +28,7 @@
             <tr>
                 <th>ไอดี</th>
                 <th>วันที่เข้าใช้</th>
-                <th style="width: 19%">สถานะห้องประชุม</th>
+                <th>สถานะห้องประชุม</th>
                 <th>เลขห้อง</th>
                 <th>ประเภทของห้อง</th>
                 <th>รอดำเนินการ</th>
@@ -35,7 +36,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($reservationsW as $reservation)
+            @foreach ($rejectR as $reservation)
                 <tr>
                     <td>{{ $reservation->id }}</td>
                     <td>{{ $reservation->updated_at }}</td>
@@ -44,13 +45,13 @@
                     <td>{{ $reservation->res_typeroom }}</td>
                     <td>
                         <form id="updateStatusForm"
-                            action="{{ route('Petition_statuses.updateW', ['id' => $reservation->id]) }}" method="POST">
+                            action="{{ route('Petition_statuses.updateR', ['id' => $reservation->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button type="submit" name="newStatus" value="A" onclick="approveStatus()"
+                            <button type="submit" name="newStatus" value="C" onclick="approveStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-check-circle fa-lg"
                                     style="color: #63E6BE;"></i></button>
-                            <button type="submit" name="newStatus" value="C" onclick="rejectStatus()"
+                            <button type="submit" name="newStatus" value="A" onclick="rejectStatus()"
                                 style="border: none; background-color: white;"><i class="fas fa-times-circle fa-lg"
                                     style="color: #ff1a1a;"></i></button>
                         </form>
@@ -64,7 +65,7 @@
     </table>
     <div class="card-footer">
         <ul class="pagination-sm m-0" style="width: 100%">
-            {!! $reservationsW->links('pagination::bootstrap-5') !!}
+            {!! $rejectR->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
     <script>

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\M_titles;
 use App\Models\Room;
 use App\Models\User;
+use App\Models\approves;
 use App\Http\Controllers\Validator;
 use App\Http\Controllers\UserController;
 use App\Models\reservations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -31,8 +33,22 @@ class EmployeeController extends Controller
 
     public function mainpage()
     {
-        //
-        return view('titles_Employee.mainpage');
+        
+        $smallRoomCount = Room::where('ro_size', 'S')->count();
+        $mediumRoomCount = Room::where('ro_size', 'M')->count();
+        $largeRoomCount = Room::where('ro_size', 'L')->count();
+        $waitReservationCount = reservations::where('res_status', 'W')->count();
+        $data = [
+            'wait_reservation_count' => $waitReservationCount,
+            'user_count' => User::count(),
+            'room_count' => Room::count(),
+            'room_sizes' => [
+                'S' => $smallRoomCount,
+                'M' => $mediumRoomCount,
+                'L' => $largeRoomCount,
+            ]
+        ];
+        return view('titles_Employee.mainpage' , compact('data'));
     }
 
     public function reserve()
@@ -41,12 +57,18 @@ class EmployeeController extends Controller
         return view('titles_Employee.reserve_privet');
     }
     public function petition()
-{
-    $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
-    $reservationsR = reservations::where('res_status', 'R')->orderBy("id", "asc")->paginate(2);
-    return view('titles_Employee.petition', compact('reservationsW', 'reservationsR'));
-}
-
+    {
+        $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
+        $tableRowCount = $reservationsW->total();
+        return view('titles_Employee.petition', compact('reservationsW', 'tableRowCount'));
+        // , 'tableRowCount'
+    }
+    public function petition_reject()
+    {
+        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(2);
+        $tableRowCount = $rejectR->total();
+        return view('titles_Employee.petition_reject', compact('rejectR', 'tableRowCount'));
+    }
 
     public function reservation_list()
     {
@@ -69,17 +91,49 @@ class EmployeeController extends Controller
 
     // หน้าสถิติการจอง
     public function statistics(){
+        $smallRoomCount = Room::where('ro_size', 'S')->count();
+        $mediumRoomCount = Room::where('ro_size', 'M')->count();
+        $largeRoomCount = Room::where('ro_size', 'L')->count();
+        $waitReservationCount = reservations::where('res_status', 'W')->count();
         $data = [
+            'wait_reservation_count' => $waitReservationCount,
             'user_count' => User::count(),
             'room_count' => Room::count(),
+            'room_sizes' => [
+                'S' => $smallRoomCount,
+                'M' => $mediumRoomCount,
+                'L' => $largeRoomCount,
+            ]
         ];
         return view('titles_Employee.statistics' , compact('data'));
 
     }
 
+    public function getReservationsByMonth()
+    {
+        $dataA = reservations::selectRaw('COUNT(*) as count, MONTH(res_startdate) as month')
+        ->where('res_status', 'A')
+        ->groupBy(DB::raw('MONTH(res_startdate)'))
+        ->orderBy(DB::raw('MONTH(res_startdate)'))
+        ->get();
+
+        $dataR = reservations::selectRaw('COUNT(*) as count, MONTH(res_startdate) as month')
+                ->where('res_status', 'R')
+                ->groupBy(DB::raw('MONTH(res_startdate)'))
+                ->orderBy(DB::raw('MONTH(res_startdate)'))
+                ->get();
+
+        return response()->json([
+        'dataA' => $dataA,
+        'dataR' => $dataR
+        ]);
+    }
+    
+
     public function accout()
     {
-        //
+
+        // Pass user data to the 'accout' view
         return view('titles_Employee.accout');
     }
 
@@ -153,7 +207,7 @@ class EmployeeController extends Controller
     $validatedData = $request->validate([
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
+        'email' => 'required|email|max:30',
         'mobile' => ['required', 'numeric', 'digits:10', function ($attribute, $value, $fail) {
             // Custom validator to check if mobile number has exactly 10 digits
             if (strlen($value) !== 10) {
@@ -187,18 +241,35 @@ class EmployeeController extends Controller
 
         return redirect(route('titles_Employee.manage_account'))->with('success', 'ลบข้อมูลผู้ใช้สำเร็จ');
     }
-    
-    public function updatePetition(Request $request, $id)
+    public function updatePetitionW(Request $request, $id)
     {
         $request->validate([
             'newStatus' => 'required',
         ]);
         $reservation = reservations::findOrFail($id);
+        $Approve = approves::findOrFail($id);
+
         $reservation->res_status = $request->newStatus;
+        $Approve->app_status_reserve = $request->newStatus;
+
         $reservation->save();
+        $Approve->save();
 
-        return redirect()->route('test')->with('success', 'Status updated successfully!');
+        return redirect()->route('pageW')->with('success', 'Status updated successfully!');
     }
+    public function updatePetitionR(Request $request, $id)
+    {
+        $request->validate([
+            'newStatus' => 'required',
+        ]);
+        $reservation = reservations::findOrFail($id);
+        $Approve = approves::findOrFail($id);
+        $reservation->res_status = $request->newStatus;
+        $Approve->app_status_reserve = $request->newStatus;
 
+        $reservation->save();
+        $Approve->save();
+
+        return redirect()->route('pageR')->with('success', 'Status updated successfully!');
     }
-
+    }
