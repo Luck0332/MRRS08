@@ -67,15 +67,72 @@
             {!! $reservationsW->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
+    <style>
+        .custom-alert {
+            padding: 20px;
+            background-color: #f2f2f2;
+            color: #333;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 200px;
+            text-align: center;
+            /* จัดตำแหน่งข้อความให้อยู่ตรงกลาง */
+            display: flex;
+            /* จัดวางเนื้อหาด้วย Flexbox */
+            align-items: center;
+            /* จัดวางตำแหน่งในแนวตั้งกลาง */
+            justify-content: center;
+            /* จัดวางตำแหน่งในแนวนอนกลาง */
+        }
+
+        .custom-alert h1 {
+            font-size: 24px;
+            /* กำหนดขนาดตัวหนังสือใหญ่ขึ้น */
+            font-weight: bold;
+            /* ทำให้ตัวหนังสือเป็นตัวหนา */
+        }
+
+        .success {
+            font-size: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+    </style>
     <script>
         function approveStatus() {
-            alert("Approved successfully!");
+            var approveAlert = document.createElement('div');
+            approveAlert.textContent = "Approved successfully!";
+            approveAlert.classList.add('custom-alert', 'success');
+            document.body.appendChild(approveAlert);
+            setTimeout(function() {
+                approveAlert.remove();
+            }, 3000);
         }
 
         function rejectStatus() {
-            alert("Rejected successfully!");
+            var rejectAlert = document.createElement('div');
+            rejectAlert.textContent = "Rejected successfully!";
+            rejectAlert.classList.add('custom-alert', 'error');
+            document.body.appendChild(rejectAlert);
+            setTimeout(function() {
+                rejectAlert.remove();
+            }, 3000);
         }
     </script>
+
+
 
     <script>
         // เลือกตารางโดยใช้ class
