@@ -10,6 +10,7 @@ use App\Models\reserver_information;
 use App\Models\resinfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -18,6 +19,7 @@ class UserController extends Controller
         $roomSize = $request->input('room_size');
         $startDate = $request->input('date');
         $endDate = $request->input('end_date');
+
 
         // แยกวันที่และเวลาเริ่มต้นและสิ้นสุด
         $startDateTimeParts = explode(' to ', $startDate);
@@ -43,15 +45,31 @@ class UserController extends Controller
         } else {
             $rooms = Room::all();
         }
+
+
         return view('titles_User.search_room', compact('rooms', 'startDate', 'endDate', 'roomSize', 'reserv_room'));
     }
-    public function ToSuccess(){
-        return view('titles_User.Reserve_success');
-    }
+    public function ToSuccess(Request $req)
+{
+    // Get the latest reservation ID directly
+    $latestId = reserver_information::latest()->firstOrFail()->id;
+
+    // Use the latest ID to fetch reservation information
+    $resinfo_id = reserver_information::where('id', $latestId)->firstOrFail();
+    $username = reservations::where('id', $latestId)->firstOrFail();
+    $room = Room::where('id', $username->room_id)->firstOrFail();
+
+    // Access additional data from Request object (if needed)
+    $res_startdate = $req->query('res_startdate');
+    $res_enddate = $req->query('res_enddate');
+
+    return view('titles_User.reserve_bill', compact('username', 'resinfo_id', 'room', 'res_startdate', 'res_enddate'));
+}
+
 
     public function StoreInfo(Request $request)
     {
-        $length = 4; 
+        $length = 4;
         $serialCode = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2);
         $serialCode .= sprintf("%04d", mt_rand(0, 9999));
 
@@ -68,16 +86,16 @@ class UserController extends Controller
         $reservation->res_status = 'W';
         $reservation->res_serialcode = $serialCode;
         $reservation->agenda = $request->agenda;
-
-        //$reservation->us_name = $request->us_name;
-        //$reservation->us_fname = $request->us_fname;
-        //$reservation->us_tel = $request->us_tel;
-        //$reservation->agenda = $request->agenda;
+        $reservation->resinfo_id = $res_info->id;
 
         $reservation->save();
 
-        return redirect()->route('Reserve_success');
+        return redirect()->route('Reserve_success', ['req' => $request, 'id' => $reservation->id]);
+
+
     }
+
+
 
 
     public function getReserve()

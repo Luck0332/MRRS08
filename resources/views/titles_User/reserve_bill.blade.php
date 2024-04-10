@@ -46,7 +46,7 @@
                         <span>รายละเอียดการจอง</span>
                     </div>
                     <ul>
-                        {{-- {{-- <li>วันที่: {{ $reservation->date }}</li> --}}
+                        
                         <li>ขนาดห้อง:
                             @if ($room->ro_size == 'S')
                                 <td> ห้องขนาดเล็ก </td>
