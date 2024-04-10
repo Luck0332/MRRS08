@@ -143,7 +143,7 @@
                 </div>
             </div>
             <!-- /.top-right-content -->
-
+            
             <!-- bot-left-content -->
             <div class="item" style="display: flex; justify-content: center; align-items: center; height: 100%;">
                 <div class="card-header border-0 text-center" style="background-color: transparent;">
