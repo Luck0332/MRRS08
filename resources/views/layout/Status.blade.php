@@ -8,7 +8,7 @@
             <script src="https://kit.fontawesome.com/e71f46c45f.js" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="{{ url('assets/dist/css/reservation.css') }}">
             </head>
-            <body>  
+            <body>
                 <div class="center">
                     <div class="content-header">
                     <i class="fa fa-angle-left" style="font-size:72px; margin-right: 20px;"></i>
