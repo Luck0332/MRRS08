@@ -17,7 +17,6 @@
             <span>รายการ</span>
         </div>
     </div>
-    <br><br>
 
     <!-- แสดงข้อมูลสถานะ 'R' -->
     <div class="head">
@@ -67,7 +66,7 @@
         </tbody>
     </table>
     <div class="card-footer">
-        <ul class="pagination-sm m-0" style="width: 100%">
+        <ul class="pagination-sm m-0">
             {!! $rejectR->links('pagination::bootstrap-5') !!}
         </ul>
     </div>
@@ -194,6 +193,7 @@
     <script>
         function approveStatus() {
             alert("Approved successfully!");
+
         }
 
         function rejectStatus() {

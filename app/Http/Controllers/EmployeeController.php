@@ -51,7 +51,7 @@ class EmployeeController extends Controller
     }
     public function petition_reject()
     {
-        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(2);
+        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(5);
         $tableRowCount = $rejectR->total();
         return view('titles_Employee.petition_reject', compact('rejectR', 'tableRowCount'));
     }

@@ -18,7 +18,7 @@
             <span>รายการ</span>
         </div>
     </div>
-    <br><br>
+    
     <div class="head">
         <button id="prev">คำขอการจอง</button>
     </div>
