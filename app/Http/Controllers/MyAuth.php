@@ -52,7 +52,7 @@ class MyAuth extends Controller
 
     function logout_process(){
         Auth::logout();
-        return Redirect::to('login');
+        return Redirect::to('index');
     }
 
     function register_view(){
