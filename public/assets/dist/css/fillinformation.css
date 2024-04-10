@@ -74,11 +74,10 @@
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 36px;
-    background: #5E96EB;
+    height: 36px;;
     border-radius: 6px;
     margin-top: 100px;
-    cursor: pointer; 
+    cursor: pointer;
 }
 #confirm{
     justify-content: center;
