@@ -138,8 +138,11 @@
                                 <button type="reset" class="btn btn-default float-right">Reset</button>
                             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
                         
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
@@ -181,6 +184,7 @@
         });
     </script>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <script>
     $(document).ready(function() {
         // Add click event handler to the close button
@@ -190,6 +194,8 @@
         });
     });
     </script>
+=======
+>>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
 =======
 >>>>>>> parent of 493a3e2 (Merge branch 'Reserveeiuwueiei')
 
