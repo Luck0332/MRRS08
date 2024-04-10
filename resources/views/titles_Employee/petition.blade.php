@@ -30,7 +30,7 @@
                 <th>#</th>
                 <th>วันที่จอง</th>
                 <th>สถานะห้องประชุม</th>
-                <th>เลขห้อง</th>
+                <th>รหัสการจอง</th>
                 <th>วันที่จะเข้าใช้</th>
                 <th>รอดำเนินการ</th>
                 <th></th>
@@ -40,7 +40,7 @@
             @foreach ($reservationsW as $reservation)
                 <tr>
                     <td>{{ $reservation->room_id }}</td>
-                    <td>{{ $reservation->updated_at }}</td>
+                    <td>{{ $reservation->created_at }}</td>
                     <td>{{ $reservation->res_status }}</td>
                     <td>{{ $reservation->res_serialcode}}</td>
                     <td>{{ $reservation->res_startdate }}</td>

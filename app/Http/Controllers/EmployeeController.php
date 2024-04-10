@@ -34,7 +34,7 @@ class EmployeeController extends Controller
 
     public function mainpage()
     {
-        
+
         $smallRoomCount = Room::where('ro_size', 'S')->count();
         $mediumRoomCount = Room::where('ro_size', 'M')->count();
         $largeRoomCount = Room::where('ro_size', 'L')->count();
@@ -66,14 +66,14 @@ class EmployeeController extends Controller
     }
     public function petition()
     {
-        $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(5);
+        $reservationsW = reservations::where('res_status', 'W')->orderBy("id", "asc")->paginate(2);
         $tableRowCount = $reservationsW->total();
         return view('titles_Employee.petition', compact('reservationsW', 'tableRowCount'));
         // , 'tableRowCount'
     }
     public function petition_reject()
     {
-        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(5);
+        $rejectR = reservations::where('res_status', 'R')->orderBy('id', 'asc')->paginate(2);
         $tableRowCount = $rejectR->total();
         return view('titles_Employee.petition_reject', compact('rejectR', 'tableRowCount'));
     }
@@ -136,7 +136,7 @@ class EmployeeController extends Controller
         'dataR' => $dataR
         ]);
     }
-    
+
 
     public function accout()
     {
@@ -255,27 +255,34 @@ class EmployeeController extends Controller
             'newStatus' => 'required',
         ]);
         $reservation = reservations::findOrFail($id);
-        $Approve = approves::findOrFail($id);
         $reservation->res_status = $request->newStatus;
-        $Approve->app_status_reserve = $request->newStatus;
 
-        $reservation->save();
+
+        $Approve = new approves();
+        $Approve->res_id = $reservation->resinfo_id;
+
+        $Approve->app_status = $request->newStatus;
+        $Approve->ro_id = $reservation->room_id;
+
         $Approve->save();
+        $reservation->save();
 
         return redirect()->route('pageW')->with('success', 'Status updated successfully!');
     }
     public function updatePetitionR(Request $request, $id)
     {
-        $request->validate([
-            'newStatus' => 'required',
-        ]);
         $reservation = reservations::findOrFail($id);
-        $Approve = approves::findOrFail($id);
         $reservation->res_status = $request->newStatus;
-        $Approve->app_status_reserve = $request->newStatus;
 
-        $reservation->save();
+
+        $Approve = new approves();
+        $Approve->res_id = $reservation->resinfo_id;
+
+        $Approve->app_status = $request->newStatus;
+        $Approve->ro_id = $reservation->room_id;
+
         $Approve->save();
+        $reservation->save();
 
         return redirect()->route('pageR')->with('success', 'Status updated successfully!');
     }
