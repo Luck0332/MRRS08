@@ -5,7 +5,7 @@
 @section('content')
     <script src="https://kit.fontawesome.com/e71f46c45f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url('assets/dist/css/reservation.css') }}">
-    <body>  
+    <body>
         <div class="center">
             <div class="content-header">
             <i class="fa fa-angle-left" style="font-size:72px; margin-right: 20px;"></i>
@@ -16,10 +16,10 @@
 
                 </div>
 
-                <div class="line-between-active"></div>
+                <div class="line-between"></div>
 
                 <div class="icon-container">
-                    <div class="circle-icon-active">
+                    <div class="circle-icon-inactive">
                         <i class="fas fa-file"></i>
                     </div>
 
@@ -105,8 +105,8 @@
             {{-- <label for="">{{ $startDate }}</label><br>
 <label for="">{{ $endDate }}</label><br>
 <label for="">{{ $roomSize }}</label> --}}
-                
-                
+
+
             <div class="row">
                 {{-- <label for="">{{$startDate}}</label>
                 <label for="">{{$endDate}}</label> --}}
