@@ -301,7 +301,7 @@ class EmployeeController extends Controller
     {
         $data1 = reservations::find($id);
         $data2 = Room::find($data1->room_id);
-        $data3 = reserver_information::find($data1->id);
+        $data3 = reserver_information::find($data1->resinfo_id);
         return response()->json(['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
 
     }
