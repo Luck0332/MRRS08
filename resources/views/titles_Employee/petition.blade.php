@@ -91,7 +91,7 @@
             console.log(id)
             const url = "{{ route('get-details', ['id' => 1]) }}";
             await $.ajax({
-                url: `/Petition_detail/${id}`, // Update the URL according to your route
+                url: `{{url('/Petition_detail/')}}${id}`, // Update the URL according to your route
                 method: 'GET',
                 success: function(data) {
                     console.log(data)
