@@ -88,7 +88,7 @@
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" name="newStatus"
-                                            value="Z"class="btn btn-danger large-button"
+                                            value="R"class="btn btn-danger large-button"
                                             style="height: 38px;">ยกเลิกการจอง</button>
                                     </form>
                                 @elseif ($re->res_status == 'R' || $re->res_status == 'C')
