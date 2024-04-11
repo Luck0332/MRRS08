@@ -218,7 +218,7 @@
 
         function confirmUpdate(id) {
             console.log(id);
-            const url = `/get-reservation-details/${id}`;
+            const url = `{{url('/get-reservation-details')}}/${id}`;
             $.ajax({
                 url: url,
                 method: 'GET',
