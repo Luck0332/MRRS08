@@ -118,7 +118,7 @@
             console.log(id)
             const url = `{{ route('get-reservation-details', ['id' => 1]) }}`
             await $.ajax({
-                url: `{{ url('/get-reservation-details') }}/${id}`, // Update the URL according to your route
+                url: `{{ url('/cluster8/get-reservation-details') }}/${id}`, // Update the URL according to your route
                 method: 'GET',
                 success: function(data) {
                     console.log(data)
