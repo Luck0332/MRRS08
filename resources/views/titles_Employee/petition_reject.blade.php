@@ -90,9 +90,9 @@
     <script>
         async function openModal(id) {
             console.log(id)
-            const url = "{{ route('get-popup', ['id' => 1]) }}";
+            const url = "{{ url('get-popup')}}/1";
             await $.ajax({
-                url: `{{url('/cluster8/Petition_reject_detail/')}}${id}`, // Update the URL according to your route
+                url: `{{url('/Petition_reject_detail')}}/${id}`, // Update the URL according to your route
                 method: 'GET',
                 success: function(data) {
                     console.log(data)
